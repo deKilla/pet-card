@@ -40,7 +40,7 @@
     "serve.compodoc": "node_modules/.bin/compodoc -s"
   },
   "author": "Michael Fuchs <deKilla>",
-  //"license": "MIT",
+  "license": "MIT",
   "devDependencies": {
     "@angular/compiler-cli": "~2.2.3",
     "@angular/platform-server": "~2.2.3",
