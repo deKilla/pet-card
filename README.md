@@ -7,7 +7,7 @@ Team: Michael Fuchs :man: | Nina Spalek :princess: | Max Wageneder :person_with_
 <br>
 ###_Introduction:_
 This Project was developed during our Bachelor Degree Programme "Informationsmanagement" @FH Joanneum Graz.  
-Our Trainers were DI (FH) Johann Blauensteiner & Dipl.-Ing. Mario Zupan
+Our Trainers were DI (FH) Johann Blauensteiner & DI (FH) Manfred Steyer.
 
 ###Goal: 
 Angular 2 Web Project - Pet Card System :page_facing_up: <br>
