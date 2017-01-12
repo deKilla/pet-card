@@ -3,7 +3,7 @@ package at.fh.ima.swengs.petcard.model;
 import javax.persistence.*;
 
 @Entity
-public class PetOwner {
+public class Doctor {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,21 +19,22 @@ public class PetOwner {
 
   private String email;
 
-  private Pet pet;
+  private String officeHours;
 
   @Version
   private long version;
 
-  public PetOwner(){
+  public Doctor(){
 
   }
 
-  public PetOwner(String firstName, String lastName, String address, String phone, String email){
+  public Doctor (String firstName, String lastName, String address, String phone, String email, String officeHours){
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;
     this.phone = phone;
     this.email = email;
+    this.officeHours = officeHours;
   }
 
   public int getId() {
@@ -82,5 +83,13 @@ public class PetOwner {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public String getOfficeHours() {
+    return officeHours;
+  }
+
+  public void setOfficeHours(String officeHours) {
+    this.officeHours = officeHours;
   }
 }

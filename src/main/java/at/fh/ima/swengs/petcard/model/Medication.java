@@ -3,7 +3,7 @@ package at.fh.ima.swengs.petcard.model;
 import javax.persistence.*;
 
 @Entity
-public class PetType {
+public class Medication {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,16 +13,19 @@ public class PetType {
 
   private String description;
 
+  private float price;
+
   @Version
   private long version;
 
-  public PetType(){
+  public Medication(){
 
   }
 
-  public PetType(String name, String description){
+  public Medication(String name, String description, float price){
     this.name = name;
     this.description = description;
+    this.price = price;
   }
 
   public int getId() {
@@ -47,5 +50,13 @@ public class PetType {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public float getPrice() {
+    return price;
+  }
+
+  public void setPrice(float price) {
+    this.price = price;
   }
 }

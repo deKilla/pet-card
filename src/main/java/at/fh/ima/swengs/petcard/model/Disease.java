@@ -3,7 +3,7 @@ package at.fh.ima.swengs.petcard.model;
 import javax.persistence.*;
 
 @Entity
-public class PetType {
+public class Disease {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,11 +16,11 @@ public class PetType {
   @Version
   private long version;
 
-  public PetType(){
+  public Disease(){
 
   }
 
-  public PetType(String name, String description){
+  public Disease(String name, String description){
     this.name = name;
     this.description = description;
   }
