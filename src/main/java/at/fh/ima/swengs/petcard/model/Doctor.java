@@ -32,13 +32,14 @@ public class Doctor {
 
   }
 
-  public Doctor (String firstName, String lastName, String address, String phone, String email, String officeHours){
+  public Doctor (String firstName, String lastName, String address, String phone, String email, String officeHours, List<Pet> pets){
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;
     this.phone = phone;
     this.email = email;
     this.officeHours = officeHours;
+    this.pets = pets;
   }
 
   public long getId() {

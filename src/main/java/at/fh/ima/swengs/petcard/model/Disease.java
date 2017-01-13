@@ -14,8 +14,8 @@ public class Disease {
 
   private String description;
 
-  @ManyToMany(cascade = CascadeType.PERSIST)
-  private List<Pet> pets;
+  @OneToMany(mappedBy = "disease", orphanRemoval = true)
+  private List<PetDisease> petDiseases;
 
   @Version
   private long version;
@@ -24,9 +24,10 @@ public class Disease {
 
   }
 
-  public Disease(String name, String description){
+  public Disease(String name, String description, List<PetDisease> petDiseases){
     this.name = name;
     this.description = description;
+    this.petDiseases = petDiseases;
   }
 
   public long getId() {
@@ -53,11 +54,11 @@ public class Disease {
     this.description = description;
   }
 
-  public List<Pet> getPets() {
-    return pets;
+  public List<PetDisease> getPetDiseases() {
+    return petDiseases;
   }
 
-  public void setPets(List<Pet> pets) {
-    this.pets = pets;
+  public void setPetDiseases(List<PetDisease> petDiseases) {
+    this.petDiseases = petDiseases;
   }
 }

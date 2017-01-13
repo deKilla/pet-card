@@ -18,7 +18,7 @@ public class Pet {
 
   private String name;
 
-  private String race;
+  private String type;
 
   private int weight;
 
@@ -29,19 +29,16 @@ public class Pet {
   private Date birthDate;
 
   @ManyToOne
-  private PetType petType;
-
-  @ManyToOne
   private PetOwner petOwner;
 
   @ManyToOne
   private Doctor doctor;
 
-  @ManyToMany(mappedBy = "pet")
-  private List<Disease> diseases;
+  @OneToMany(mappedBy = "pet", orphanRemoval = true)
+  private List<PetDisease> petDiseases;
 
-  @ManyToMany(mappedBy = "pet")
-  private List<Medication> medications;
+  @OneToMany(mappedBy = "pet", orphanRemoval = true)
+  private List<PetMedication> petMedications;
 
   @Version
   private long version;
@@ -50,15 +47,15 @@ public class Pet {
 
   }
 
-  //Um Beziehungsparameter erweitern
-  public Pet(String name, String race, int weight, Date birthDate){
+  public Pet(String name, String type, int weight, Date birthDate, List<PetDisease> petDiseases, List<PetMedication> petMedications){
     this.name = name;
-    this.race = race;
+    this.type = type;
     this.weight = weight;
     this.birthDate = birthDate;
+    this.petDiseases = petDiseases;
+    this.petMedications = petMedications;
   }
 
-  //Um Beziehungsparameter
   public long getId() {
     return id;
   }
@@ -73,14 +70,6 @@ public class Pet {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public String getRace() {
-    return race;
-  }
-
-  public void setRace(String race) {
-    this.race = race;
   }
 
   public int getWeight() {
@@ -99,14 +88,6 @@ public class Pet {
     this.birthDate = birthDate;
   }
 
-  public PetType getPetType() {
-    return petType;
-  }
-
-  public void setPetType(PetType petType) {
-    this.petType = petType;
-  }
-
   public PetOwner getPetOwner() {
     return petOwner;
   }
@@ -123,19 +104,27 @@ public class Pet {
     this.doctor = doctor;
   }
 
-  public List<Disease> getDiseases() {
-    return diseases;
+  public String getType() {
+    return type;
   }
 
-  public void setDiseases(List<Disease> diseases) {
-    this.diseases = diseases;
+  public void setType(String type) {
+    this.type = type;
   }
 
-  public List<Medication> getMedications() {
-    return medications;
+  public List<PetDisease> getPetDiseases() {
+    return petDiseases;
   }
 
-  public void setMedications(List<Medication> medications) {
-    this.medications = medications;
+  public void setPetDiseases(List<PetDisease> petDiseases) {
+    this.petDiseases = petDiseases;
+  }
+
+  public List<PetMedication> getPetMedications() {
+    return petMedications;
+  }
+
+  public void setPetMedications(List<PetMedication> petMedications) {
+    this.petMedications = petMedications;
   }
 }

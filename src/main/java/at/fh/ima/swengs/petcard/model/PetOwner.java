@@ -30,12 +30,13 @@ public class PetOwner {
 
   }
 
-  public PetOwner(String firstName, String lastName, String address, String phone, String email){
+  public PetOwner(String firstName, String lastName, String address, String phone, String email, List<Pet> pets){
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;
     this.phone = phone;
     this.email = email;
+    this.pets = pets;
   }
 
   public long getId() {
