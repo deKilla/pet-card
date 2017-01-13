@@ -15,8 +15,6 @@ public class PetDisease {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  private String name;
-
   @JsonDeserialize(using = JsonDateDeserializer.class)
   @JsonSerialize(using = JsonDateSerializer.class)
   @Temporal(TemporalType.DATE)
@@ -42,8 +40,7 @@ public class PetDisease {
 
   }
 
-  public PetDisease(String name, Date diseaseStart, Date diseaseEnd, Disease disease, Pet pet){
-    this.name = name;
+  public PetDisease(Date diseaseStart, Date diseaseEnd, Disease disease, Pet pet){
     this.diseaseStart = diseaseStart;
     this.diseaseEnd = diseaseEnd;
     this.disease = disease;
@@ -56,14 +53,6 @@ public class PetDisease {
 
   public void setId(long id) {
     this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   public Date getDiseaseStart() {
@@ -97,6 +86,4 @@ public class PetDisease {
   public void setPet(Pet pet) {
     this.pet = pet;
   }
-
-
 }
