@@ -1,19 +1,23 @@
 package at.fh.ima.swengs.petcard.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Medication {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id;
+  private long id;
 
   private String name;
 
   private String description;
 
   private float price;
+
+  @ManyToMany(cascade = CascadeType.PERSIST)
+  private List<Pet> pets;
 
   @Version
   private long version;
@@ -28,11 +32,11 @@ public class Medication {
     this.price = price;
   }
 
-  public int getId() {
+  public long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(long id) {
     this.id = id;
   }
 
@@ -58,5 +62,13 @@ public class Medication {
 
   public void setPrice(float price) {
     this.price = price;
+  }
+
+  public List<Pet> getPets() {
+    return pets;
+  }
+
+  public void setPets(List<Pet> pets) {
+    this.pets = pets;
   }
 }

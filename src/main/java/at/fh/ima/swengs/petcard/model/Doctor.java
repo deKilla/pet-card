@@ -1,13 +1,14 @@
 package at.fh.ima.swengs.petcard.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Doctor {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id;
+  private long id;
 
   private String firstName;
 
@@ -20,6 +21,9 @@ public class Doctor {
   private String email;
 
   private String officeHours;
+
+  @OneToMany(mappedBy = "doctor", orphanRemoval = true)
+  private List<Pet> pets;
 
   @Version
   private long version;
@@ -37,11 +41,11 @@ public class Doctor {
     this.officeHours = officeHours;
   }
 
-  public int getId() {
+  public long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(long id) {
     this.id = id;
   }
 
@@ -91,5 +95,13 @@ public class Doctor {
 
   public void setOfficeHours(String officeHours) {
     this.officeHours = officeHours;
+  }
+
+  public List<Pet> getPets() {
+    return pets;
+  }
+
+  public void setPets(List<Pet> pets) {
+    this.pets = pets;
   }
 }

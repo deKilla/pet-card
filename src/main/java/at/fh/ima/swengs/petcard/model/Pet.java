@@ -7,13 +7,14 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Pet {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id;
+  private long id;
 
   private String name;
 
@@ -27,14 +28,20 @@ public class Pet {
   //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd.MM.yyyy")
   private Date birthDate;
 
-  //Beziehungen
+  @ManyToOne
   private PetType petType;
 
-  private Disease disease;
-
+  @ManyToOne
   private PetOwner petOwner;
 
+  @ManyToOne
   private Doctor doctor;
+
+  @ManyToMany(mappedBy = "pet")
+  private List<Disease> diseases;
+
+  @ManyToMany(mappedBy = "pet")
+  private List<Medication> medications;
 
   @Version
   private long version;
@@ -52,11 +59,11 @@ public class Pet {
   }
 
   //Um Beziehungsparameter
-  public int getId() {
+  public long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(long id) {
     this.id = id;
   }
 
@@ -90,5 +97,45 @@ public class Pet {
 
   public void setBirthDate(Date birthDate) {
     this.birthDate = birthDate;
+  }
+
+  public PetType getPetType() {
+    return petType;
+  }
+
+  public void setPetType(PetType petType) {
+    this.petType = petType;
+  }
+
+  public PetOwner getPetOwner() {
+    return petOwner;
+  }
+
+  public void setPetOwner(PetOwner petOwner) {
+    this.petOwner = petOwner;
+  }
+
+  public Doctor getDoctor() {
+    return doctor;
+  }
+
+  public void setDoctor(Doctor doctor) {
+    this.doctor = doctor;
+  }
+
+  public List<Disease> getDiseases() {
+    return diseases;
+  }
+
+  public void setDiseases(List<Disease> diseases) {
+    this.diseases = diseases;
+  }
+
+  public List<Medication> getMedications() {
+    return medications;
+  }
+
+  public void setMedications(List<Medication> medications) {
+    this.medications = medications;
   }
 }
