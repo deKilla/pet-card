@@ -1,8 +1,9 @@
 import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
-import {AddPetComponent} from "./add/addPet.component";
-import {AddUserComponent} from "./add/addUser.component";
+import {AddUserComponent} from "./add/add-user.component";
+import {AddPetComponent} from "./add/add-pet.component";
+import {PetInfoComponent} from "./pet-info/pet-info.component";
 import {ProfileComponent} from "./profile/profile.component";
 
 const APP_ROUTES: Routes = [
@@ -20,12 +21,16 @@ const APP_ROUTES: Routes = [
     component: HomeComponent
   },
   {
+    path: 'addUser',
+    component: AddUserComponent
+  },
+  {
     path: 'addPet',
     component: AddPetComponent
   },
   {
-    path: 'addUser',
-    component: AddUserComponent
+    path: 'petInfo',
+    component: PetInfoComponent
   },
   {
     path: 'profile',
