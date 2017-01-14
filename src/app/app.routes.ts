@@ -1,6 +1,9 @@
 import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
+import {AddPetComponent} from "./add/addPet.component";
+import {AddUserComponent} from "./add/addUser.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 const APP_ROUTES: Routes = [
   {
@@ -15,6 +18,18 @@ const APP_ROUTES: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'addPet',
+    component: AddPetComponent
+  },
+  {
+    path: 'addUser',
+    component: AddUserComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   },
   {
     path: '**',
