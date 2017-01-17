@@ -6,7 +6,7 @@
     <link href="../../css/stylesheet.css" rel="stylesheet">
   </head>
   <body>
-    <h1>Edit Profile</h1>
+    <h1>Profile</h1>
 
     <!-- ####################################################################################################### -->
     <!-- EDIT USER FORM -- firstname, lastname, address, phone, email -->
@@ -81,10 +81,22 @@
 
       <br>
 
+      <div >
+        <label>Office Hours</label>
+
+        <div>
+          <input type="text" class="form-control" name="officeHours"
+                 placeholder="e.g. Mo-Fr 08:00 - 12:00 Sa-So Geschlossen" data-validate="maxlength[100]"
+                 required />
+        </div>
+      </div>
+
+      <br>
+
       <div>
         <div>
           <button type="submit" class="btn btn-success">
-            <i class="entypo-plus-circled"></i><strong>Create</strong>
+            <i class="entypo-plus-circled"></i><strong>Save</strong>
           </button>
           <button type="button" class="btn btn-danger">
             <a style="color: white;" routerLink="/home"><strong>Exit</strong></a>
