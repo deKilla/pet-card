@@ -18,11 +18,11 @@ const APP_ROUTES: Routes = [
     component: LoginComponent
   },
   {
-    path: 'doctor-home',
+    path: 'doctorHome',
     component: DoctorHomeComponent
   },
   {
-    path: 'user-home',
+    path: 'userHome',
     component: UserHomeComponent
   },
   {

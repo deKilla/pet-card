@@ -11,6 +11,11 @@ import {PetInfoComponent} from "./pet-info/pet-info.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {UserHomeComponent} from "./home/user-home.component";
 import {DoctorHomeComponent} from "./home/doctor-home.component";
+import {BASE_URL} from './app.tokens';
+
+
+const BASE_URL_FOR_PRODUCTION = "localhost:8080/api";
+
 
 @NgModule({
   imports: [
@@ -28,6 +33,9 @@ import {DoctorHomeComponent} from "./home/doctor-home.component";
     AddPetComponent,
     PetInfoComponent,
     ProfileComponent
+  ],
+  providers: [
+    { provide: BASE_URL, useValue: BASE_URL_FOR_PRODUCTION}
   ],
   bootstrap: [ AppComponent ]
 })

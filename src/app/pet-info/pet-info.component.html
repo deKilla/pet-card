@@ -10,5 +10,25 @@
 
 
 
+    <form #f="ngForm" novalidate>
+      <div class="form-group">
+        <label>ID</label>
+        <input [(ngModel)]="id">
+      </div>
+      <div class="form-group">
+        <button class="btn" (click)="search()">Suchen</button>
+      </div>
+    </form>
+    <table class="table table-striped">
+      <tr *ngFor="let p of pets" [ngStyle]="{ 'background-color': (f == selectedPet) ? 'orange' : ''  }">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.type}}</td>
+        <td>{{p.weight}}</td>
+        <td><a (click)="select(p)">Auswählen</a></td>
+      </tr>
+    </table>
+
+
   </body>
 </html>
