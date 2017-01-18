@@ -1,4 +1,4 @@
-/*
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,11 +7,9 @@ import { Component } from '@angular/core';
 
 export class PetInfoComponent {
 }
-*/
 
 
-
-
+/*
 
 import { Component } from '@angular/core';
 import {PetService} from "./service/pet.service";
@@ -40,4 +38,4 @@ export class PetInfoComponent {
 
 }
 
-
+ */
