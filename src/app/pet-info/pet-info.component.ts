@@ -1,28 +1,26 @@
-
-import { Component } from '@angular/core';
-
-@Component({
-  templateUrl: "./pet-info.component.html"
-})
-
-export class PetInfoComponent {
-}
-
-
-/*
-
-import { Component } from '@angular/core';
-import {PetService} from "./service/pet.service";
+import {Component} from "@angular/core";
 import {Pet} from "../entities/pet";
+import {Doctor} from "../entities/doctor";
+import {PetOwner} from "../entities/petOwner";
+import {PetService} from "./service/pet.service";
 
 @Component({
-  selector: "pet-info",
-  templateUrl: "./pet-info.component.html"
+  selector: 'pet-info',
+  templateUrl: './pet-info.component.html',
+  //styleUrls: ['./pet-info.component.css'],
+  providers:[ ]
 })
-export class PetInfoComponent {
 
+export class PetInfoComponent {
 
   public id: string;
+  public birthDate: string;
+  public name: string;
+  public type: string;
+  public weight: string;
+  public doctor: Doctor;
+  public petOwner: PetOwner;
+  public selectedPet: Pet;
 
   constructor(private petService: PetService) {
   }
@@ -31,11 +29,13 @@ export class PetInfoComponent {
     return this.petService.pets;
   }
 
-  search():void {
+  search(form): void {
+    //if(!form.valid && form.dirty == true) { return; }
     this.petService.findById(this.id);
   }
 
+  select(pet: Pet): void {
+    this.selectedPet = pet;
+  }
 
 }
-
- */

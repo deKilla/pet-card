@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import {AppRouterModule} from "./app.routes";
+import {PetInfoModule} from "./pet-info/pet-info.module";
 import {LoginComponent} from "./login/login.component";
 import {AddUserComponent} from "./add/add-user.component";
 import {AddPetComponent} from "./add/add-pet.component";
@@ -22,7 +23,8 @@ const BASE_URL_FOR_PRODUCTION = "localhost:8080/api/pets";
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRouterModule
+    AppRouterModule,
+    PetInfoModule
   ],
   declarations: [
     AppComponent,
@@ -31,7 +33,7 @@ const BASE_URL_FOR_PRODUCTION = "localhost:8080/api/pets";
     DoctorHomeComponent,
     AddUserComponent,
     AddPetComponent,
-    PetInfoComponent,
+    //PetInfoComponent,
     ProfileComponent
   ],
   providers: [
