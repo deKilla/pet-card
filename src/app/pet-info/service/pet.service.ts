@@ -12,6 +12,23 @@ export class PetService {
 
   constructor(@Inject(BASE_URL) private baseUrl: string, private http: Http) {}
 
+  public showResp(id: string) {
+
+    let url = this.baseUrl;
+
+    let search = new URLSearchParams();
+    search.set('id', id);
+
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+
+    return this
+      .http
+      .get(url+"/findById",{headers,search})
+      //.map(resp => resp.json())
+      .subscribe(resp => console.log(resp));
+  }
+
   public findById(id: string): Observable<Pet> {
 
     let url = this.baseUrl;
@@ -24,9 +41,8 @@ export class PetService {
 
     return this
       .http
-      .get(url, { headers, search })
+      .get(url+"/findById",{headers,search})
       .map(resp => resp.json());
-
   }
 
   public save(pet: Pet): Observable<Pet> {
@@ -40,7 +56,6 @@ export class PetService {
       .http
       .post(url, pet, { headers })
       .map(resp => resp.json());
-
   }
 
   public find(name: string) {

@@ -34,6 +34,10 @@ export class PetInfoComponent {
     this.petService.findById(this.id);
   }
 
+  resplog(form): void {
+    this.petService.showResp(this.id);
+  }
+
   select(pet: Pet): void {
     this.selectedPet = pet;
   }
