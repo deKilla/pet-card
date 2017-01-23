@@ -1,5 +1,4 @@
 
-
 export interface Pet {
   id: number;     // int + double
   name: string;

@@ -8,35 +8,28 @@
 <body>
 <h1>Pet Info</h1>
 
-
-
-<form #f="ngForm" novalidate>
-  <div class="form-group">
-    <div >
-      <label>ID</label>
-
-      <div>
-        <input [(ngModel)]="ID" type="text" class="form-control" name="ID"
-               placeholder="ID" data-validate="number"
-               required />
+    <form #p="ngForm" novalidate>
+      <div class="form-group">
+        <label>ID</label>
+        <input [(ngModel)]="id" name="id" type="text" class="form-control" placeholder="ID" data-validate="number" required>
       </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <button type="button" class="btn btn-success" (click)="search()">
-      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Suchen</strong>
-    </button>
-  </div>
-</form>
-<table class="table table-striped">
-  <tr *ngFor="let p of pets" [ngStyle]="{ 'background-color': (f == selectedPet) ? 'orange' : ''  }">
-    <td>{{p.id}}</td>
-    <td>{{p.name}}</td>
-    <td>{{p.type}}</td>
-    <td>{{p.weight}}</td>
-    <td><a (click)="select(p)">Auswählen</a></td>
-  </tr>
-</table>
+      <div class="form-group">
+        <button type="button" class="btn btn-success" (click)="search()">
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Suchen</strong>
+        </button>
+      </div>
+    </form>
+
+
+    <table class="table table-striped">
+      <tr *ngFor="let p of pets">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.type}}</td>
+        <td>{{p.weight}}</td>
+      </tr>
+    </table>
+
 
 
 </body>

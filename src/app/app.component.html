@@ -11,7 +11,9 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- später soll entweder Login ODER Profile sein -->
+        <li>der rechte Teil passt noch net, das mach ich sobald login funktioniert</li>
         <li><a routerLink="/login">Login</a></li>
+        <li><a routerLink="/logout" (click)="logOut()">Logout  <span class="glyphicon glyphicon-log-out"></span></a></li>
         <li><a routerLink="/profile">Profile  <span class="glyphicon glyphicon-user"></span></a></li>
       </ul>
     </nav>

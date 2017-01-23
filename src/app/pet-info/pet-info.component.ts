@@ -1,41 +1,25 @@
-
-import { Component } from '@angular/core';
-
-@Component({
-  templateUrl: "./pet-info.component.html"
-})
-
-export class PetInfoComponent {
-}
-
-
-/*
-
-import { Component } from '@angular/core';
-import {PetService} from "./service/pet.service";
 import {Pet} from "../entities/pet";
+import { Component } from '@angular/core';
+import {PetService} from "../services/pet.service";
 
 @Component({
-  selector: "pet-info",
+  selector: 'pet-info',
   templateUrl: "./pet-info.component.html"
 })
-export class PetInfoComponent {
 
+export class PetInfoComponent {
 
   public id: string;
 
-  constructor(private petService: PetService) {
+  constructor(private petService:PetService) {
   }
 
-  public get pets(): Array<Pet> {
+  public get pets(): Array<Pet>{
     return this.petService.pets;
   }
 
-  search():void {
+  search (): void{
     this.petService.findById(this.id);
   }
-
-
 }
 
- */
