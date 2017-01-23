@@ -121,3 +121,5 @@ button.btn:hover { background:#fff; color:#f16529; }
 button.btn span { margin-right:5px; color:#f16529; }
 
 .footer-container { position:fixed; bottom:0px; width:100%; }
+
+.main-container { background: url(../img/gradient.png) repeat-x; }
