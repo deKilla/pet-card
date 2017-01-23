@@ -44,4 +44,32 @@ export class PetService {
         }
       );
   }
+
+  public add(name: string, race: string, weight: number, birthdate: Date): void {
+
+    let url = this.baseUrl;
+
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+
+    let dummyPet = {
+      "name" : name,
+      "type" : race,
+      "weight" : weight,
+      "birt_hdate" : birthdate
+    };
+
+    this
+      .http
+      .post(url, dummyPet, {headers})
+      .map(resp => resp.json())
+      .subscribe(
+        (pet:Pet) => {
+          console.debug("Ok")
+        },
+        (err) => {
+          console.error("Err")
+        }
+    );
+  }
 }

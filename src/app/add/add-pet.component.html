@@ -25,7 +25,7 @@
         <label>Name</label>
 
         <div>
-          <input type="text" class="form-control" name="name"
+          <input [(ngModel)]="name" type="text" class="form-control" name="name"
                  placeholder="e.g. Cookie" data-validate="maxlength[30]"
                  required />
         </div>
@@ -37,7 +37,7 @@
         <label>Race</label>
 
         <div>
-          <input type="text" class="form-control" name="race"
+          <input [(ngModel)]="race" type="text" class="form-control" name="race"
                  placeholder="e.g. Cat" data-validate="maxlength[30]"
                  required />
         </div>
@@ -49,7 +49,7 @@
         <label>Weight (kg)</label>
 
         <div>
-          <input type="number" class="form-control" name="weight"
+          <input [(ngModel)]="weight" type="number" class="form-control" name="weight"
                  placeholder="e.g. 5"
                  data-validate="maxlength[10]" required />
         </div>
@@ -63,7 +63,7 @@
         <label>Birthdate</label>
 
         <div>
-          <input type="date" class="form-control" name="birthdate"
+          <input [(ngModel)]="birthdate" type="date" class="form-control" name="birthdate"
                  placeholder="e.g. 01.01.2000" data-validate="maxlength[30]"
                  required />
         </div>
@@ -73,7 +73,7 @@
 
       <div >
         <div>
-          <button type="submit" class="btn btn-success">
+          <button (click)="add()" type="submit" class="btn btn-success">
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Create</strong>
           </button>
           <button type="button" class="btn btn-danger">
