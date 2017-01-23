@@ -5,4 +5,8 @@ import {Component} from '@angular/core';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+  constructor() {
+    sessionStorage.setItem("user", "fuchs");
+    sessionStorage.setItem("password", "password");
+  }
 }

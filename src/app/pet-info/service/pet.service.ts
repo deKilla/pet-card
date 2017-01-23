@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import {BASE_URL} from "../../app.tokens";
 import {Pet} from "../../entities/pet";
+import 'rxjs/Rx';
 
 
 @Injectable()
@@ -10,26 +11,35 @@ export class PetService {
 
   pets: Array<Pet> = [];
 
+  pet:Pet;
+
   constructor(@Inject(BASE_URL) private baseUrl: string, private http: Http) {}
 
   public showResp(id: string) {
 
-    let url = this.baseUrl;
+    let user = sessionStorage.getItem("user");
+    let password = sessionStorage.getItem("password");
+
+    let url = this.baseUrl + "/search/findById";
 
     let search = new URLSearchParams();
     search.set('id', id);
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
+    headers.set('Authorization', "Basic " + btoa(user+":"+password));
 
     return this
       .http
-      .get(url+"/findById",{headers,search})
+      .get(url,{headers,search})
       //.map(resp => resp.json())
       .subscribe(resp => console.log(resp));
   }
 
-  public findById(id: string): Observable<Pet> {
+  public findById(id: string) {
+
+    let user = sessionStorage.getItem("user");
+    let password = sessionStorage.getItem("password");
 
     let url = this.baseUrl;
 
@@ -38,11 +48,22 @@ export class PetService {
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
+    headers.set('Authorization', "Basic " + btoa(user+":"+password));
 
     return this
       .http
-      .get(url+"/findById",{headers,search})
-      .map(resp => resp.json());
+      .get(url, { headers, search })
+      .map(resp => resp.json())
+      .subscribe(
+        (pets) => {
+          this.pets = pets;
+          console.log(this.pets);
+        },
+        (err) => {
+          console.error('Fehler beim Laden', err);
+        }
+      );
+
   }
 
   public save(pet: Pet): Observable<Pet> {

@@ -15,7 +15,7 @@ import {DoctorHomeComponent} from "./home/doctor-home.component";
 import {BASE_URL} from './app.tokens';
 
 
-const BASE_URL_FOR_PRODUCTION = "localhost:8081/api/pets";
+const BASE_URL_FOR_PRODUCTION = "http://localhost:8081/pets";
 
 
 @NgModule({
