@@ -76,7 +76,7 @@ body {
 .header-container,
 .footer-container,
 .main aside {
-    background: #f16529;
+    background: #f16529 url(../img/square_bg.png);
 }
 
 .title {
@@ -102,7 +102,7 @@ body {
 
 /* ____________________________________________________________________________________ */
 
-body { font-family:"Roboto Condensed", sans-serif; padding-bottom:110px; }
+body { font-family:"Roboto Condensed", sans-serif; padding-bottom:110px; background:url(../img/subtle_white_feathers.png); }
 
 .navbar { background:transparent; border:0px none; margin-top:20px; }
 .navbar a { color:#222; font-size:16px; padding-bottom:5px; }
