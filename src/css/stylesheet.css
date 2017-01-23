@@ -102,7 +102,7 @@ body {
 
 /* ____________________________________________________________________________________ */
 
-body { font-family:"Roboto Condensed", sans-serif; }
+body { font-family:"Roboto Condensed", sans-serif; padding-bottom:110px; }
 
 .navbar { background:transparent; border:0px none; margin-top:20px; }
 .navbar a { color:#222; font-size:16px; padding-bottom:5px; }
@@ -119,3 +119,5 @@ h1 { border-bottom:3px solid #f16529; margin-bottom:30px; }
 button.btn { background:#f16529; border-color:#e44d26; padding:10px 30px 10px 10px; }
 button.btn:hover { background:#fff; color:#f16529; }
 button.btn span { margin-right:5px; color:#f16529; }
+
+.footer-container { position:fixed; bottom:0px; width:100%; }
