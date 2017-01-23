@@ -1,25 +1,36 @@
 <link href="../css/stylesheet.css" rel="stylesheet">
 
-<nav class="navbar navbar-default">
-    <div class="container">
-      <a class="navbar-brand" href="/home">P@Card</a>
+<div class="header-container">
+  <header class="wrapper clearfix">
+    <nav class="navbar navbar-default">
+      <a class="navbar-brand" href="/home"><img src="../img/logo.png" class="logo" alt="p@-card"/></a>
       <ul class="nav navbar-nav">
         <li><a routerLink="/login">Login</a></li>
         <li><a routerLink="/petInfo">Pet Info</a></li>
         <li><a routerLink="/addPet">Add Pet</a></li>
         <li><a routerLink="/addUser">Add User</a></li>
         <li><a routerLink="/profile">Profile</a></li>
-
         <li><a routerLink="#">Weitere Menüpunkte</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a routerLink="/profile">Profile  <span class="glyphicon glyphicon-user"></span></a></li>
       </ul>
-    </div>
-</nav>
+    </nav>
+  </header>
+</div>
 
-<main class="container">
-  <router-outlet></router-outlet>
-</main>
+<div class="main-container">
+  <div class="main wrapper clearfix">
 
-<footer class="main"> <strong> Projekt im Rahmen des Studiums Informationsmanagement an der FH-Joanneum - SWENGS </strong>&nbsp;| by Michael Fuchs, Nina Spalek, Max Wageneder</footer>
+    <main class="container">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div> <!-- #main -->
+</div> <!-- #main-container -->
+
+<div class="footer-container">
+  <footer class="wrapper">
+    <p><strong> Projekt im Rahmen des Studiums Informationsmanagement an der FH-Joanneum - SWENGS </strong>&nbsp;| by Michael Fuchs, Nina Spalek, Max Wageneder</p>
+  </footer>
+</div>
