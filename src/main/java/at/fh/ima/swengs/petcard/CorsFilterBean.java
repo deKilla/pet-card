@@ -21,8 +21,7 @@ public class CorsFilterBean {
     config.addAllowedMethod("POST");
     config.addAllowedMethod("PUT");
     config.addAllowedMethod("DELETE");
-    source.registerCorsConfiguration("**", config);
+    source.registerCorsConfiguration("/**", config);
     return new CorsFilter(source);
   }
-
 }

@@ -18,6 +18,7 @@ export class PetService {
 
   public findById(id: string): void {
 
+    this.pets = [];
     let url = this.baseUrl;
 
     let search = new URLSearchParams();
@@ -31,13 +32,16 @@ export class PetService {
       .get(url, {headers, search})
       .map(resp => resp.json()["_embedded"]["pets"])
       .subscribe(
-        (pets) => {
-          this.pets = pets;
+        (petOjects) => {
+          for (let p of petOjects) {
+            if(p.id.toString() == id) {
+              this.pets.push(p);
+            }
+          }
         },
         (err) => {
           console.error('Fehler beim Laden', err);
         }
       );
   }
-
 }
