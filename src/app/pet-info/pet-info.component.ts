@@ -1,6 +1,7 @@
 import {Pet} from "../entities/pet";
 import { Component } from '@angular/core';
 import {PetService} from "../services/pet.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'pet-info',
