@@ -1,25 +1,26 @@
 
 import {Pet} from "../entities/pet";
 import {Injectable, Inject} from "@angular/core";
-import {BASE_URL_PETS} from "../app.tokens";
+import {BASE_URL_PETOWNERS} from "../app.tokens";
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
+import {petOwner} from "../entities/petOwner";
 
 @Injectable()
-export class PetService {
+export class PetOwnerService {
 
-  pets: Array<Pet> = [];
+  petOwners: Array<petOwner> = [];
 
   constructor(
-    @Inject(BASE_URL_PETS) private baseUrl: string,
+    @Inject(BASE_URL_PETOWNERS) private baseUrl: string,
     private http: Http,
   ) {
   }
 
   public findById(id: string): void {
 
-    this.pets = [];
+    this.petOwners = [];
     let url = this.baseUrl + "/search/findById";
 
     let search = new URLSearchParams();
@@ -33,7 +34,7 @@ export class PetService {
       .get(url, {headers, search})
       .map(resp => resp.json())
       .subscribe(
-        (pet) => {this.pets.push(pet);}
+        (petOwner) => {this.petOwners.push(petOwner);}
       )
   }
 
@@ -50,43 +51,14 @@ export class PetService {
     this
       .http
       .get(url, {headers, search})
-      .map(resp => resp.json()["_embedded"]["pets"])
+      .map(resp => resp.json()["_embedded"]["petOwners"])
       .subscribe(
-        (pets) => {
-          this.pets = pets;
+        (petOwners) => {
+          this.petOwners = petOwners;
         },
         (err) => {
           console.error('Fehler beim Laden', err);
         }
       );
-  }
-
-
-  public add(name: string, race: string, weight: number, birthdate: Date): void {
-
-    let url = this.baseUrl;
-
-    let headers = new Headers();
-    headers.set('Accept', 'application/json');
-
-    let dummyPet = {
-      "name" : name,
-      "type" : race,
-      "weight" : weight,
-      "birt_hdate" : birthdate
-    };
-
-    this
-      .http
-      .post(url, dummyPet, {headers})
-      .map(resp => resp.json())
-      .subscribe(
-        (pet:Pet) => {
-          console.debug("Ok")
-        },
-        (err) => {
-          console.error("Err")
-        }
-    );
   }
 }
