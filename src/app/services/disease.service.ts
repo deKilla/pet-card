@@ -1,26 +1,26 @@
 
-import {Pet} from "../entities/pet";
+import {Disease} from "../entities/disease";
 import {Injectable, Inject} from "@angular/core";
-import {BASE_URL_PETOWNERS} from "../app.tokens";
+import {BASE_URL_PETS, BASE_URL_DISEASES} from "../app.tokens";
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
-import {PetOwner} from "../entities/petOwner";
+import {Doctor} from "../entities/doctor";
 
 @Injectable()
-export class PetOwnerService {
+export class DiseaseService {
 
-  petOwners: Array<PetOwner> = [];
+  diseases: Array<Disease> = [];
 
   constructor(
-    @Inject(BASE_URL_PETOWNERS) private baseUrl: string,
+    @Inject(BASE_URL_DISEASES) private baseUrl: string,
     private http: Http,
   ) {
   }
 
   public findById(id: string): void {
 
-    this.petOwners = [];
+    this.diseases = [];
     let url = this.baseUrl + "/search/findById";
 
     let search = new URLSearchParams();
@@ -34,7 +34,7 @@ export class PetOwnerService {
       .get(url, {headers, search})
       .map(resp => resp.json())
       .subscribe(
-        (petOwner) => {this.petOwners.push(petOwner);}
+        (disease) => {this.diseases.push(disease);}
       )
   }
 
@@ -51,10 +51,10 @@ export class PetOwnerService {
     this
       .http
       .get(url, {headers, search})
-      .map(resp => resp.json()["_embedded"]["petOwners"])
+      .map(resp => resp.json()["_embedded"]["diseases"])
       .subscribe(
-        (petOwners) => {
-          this.petOwners = petOwners;
+        (diseases) => {
+          this.diseases = diseases;
         },
         (err) => {
           console.error('Fehler beim Laden', err);

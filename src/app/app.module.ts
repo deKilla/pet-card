@@ -15,6 +15,10 @@ import {BASE_URL_PETS, BASE_URL_DOCTORS, BASE_URL_PETOWNERS, BASE_URL_PETDISEASE
 import {PetService} from "./services/pet.service";
 import {PetOwnerService} from "./services/petOwner.service";
 import {DoctorService} from "./services/doctor.service";
+import {DiseaseService} from "./services/disease.service";
+import {MedicationService} from "./services/medication.service";
+import {PetDiseaseService} from "./services/petDisease.service";
+import {PetMedicationService} from "./services/petMedication.service";
 
 
 const BASE_URL_PETS_FOR_PRODUCTION = "http://localhost:8081/api/pets";
@@ -54,7 +58,11 @@ const BASE_URL_DISEASES_FOR_PRODUCTION = "http://localhost:8081/api/diseases";
     { provide: BASE_URL_DISEASES, useValue: BASE_URL_DISEASES_FOR_PRODUCTION},
     PetService,
     PetOwnerService,
-    DoctorService
+    DoctorService,
+    DiseaseService,
+    MedicationService,
+    PetDiseaseService,
+    PetMedicationService
   ],
 
   bootstrap: [ AppComponent ]

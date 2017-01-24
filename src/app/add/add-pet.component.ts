@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {PetService} from "../services/pet.service";
 import {Pet} from "../entities/pet";
-import {petOwner} from "../entities/petOwner";
+import {PetOwner} from "../entities/petOwner";
 import {Doctor} from "../entities/doctor";
 import {DoctorService} from "../services/doctor.service";
 import {PetOwnerService} from "../services/petOwner.service";
@@ -16,7 +16,7 @@ export class AddPetComponent {
   public race: string;
   public weight: number;
   public birthdate: Date;
-  public owner: petOwner;
+  public owner: PetOwner;
   public doctor: Doctor;
 
   constructor(private petService:PetService, private doctorService:DoctorService, private petOwnerService:PetOwnerService) {
@@ -26,7 +26,7 @@ export class AddPetComponent {
     return this.doctorService.doctors;
   }
 
-  public get owners(): Array<petOwner>{
+  public get owners(): Array<PetOwner>{
     return this.petOwnerService.petOwners;
   }
 

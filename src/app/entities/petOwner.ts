@@ -1,5 +1,5 @@
 
-export interface petOwner {
+export interface PetOwner {
   id: number;
   firstName: string;
   lastName: string;

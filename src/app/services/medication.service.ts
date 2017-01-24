@@ -1,27 +1,27 @@
 
 import {Pet} from "../entities/pet";
 import {Injectable, Inject} from "@angular/core";
-import {BASE_URL_PETS} from "../app.tokens";
+import {BASE_URL_PETS, BASE_URL_MEDICATIONS} from "../app.tokens";
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
 import {Doctor} from "../entities/doctor";
-import {PetOwner} from "../entities/petOwner";
+import {Medication} from "../entities/medication";
 
 @Injectable()
-export class PetService {
+export class MedicationService {
 
-  pets: Array<Pet> = [];
+  medications: Array<Medication> = [];
 
   constructor(
-    @Inject(BASE_URL_PETS) private baseUrl: string,
+    @Inject(BASE_URL_MEDICATIONS) private baseUrl: string,
     private http: Http,
   ) {
   }
 
   public findById(id: string): void {
 
-    this.pets = [];
+    this.medications = [];
     let url = this.baseUrl + "/search/findById";
 
     let search = new URLSearchParams();
@@ -35,7 +35,7 @@ export class PetService {
       .get(url, {headers, search})
       .map(resp => resp.json())
       .subscribe(
-        (pet) => {this.pets.push(pet);}
+        (medication) => {this.medications.push(medication);}
       )
   }
 
@@ -52,45 +52,14 @@ export class PetService {
     this
       .http
       .get(url, {headers, search})
-      .map(resp => resp.json()["_embedded"]["pets"])
+      .map(resp => resp.json()["_embedded"]["medications"])
       .subscribe(
-        (pets) => {
-          this.pets = pets;
+        (medications) => {
+          this.medications = medications;
         },
         (err) => {
           console.error('Fehler beim Laden', err);
         }
       );
-  }
-
-
-  public add(name: string, race: string, weight: number, birthdate: Date, owner: PetOwner, doctor: Doctor): void {
-
-    let url = this.baseUrl;
-
-    let headers = new Headers();
-    headers.set('Accept', 'application/json');
-
-    let dummyPet = {
-      "name" : name,
-      "type" : race,
-      "weight" : weight,
-      "birth_date" : birthdate,
-      "doctor_id" : doctor.id,
-      "pet_owner_id" : owner.id
-    };
-
-    this
-      .http
-      .post(url, dummyPet, {headers})
-      .map(resp => resp.json())
-      .subscribe(
-        (pet:Pet) => {
-          console.debug("Ok")
-        },
-        (err) => {
-          console.error("Err")
-        }
-    );
   }
 }

@@ -1,5 +1,5 @@
 
-export interface medication {
+export interface Medication {
   id: number;
   name: string;
   description: string;
