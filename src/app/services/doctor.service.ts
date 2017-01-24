@@ -13,8 +13,7 @@ export class DoctorService {
   doctors: Array<Doctor> = [];
 
   constructor(
-    @Inject(BASE_URL_DOCTORS
-    ) private baseUrl: string,
+    @Inject(BASE_URL_DOCTORS) private baseUrl: string,
     private http: Http,
   ) {
   }

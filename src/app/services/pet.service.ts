@@ -5,6 +5,8 @@ import {BASE_URL_PETS} from "../app.tokens";
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
+import {petOwner} from "../entities/petOwner";
+import {Doctor} from "../entities/doctor";
 
 @Injectable()
 export class PetService {
@@ -62,7 +64,7 @@ export class PetService {
   }
 
 
-  public add(name: string, race: string, weight: number, birthdate: Date): void {
+  public add(name: string, race: string, weight: number, birthdate: Date, owner: petOwner, doctor: Doctor): void {
 
     let url = this.baseUrl;
 
@@ -73,7 +75,9 @@ export class PetService {
       "name" : name,
       "type" : race,
       "weight" : weight,
-      "birt_hdate" : birthdate
+      "birth_date" : birthdate,
+      "doctor_id" : doctor.id,
+      "pet_owner_id" : owner.id
     };
 
     this

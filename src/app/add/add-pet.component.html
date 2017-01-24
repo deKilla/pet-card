@@ -75,9 +75,8 @@
         <label>Owner</label>
 
         <div>
-          <select class="form-control" required> <!--[(ngModel)]="???"-->
-            <option value="test">test</option>
-            <!--<option *ng-for="o of petOwner" [value]="o.id">{{o.firstName}} {{o.lastName}}</option>-->
+          <select [(ngModel)]="owner" class="form-control" required name="doctor">
+            <option *ngFor="let o of owners" [value]="o.id">{{o.firstName}} {{o.lastName}}</option>
           </select>
         </div>
       </div>
@@ -86,9 +85,8 @@
         <label>Doctor</label>
 
         <div>
-          <select class="form-control" required> <!--[(ngModel)]="???"-->
-            <option value="test">test</option>
-            <!--<option *ng-for="o of petOwner" [value]="o.id">{{o.firstName}} {{o.lastName}}</option>-->
+          <select [(ngModel)]="doctor" class="form-control" required name="doctor">
+            <option *ngFor="let d of doctors" [value]="d.id">{{d.firstName}} {{d.lastName}}</option>
           </select>
         </div>
       </div>
@@ -109,6 +107,10 @@
       </div>
 
     </form>
+
+    <button (click)="load()" type="submit" class="btn btn-success">
+      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Load</strong>
+    </button>
 
   </body>
 </html>
