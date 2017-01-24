@@ -8,10 +8,24 @@
 <body>
 <h1>Tierübersicht</h1>
 <h2>Hallo Herr/Frau &gt;Nachname&lt;</h2><!-- Geschlecht beim PetOwner für Anrede? // ODER (einfach) Hallo Vorname! -->
-<!--
-<div class="pet-card-list" *ngFor="let p of pets">
-  <pet-card [item]="p" [(selectedItem)]="selectedPassenger"></pet-card>
+
+<div id="pet-cards" *ngFor="let p of pets">
+  <div class="pet-card">
+    <b>Name:</b> {{p.name}}<br />
+    <b>Type:</b> {{p.type}}<br />
+    <b>Weight: </b> {{p.weight}}<br />
+    <b>Age: </b> <!-- todo: calculate age --> <br />
+    <br />
+    <b>Doctor in charge:</b> Dr. {{p.doctor.name}}<br />
+    <b>Office hours:</b> {{p.doctor.officeHours}}<br />
+    <b>Adress: </b> {{p.doctor.address}}<br />
+    <div>
+      <button type="button" class="btn btn-success">
+        <a routerLink="/petDetails"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><strong>Details</strong></a>
+      </button>
+    </div>
+  </div>
 </div>
--->
+
 </body>
 </html>

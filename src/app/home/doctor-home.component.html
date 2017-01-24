@@ -6,12 +6,49 @@
     <link href="../../css/stylesheet.css" rel="stylesheet">
   </head>
   <body>
-    <h1>Ordination Dr. &gt;Nachname&lt;</h1>
+    <h1>Dr. &lt;Nachname&gt;'s Office</h1>
 
-    <!--
-    <div class="pet-card-list" *ngFor="let p of pets">
-      <pet-card [item]="p" [(selectedItem)]="selectedPassenger"></pet-card>
+  <div id="doctorpanels">
+
+    <h3>Change Office Details</h3>
+    <div class="doctorpanel">
+      <p>
+        Allows to change your office hours and other details about yourself.
+      </p>
+      <button (click)="details()" type="button" class="btn btn-success">
+        <a routerLink="/profile"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><strong>change office details</strong></a>
+      </button>
     </div>
--->
+
+    <h3>Search Pet</h3>
+    <div class="doctorpanel">
+      <p>
+        Look up a pet by it's ID.
+      </p>
+      <form #p="ngForm" novalidate>
+        <div class="form-group">
+          <!--<label>ID</label>-->
+          <input [(ngModel)]="id" name="id" type="text" class="form-control" placeholder="ID" data-validate="number" required>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-success" (click)="search()">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Search</strong>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <h3>Add new pet</h3>
+    <div class="doctorpanel">
+      <p>
+        Add a new pet to the database.
+      </p>
+      <button type="button" class="btn btn-success">
+        <a routerLink="/addPet"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><strong>add new pet</strong></a>
+      </button>
+    </div>
+
+  </div>
+
   </body>
 </html>
