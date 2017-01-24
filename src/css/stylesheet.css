@@ -63,12 +63,12 @@ body {
 .clear { clear:both; }
 
 .header-container {
-    border-bottom: 20px solid #e44d26;
+    border-bottom: 10px solid #e44d26;
 }
 
 .footer-container,
 .main aside {
-    border-top: 20px solid #e44d26;
+    border-top: 10px solid #e44d26;
 }
 
 .header-container,
@@ -87,8 +87,10 @@ body {
 
 .footer-container footer {
     color: white;
-    padding: 20px 0;
+    padding: 5px 0;
 }
+
+footer p { margin:0px; }
 
 /* ===============
     ALL: IE Fixes
@@ -102,12 +104,14 @@ body {
 
 body { font-family:"Roboto Condensed", sans-serif; padding-bottom:110px; background:url(../img/subtle_white_feathers.png); }
 
+
+
 .navbar { background:transparent; border:0px none; margin-top:20px; }
 .navbar a { color:#222; font-size:16px; padding-bottom:5px; }
 .navbar a:hover { color:#fff; border-bottom: 3px solid #fff; }
 .navbar a.navbar-brand:hover { border:0px none; }
 
-.logo { width:100px; border-radius: 3px 3px 0px 0px; }
+.logo { width:100px; border-radius: 3px 3px 0px 0px; border:10px solid #e44d26; }
 
 h1,h2,h3,h4 { font-family: "Lora", serif;  }
 h1 { border-bottom:3px solid #f16529; margin-bottom:30px; }
@@ -117,6 +121,8 @@ h1 { border-bottom:3px solid #f16529; margin-bottom:30px; }
 button.btn { background:#f16529; border-color:#e44d26; padding:10px 30px 10px 10px; }
 button.btn:hover { background:#fff; color:#f16529; }
 button.btn span { margin-right:5px; color:#f16529; }
+button a { color:#fff; text-decoration:none; }
+button:hover a { color:#f16529; }
 
 .footer-container { position:fixed; bottom:0px; width:100%; }
 
@@ -125,6 +131,9 @@ button.btn span { margin-right:5px; color:#f16529; }
 #nav_profile:hover #nav_subprofile { display:block; position:absolute; right:10px; padding:0px; }
 #nav_subprofile a { display:block; padding:5px; }
 
+/* .main-container { background: url(../img/gradient.png) repeat-x; } */
+
+header nav { margin:5px 0 0 0; }
 
 /* PET INFO */
 #pet-info {}
@@ -137,3 +146,5 @@ button.btn span { margin-right:5px; color:#f16529; }
 .select_doctor,
 .select_owner { width:49%; float:left; }
 .select_owner { margin-right:2%; }
+
+/* DOCTOR PANELS */
