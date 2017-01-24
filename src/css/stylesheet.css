@@ -60,9 +60,7 @@ body {
     margin: 0 5%;
 }
 
-/* ===================
-    ALL: Orange Theme
-   =================== */
+.clear { clear:both; }
 
 .header-container {
     border-bottom: 20px solid #e44d26;
@@ -121,3 +119,21 @@ button.btn:hover { background:#fff; color:#f16529; }
 button.btn span { margin-right:5px; color:#f16529; }
 
 .footer-container { position:fixed; bottom:0px; width:100%; }
+
+#nav_profile a:hover { border-bottom: 0px none; }
+#nav_profile #nav_subprofile { list-style:none; display:none;  }
+#nav_profile:hover #nav_subprofile { display:block; position:absolute; right:10px; padding:0px; }
+#nav_subprofile a { display:block; padding:5px; }
+
+
+/* PET INFO */
+#pet-info {}
+#pet-info h3 { margin-top:0px; }
+#pet-info > div { padding:10px; border:1px solid #f16529; position:relative; width:300px; }
+#pet-info > div .form-group { position:absolute; bottom:10px; right:10px; padding:0px; margin:0px; }
+#pet-info > .form-group { border:0px none; margin-top:20px; }
+
+/* ADD PET */
+.select_doctor,
+.select_owner { width:49%; float:left; }
+.select_owner { margin-right:2%; }

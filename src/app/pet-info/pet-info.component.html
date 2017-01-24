@@ -10,25 +10,62 @@
 
     <form #p="ngForm" novalidate>
       <div class="form-group">
-        <label>ID</label>
+        <!--<label>ID</label>-->
         <input [(ngModel)]="id" name="id" type="text" class="form-control" placeholder="ID" data-validate="number" required>
       </div>
       <div class="form-group">
         <button type="button" class="btn btn-success" (click)="search()">
-          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Suchen</strong>
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Search</strong>
         </button>
       </div>
     </form>
 
 
-    <table class="table table-striped">
-      <tr *ngFor="let p of pets">
-        <td>{{p.id}}</td>
-        <td>{{p.name}}</td>
-        <td>{{p.type}}</td>
-        <td>{{p.weight}}</td>
-      </tr>
-    </table>
+    <div id="pet-info" *ngFor="let p of pets">
+      <h3>General information:</h3>
+      <div class="general">
+        <b>ID:</b> {{p.id}}<br />
+        <b>Name:</b> {{p.name}}<br />
+        <b>Type:</b> {{p.type}}<br />
+        <b>Weight: </b> {{p.weight}}<br />
+        <b>Age: </b> <!-- todo: calculate age --> <br />
+
+        <!--
+        <br/>
+        <b>Owner:</b> {{p.petOwner.firstname}} {{p.petOwner.lastname}}<br />
+        <b>Doctor: </b> Dr. {{p.doctor.name}}<br />
+        -->
+
+        <div class="form-group">
+          <button type="button" class="btn btn-success" (click)="edit()">
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong>Edit</strong>
+          </button>
+        </div>
+        </div>
+
+      <!--
+      <h3>Diseases:</h3>
+      <div class="diseases">
+        <p *ngFor="let d of p.disease">
+          <b>Name:</b> {{d.name}}<br />
+          <b>Description:</b> {{d.description}}<br />
+          <b>Duration: </b> {{d.petDisease.start}}<span ngIf="d.petDisease.end"> - {{d.petDisease.end}}</span><br />
+          <button type="button" class="btn btn-success" (click)="edit()">
+              <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong>Edit</strong>
+          </button>
+        </p>
+        <button type="button" class="btn btn-success" (click)="edit()">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><strong>Add</strong>
+        </button>
+      </div>
+      -->
+
+      <div class="form-group">
+        <button type="button" class="btn btn-success" (click)="report()">
+          <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><strong>Generate report (PDF)</strong>
+        </button>
+      </div>
+    </div>
 
 
 
