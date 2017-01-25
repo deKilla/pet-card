@@ -22,5 +22,9 @@ export class PetInfoComponent {
   search (): void{
     this.petService.findById(this.id);
   }
+
+  delete (): void{
+    this.petService.delete(this.pets[0].id.toString());
+  }
 }
 
