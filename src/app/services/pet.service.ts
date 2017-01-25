@@ -68,7 +68,7 @@ export class PetService {
   }
 
 
-  public add(name: string, race: string, weight: number, birthdate: Date, owner: PetOwner, doctor: Doctor): void {
+  public add(name: string, race: string, weight: number, birthdate: string, ownerId: string, doctorId: string): void {
 
     let url = this.baseUrl;
 
@@ -81,8 +81,8 @@ export class PetService {
       "type" : race,
       "weight" : weight,
       "birth_date" : birthdate,
-      "doctor_id" : doctor.id,
-      "pet_owner_id" : owner.id
+      "doctor_id" : doctorId,
+      "pet_owner_id" : ownerId
     };
 
     this
