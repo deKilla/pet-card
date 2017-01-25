@@ -28,11 +28,11 @@
       <form #p="ngForm" novalidate>
         <div class="form-group">
           <!--<label>ID</label>-->
-          <input [(ngModel)]="id" name="id" type="text" class="form-control" placeholder="ID" data-validate="number" required>
+          <!--<input [(ngModel)]="id" name="id" type="text" class="form-control" placeholder="ID" data-validate="number" required>-->
         </div>
         <div class="form-group">
-          <button type="button" class="btn btn-success" (click)="search()">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Search</strong>
+          <button type="button" class="btn btn-success">
+            <a routerLink="/searchPet"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><strong>look for pet</strong></a>
           </button>
         </div>
       </form>

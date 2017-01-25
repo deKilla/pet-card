@@ -13,6 +13,7 @@ export class DoctorHomeComponent {
   constructor(private petService:PetService) {
   }
 
+
   public get pets(): Array<Pet>{
     return this.petService.pets;
   }

@@ -1,6 +1,6 @@
 <link href="../css/stylesheet.css" rel="stylesheet">
 
-<div class="header-container">
+<div *ngIf="givenName" class="header-container">
   <header class="wrapper clearfix">
     <nav class="navbar navbar-default">
       <a class="navbar-brand" href="/home"><img src="../img/logo.png" class="logo" alt="p@-card"/></a>
@@ -12,7 +12,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li id="nav_profile"><a routerLink="/profile">Profile <span class="glyphicon glyphicon-user"></span></a></li>
         <li><a (click)="logout()">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
-        <li><a (click)="login()">Login <span class="glyphicon glyphicon-log-in"></span></a></li>
+        <!-- <li><a (click)="login()">Login <span class="glyphicon glyphicon-log-in"></span></a></li> -->
       </ul>
     </nav>
   </header>
