@@ -15,11 +15,13 @@ export class AddPetComponent {
   public name: string;
   public race: string;
   public weight: number;
-  public birthdate: Date;
-  public owner: PetOwner;
-  public doctor: Doctor;
+  public birthdate: string;
+  public ownerId: string;
+  public doctorId: string;
 
   constructor(private petService:PetService, private doctorService:DoctorService, private petOwnerService:PetOwnerService) {
+    this.doctorService.findAll();
+    this.petOwnerService.findAll();
   }
 
   public get doctors(): Array<Doctor>{
@@ -30,12 +32,8 @@ export class AddPetComponent {
     return this.petOwnerService.petOwners;
   }
 
-  load():void{
-    this.doctorService.findAll();
-    this.petOwnerService.findAll();
-  }
-
   add(): void{
-    this.petService.add(this.name, this.race, this.weight, this.birthdate, this.owner, this.doctor);
+    //console.log(this.birthdate);
+    this.petService.add(this.name, this.race, this.weight, this.birthdate, this.ownerId, this.doctorId);
   }
 }
