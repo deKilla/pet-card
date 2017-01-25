@@ -61,4 +61,11 @@ export class AppComponent {
   logout(): void {
     this.oauthService.logOut();
   }
+
+  get givenName(): string {
+    let claims = this.oauthService.getIdentityClaims();
+    if (!claims) return null;
+
+    return claims.given_name;
+  }
 }
