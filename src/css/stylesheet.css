@@ -146,3 +146,6 @@ header nav { margin:5px 0 0 0; }
 .select_owner { margin-right:2%; }
 
 /* DOCTOR PANELS */
+
+.icononly button.btn { padding:10px; }
+.icononly button.btn span { color:#000; margin:0px; }

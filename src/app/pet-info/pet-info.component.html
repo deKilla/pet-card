@@ -36,9 +36,12 @@
         <b>Doctor: </b> Dr. {{p.doctor.name}}<br />
         -->
 
-        <div class="form-group">
+        <div class="form-group icononly">
           <button type="button" class="btn btn-success" (click)="edit()">
-            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong>Edit</strong>
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn btn-danger" (click)="edit()">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
           </button>
         </div>
         </div>
