@@ -121,7 +121,8 @@ button.btn span { margin-right:5px; color:#b3d4fc; }
 button a { color:#000; text-decoration:none; }
 button:hover a { color:#000; }
 
-.footer-container { position:fixed; bottom:0px; width:100%; color:#000; }
+.footer-container { position:fixed; bottom:0px; width:100%; text-align: center}
+
 
 #nav_profile a:hover { border-bottom: 0px none; }
 #nav_profile #nav_subprofile { list-style:none; display:none;  }

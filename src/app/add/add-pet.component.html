@@ -16,14 +16,8 @@
           class="form-horizontal form-groups-bordered validate"
           method="post" action="">
 
-      <!--
-      <input type="hidden" name="${_csrf.parameterName}"
-             value="${_csrf.token}" />
-      -->
-
-      <div >
+      <div>
         <label>Name</label>
-
         <div>
           <input [(ngModel)]="name" type="text" class="form-control" name="name"
                  placeholder="e.g. Cookie" data-validate="maxlength[30]"
@@ -75,7 +69,7 @@
         <label>Owner</label>
 
         <div>
-          <select [(ngModel)]="owner" class="form-control" required name="doctor">
+          <select [(ngModel)]="ownerId" class="form-control" required name="doctor">
             <option *ngFor="let o of owners" [value]="o.id">{{o.firstName}} {{o.lastName}}</option>
           </select>
         </div>
@@ -85,7 +79,7 @@
         <label>Doctor</label>
 
         <div>
-          <select [(ngModel)]="doctor" class="form-control" required name="doctor">
+          <select [(ngModel)]="doctorId" class="form-control" required name="doctor">
             <option *ngFor="let d of doctors" [value]="d.id">{{d.firstName}} {{d.lastName}}</option>
           </select>
         </div>
@@ -100,17 +94,9 @@
           <button (click)="add()" type="submit" class="btn btn-success">
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Create</strong>
           </button>
-          <button type="button" class="btn btn-danger">
-            <strong><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Exit</strong> <!-- &nbsp; x2-->
-          </button>
         </div>
       </div>
 
     </form>
-
-    <button (click)="load()" type="submit" class="btn btn-success">
-      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Load</strong>
-    </button>
-
   </body>
 </html>
