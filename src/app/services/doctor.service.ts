@@ -6,6 +6,7 @@ import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
 import {Doctor} from "../entities/doctor";
+import {OAuthService} from "angular-oauth2-oidc";
 
 @Injectable()
 export class DoctorService {
@@ -15,6 +16,7 @@ export class DoctorService {
   constructor(
     @Inject(BASE_URL_DOCTORS) private baseUrl: string,
     private http: Http,
+    private oauthService: OAuthService
   ) {
   }
 
@@ -28,6 +30,7 @@ export class DoctorService {
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
     this
       .http
@@ -47,6 +50,7 @@ export class DoctorService {
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
     this
       .http

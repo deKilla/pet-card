@@ -9,6 +9,14 @@
     <h1>Login</h1>
     <div id="main">
 
+      <br>
+      <h1 *ngIf="!givenName">Willkommen!</h1>
+      <h1 *ngIf="givenName">Willkommen, {{givenName}}!</h1>
+
+      <button class="btn btn-default" (click)="login()">Login</button>
+      <button class="btn btn-default" (click)="logout()">Logout</button>
+
+      <!--
       <div class="login-form">
 
         <div class="login-content">
@@ -29,12 +37,15 @@
 
             <div class="form-group">
               <button type="submit" class="btn btn-danger">
-                <strong><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Submit</strong> <!-- &nbsp; x2-->
+                <strong><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Submit</strong>
               </button>
             </div>
           </form>
         </div>
       </div>
+
+    -->
+
     </div>
   </body>
 </html>

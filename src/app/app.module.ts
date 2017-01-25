@@ -19,6 +19,7 @@ import {DiseaseService} from "./services/disease.service";
 import {MedicationService} from "./services/medication.service";
 import {PetDiseaseService} from "./services/petDisease.service";
 import {PetMedicationService} from "./services/petMedication.service";
+import {OAuthModule} from "angular-oauth2-oidc";
 
 
 const BASE_URL_PETS_FOR_PRODUCTION = "http://localhost:8081/api/pets";
@@ -29,12 +30,14 @@ const BASE_URL_PETMEDICATIONS_FOR_PRODUCTION = "http://localhost:8081/api/petMed
 const BASE_URL_MEDICATIONS_FOR_PRODUCTION = "http://localhost:8081/api/medications";
 const BASE_URL_DISEASES_FOR_PRODUCTION = "http://localhost:8081/api/diseases";
 
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRouterModule
+    AppRouterModule,
+    OAuthModule.forRoot()
   ],
 
   declarations: [

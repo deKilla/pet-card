@@ -1,12 +1,12 @@
 
-import {Pet} from "../entities/pet";
 import {Injectable, Inject} from "@angular/core";
-import {BASE_URL_PETS, BASE_URL_MEDICATIONS} from "../app.tokens";
+import {BASE_URL_MEDICATIONS} from "../app.tokens";
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
-import {Doctor} from "../entities/doctor";
 import {Medication} from "../entities/medication";
+import {OAuthService} from "angular-oauth2-oidc";
+
 
 @Injectable()
 export class MedicationService {
@@ -16,6 +16,7 @@ export class MedicationService {
   constructor(
     @Inject(BASE_URL_MEDICATIONS) private baseUrl: string,
     private http: Http,
+    private oauthService: OAuthService
   ) {
   }
 
@@ -29,6 +30,7 @@ export class MedicationService {
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
     this
       .http
@@ -48,6 +50,7 @@ export class MedicationService {
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
     this
       .http

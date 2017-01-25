@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
 import {Doctor} from "../entities/doctor";
 import {PetDisease} from "../entities/petDisease";
+import {OAuthService} from "angular-oauth2-oidc";
 
 @Injectable()
 export class PetDiseaseService {
@@ -16,6 +17,7 @@ export class PetDiseaseService {
   constructor(
     @Inject(BASE_URL_PETS) private baseUrl: string,
     private http: Http,
+    private oauthService: OAuthService
   ) {
   }
 
@@ -29,6 +31,7 @@ export class PetDiseaseService {
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
     this
       .http
@@ -48,6 +51,7 @@ export class PetDiseaseService {
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
     this
       .http
