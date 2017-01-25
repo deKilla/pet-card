@@ -16,14 +16,8 @@
           class="form-horizontal form-groups-bordered validate"
           method="post" action="">
 
-      <!--
-      <input type="hidden" name="${_csrf.parameterName}"
-             value="${_csrf.token}" />
-      -->
-
-      <div >
+      <div>
         <label>Name</label>
-
         <div>
           <input [(ngModel)]="name" type="text" class="form-control" name="name"
                  placeholder="e.g. Cookie" data-validate="maxlength[30]"
