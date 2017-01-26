@@ -4,7 +4,6 @@ import {Disease} from "../entities/disease";
 import {DiseaseService} from "../services/disease.service";
 import {PetService} from "../services/pet.service";
 import {PetDiseaseService} from "../services/petDisease.service";
-import {Pet} from "../entities/pet";
 
 @Component({
   selector: 'add-disease',
@@ -19,7 +18,6 @@ export class AddDiseaseComponent {
 
   constructor(private petDiseaseService:PetDiseaseService, private petService:PetService, private diseaseService:DiseaseService,
               private router:Router) {
-    this.petService.findAll();
     this.diseaseService.findAll();
   }
 

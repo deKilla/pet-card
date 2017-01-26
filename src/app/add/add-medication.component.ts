@@ -19,7 +19,6 @@ export class AddMedicationComponent {
 
   constructor(private petMedicationService:PetMedicationService, private petService:PetService, private medicationService:MedicationService,
               private router:Router) {
-    this.petService.findAll();
     this.medicationService.findAll();
   }
 
