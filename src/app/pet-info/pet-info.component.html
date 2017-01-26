@@ -21,14 +21,14 @@
     </form>
 
 
-    <div id="pet-info" *ngFor="let p of pets">
+    <div id="pet-info" *ngIf="pet">
       <h3>General information:</h3>
       <div class="general">
-        <b>ID:</b> {{p.id}}<br />
-        <b>Name:</b> {{p.name}}<br />
-        <b>Type:</b> {{p.type}}<br />
-        <b>Weight: </b> {{p.weight}}<br />
-        <b>Birthdate: </b> {{p.birthDate}} <br />
+        <b>ID:</b> {{pet.id}}<br />
+        <b>Name:</b> {{pet.name}}<br />
+        <b>Type:</b> {{pet.type}}<br />
+        <b>Weight: </b> {{pet.weight}}<br />
+        <b>Birthdate: </b> {{pet.birthDate}} <br />
 
         <!--
         <br/>

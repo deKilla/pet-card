@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import {PetService} from "../services/pet.service";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {PetOwnerService} from "../services/petOwner.service";
 
 @Component({
   selector: 'pet-info',
@@ -13,11 +14,11 @@ export class PetInfoComponent {
 
   public id: string;
 
-  constructor(private petService:PetService, private router:Router) {
+  constructor(private petService:PetService, private ownerService:PetOwnerService, private router:Router) {
   }
 
-  public get pets(): Array<Pet>{
-    return this.petService.pets;
+  public get pet(): Pet{
+    return this.petService.pet;
   }
 
   search (): void{
@@ -25,7 +26,7 @@ export class PetInfoComponent {
   }
 
   delete (): void{
-    this.petService.delete(this.pets[0].id.toString());
+    this.petService.delete(this.pet.id.toString());
     this.router.navigate(["home"]);
   }
 }
