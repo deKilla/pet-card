@@ -9,4 +9,6 @@ public interface DoctorRepository extends PagingAndSortingRepository<Doctor, Lon
 
   public Doctor findById(@Param("id") long id);
 
+  public Doctor findByFirstName(@Param("firstName") String firstName);
+
 }
