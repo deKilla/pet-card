@@ -12,16 +12,7 @@ export class DoctorHomeComponent {
 
   public id: string;
 
-  constructor(private petService:PetService, private oauthService: OAuthService, private router:Router) {
-  }
-
-
-  public get pets(): Array<Pet>{
-    return this.petService.pets;
-  }
-
-  search (): void{
-    this.petService.findById(this.id);
+  constructor(private oauthService: OAuthService, private router:Router) {
   }
 
   get givenName(): string {

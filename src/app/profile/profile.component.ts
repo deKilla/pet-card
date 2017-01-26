@@ -4,6 +4,7 @@ import {DoctorService} from "../services/doctor.service";
 import {Doctor} from "../entities/doctor";
 
 @Component({
+  selector: 'profile',
   templateUrl: "./profile.component.html"
 })
 export class ProfileComponent {
@@ -15,31 +16,36 @@ export class ProfileComponent {
   public address: string;
   public phone: string;
   public officeHours: string;
+  private doctorId: string;
 
 
   constructor(private doctorService: DoctorService, private oauthService: OAuthService) {
 
     let claims = this.oauthService.getIdentityClaims();
+    let doctorsName = claims.given_name;
 
-    this.doctorService.findByFirstName(claims.given_name);
-
-    console.log("givenName:",claims.given_name);
-    console.log("vorher");
-    console.log("Doctor1:",doctorService.doctors); // Fehler bei den Attributen
-    console.log("nachher");
-
-
-/*
-    let dummyDoctor = this.doctorService.doctors;
-
-    this.firstName = dummyDoctor.firstName;
-    this.lastName = dummyDoctor.lastName;
-*/
+    this.doctorService.findByFirstName(doctorsName)
+      .subscribe(
+        (doctor) => {
+          this.firstName = doctor.firstName;
+          this.lastName = doctor.lastName;
+          this.address = doctor.address;
+          this.email = doctor.email;
+          this.phone = doctor.phone;
+          this.officeHours = doctor.officeHours;
+          this.doctorId = doctor.id.toString();
+        });
   }
 
+/*
   public get doctors(): Array<Doctor>{
     return this.doctorService.doctors;
   }
+
+  public get myDoctor(): Doctor{
+    return this.doctorService.myDoctor;
+  }
+  */
 
 /*
 
