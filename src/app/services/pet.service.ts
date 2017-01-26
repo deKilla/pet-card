@@ -1,7 +1,7 @@
 
 import {Pet} from "../entities/pet";
 import {Injectable, Inject} from "@angular/core";
-import {BASE_URL_PETS} from "../app.tokens";
+import {BASE_URL_PETS, BASE_URL_DOCTORS, BASE_URL_PETOWNERS} from "../app.tokens";
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
@@ -16,6 +16,8 @@ export class PetService {
 
   constructor(
     @Inject(BASE_URL_PETS) private baseUrl: string,
+    @Inject(BASE_URL_PETOWNERS) private baseUrlOwner: string,
+    @Inject(BASE_URL_DOCTORS) private baseUrlDoctor: string,
     private http: Http,
     private oauthService: OAuthService
   ) {
@@ -67,27 +69,19 @@ export class PetService {
       );
   }
 
-
   public add(name: string, race: string, weight: number, birthdate: string, ownerId: string, doctorId: string): void {
 
     let url = this.baseUrl;
+    let doctor = this.baseUrlDoctor + "/" + doctorId;
+    let owner = this.baseUrlOwner + "/" + ownerId;
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
-    let dummyPet = {
-      "name" : name,
-      "type" : race,
-      "weight" : weight,
-      "birth_date" : birthdate,
-      "doctor_id" : doctorId,
-      "pet_owner_id" : ownerId
-    };
-
     this
       .http
-      .post(url, dummyPet, {headers})
+      .post(url, {name, type:race, weight, petOwner:owner, doctor}, {headers})
       .map(resp => resp.json())
       .subscribe(
         (pet:Pet) => {
@@ -96,8 +90,42 @@ export class PetService {
         (err) => {
           console.error("Err")
         }
-    );
+      );
   }
+
+
+  /*
+  public add(name: string, race: string, weight: number, birthdate: string, ownerId: string, doctorId: string): void {
+
+  let url = this.baseUrl;
+
+  let headers = new Headers();
+  headers.set('Accept', 'application/json');
+  headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
+
+  let dummyPet = {
+    "name" : name,
+    "type" : race,
+    "weight" : weight,
+    "birth_date" : birthdate,
+    "doctor_id" : doctorId,
+    "pet_owner_id" : ownerId
+  };
+
+  this
+    .http
+    .post(url, dummyPet, {headers})
+    .map(resp => resp.json())
+    .subscribe(
+      (pet:Pet) => {
+        console.debug("Ok")
+      },
+      (err) => {
+        console.error("Err")
+      }
+    );
+}
+*/
 
   public delete(id: string): void {
 
