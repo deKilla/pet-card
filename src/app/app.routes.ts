@@ -5,6 +5,8 @@ import {PetInfoComponent} from "./pet-info/pet-info.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {DoctorHomeComponent} from "./home/doctor-home.component";
 import {AppComponent} from "./app.component";
+import {AddMedicationComponent} from "./add/add-medication.component";
+import {AddDiseaseComponent} from "./add/add-disease.component";
 
 const APP_ROUTES: Routes = [
   {
@@ -24,6 +26,16 @@ const APP_ROUTES: Routes = [
   {
     path: 'addPet',
     component: AddPetComponent,
+    canActivate: [ AppComponent ]
+  },
+  {
+    path: 'addMedication',
+    component: AddMedicationComponent,
+    canActivate: [ AppComponent ]
+  },
+  {
+    path: 'addDisease',
+    component: AddDiseaseComponent,
     canActivate: [ AppComponent ]
   },
   {

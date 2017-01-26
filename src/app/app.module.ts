@@ -18,6 +18,8 @@ import {MedicationService} from "./services/medication.service";
 import {PetDiseaseService} from "./services/petDisease.service";
 import {PetMedicationService} from "./services/petMedication.service";
 import {OAuthModule} from "angular-oauth2-oidc";
+import {AddMedicationComponent} from "./add/add-medication.component";
+import {AddDiseaseComponent} from "./add/add-disease.component";
 
 
 const BASE_URL_PETS_FOR_PRODUCTION = "http://localhost:8081/api/pets";
@@ -43,6 +45,8 @@ const BASE_URL_DISEASES_FOR_PRODUCTION = "http://localhost:8081/api/diseases";
     LoginComponent,
     DoctorHomeComponent,
     AddPetComponent,
+    AddMedicationComponent,
+    AddDiseaseComponent,
     PetInfoComponent,
     ProfileComponent
   ],

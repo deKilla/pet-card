@@ -1,11 +1,8 @@
 
-import {Pet} from "../entities/pet";
 import {Injectable, Inject} from "@angular/core";
-import {BASE_URL_PETS, BASE_URL_PETMEDICATIONS} from "../app.tokens";
+import {BASE_URL_PETS, BASE_URL_PETMEDICATIONS, BASE_URL_MEDICATIONS} from "../app.tokens";
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
-import {Observable} from "rxjs";
-import {Doctor} from "../entities/doctor";
 import {PetMedication} from "../entities/petMedication";
 import {OAuthService} from "angular-oauth2-oidc";
 
@@ -17,6 +14,8 @@ export class PetMedicationService {
 
   constructor(
     @Inject(BASE_URL_PETMEDICATIONS) private baseUrl: string,
+    @Inject(BASE_URL_PETS) private baseUrlPet: string,
+    @Inject(BASE_URL_MEDICATIONS) private baseUrlMedication: string,
     private http: Http,
     private oauthService: OAuthService
   ) {
@@ -67,4 +66,30 @@ export class PetMedicationService {
         }
       );
   }
+
+  public add(dose: string, issueDate: string, endDate: string, petId: string, medicationId: string): void {
+
+    let url = this.baseUrl;
+    let pet = this.baseUrlPet + "/" + petId;
+    let medication = this.baseUrlMedication + "/" + medicationId;
+
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
+
+    this
+      .http
+      .post(url, {dose, issueDate, endDate, pet, medication}, {headers})
+      .map(resp => resp.json())
+      .subscribe(
+        (petMedication:PetMedication) => {
+          console.debug("Ok")
+        },
+        (err) => {
+          console.error("Err")
+        }
+      );
+  }
+
+
 }

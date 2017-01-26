@@ -1,13 +1,11 @@
 
-import {Pet} from "../entities/pet";
 import {Injectable, Inject} from "@angular/core";
-import {BASE_URL_PETS} from "../app.tokens";
+import {BASE_URL_PETS, BASE_URL_DISEASES, BASE_URL_PETDISEASES} from "../app.tokens";
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
-import {Observable} from "rxjs";
-import {Doctor} from "../entities/doctor";
 import {PetDisease} from "../entities/petDisease";
 import {OAuthService} from "angular-oauth2-oidc";
+import {Pet} from "../entities/pet";
 
 @Injectable()
 export class PetDiseaseService {
@@ -15,7 +13,9 @@ export class PetDiseaseService {
   petDiseases: Array<PetDisease> = [];
 
   constructor(
-    @Inject(BASE_URL_PETS) private baseUrl: string,
+    @Inject(BASE_URL_PETDISEASES) private baseUrl: string,
+    @Inject(BASE_URL_PETS) private baseUrlPets: string,
+    @Inject(BASE_URL_DISEASES) private baseUrlDiseases: string,
     private http: Http,
     private oauthService: OAuthService
   ) {
@@ -66,4 +66,29 @@ export class PetDiseaseService {
         }
       );
   }
+
+  public add(diseaseStart: string, diseaseEnd: string, petId: string, diseaseId: string): void {
+
+    let url = this.baseUrl;
+    let pet = this.baseUrlPets + "/" + petId;
+    let disease = this.baseUrlDiseases + "/" + diseaseId;
+
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
+
+    this
+      .http
+      .post(url, {diseaseStart, diseaseEnd, pet, disease}, {headers})
+      .map(resp => resp.json())
+      .subscribe(
+        (petDisease:PetDisease) => {
+          console.debug("Ok")
+        },
+        (err) => {
+          console.error("Err")
+        }
+      );
+  }
+
 }
