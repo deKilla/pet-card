@@ -13,6 +13,7 @@ import {OAuthService} from "angular-oauth2-oidc";
 export class PetOwnerService {
 
   petOwners: Array<PetOwner> = [];
+  myOwner : PetOwner;
 
   constructor(
     @Inject(BASE_URL_PETOWNERS) private baseUrl: string,
@@ -40,6 +41,26 @@ export class PetOwnerService {
       .subscribe(
         (petOwner) => {this.petOwners.push(petOwner);}
       )
+  }
+
+  public findByPet(id: string): void {
+
+    let url = this.baseUrl + "/search/findByPet";
+
+    let search = new URLSearchParams();
+    search.set('id', id);
+
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
+
+    this
+      .http
+      .get(url, {headers, search})
+      .map(resp => resp.json())
+      .subscribe(
+        (owner) => {this.myOwner = owner;}
+      );
   }
 
 

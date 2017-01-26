@@ -30,9 +30,14 @@
         <b>Weight: </b> {{pet.weight}}<br />
         <b>Birthdate: </b> {{pet.birthDate}} <br />
 
-        <!--
+
         <br/>
-        <b>Owner:</b> {{p.petOwner.firstname}} {{p.petOwner.lastname}}<br />
+        <b>Owner:</b> {{myOwner.firstName}} {{myOwner.lastName}}<br />
+        <b>Address:</b> {{myOwner.address}}<br />
+        <b>Phone:</b> {{myOwner.phone}}<br />
+        <b>E-Mail:</b> {{myOwner.email}}<br />
+
+        <!--
         <b>Doctor: </b> Dr. {{p.doctor.name}}<br />
         -->
 
@@ -49,22 +54,20 @@
         </div>
         </div>
 
-      <!--
       <h3>Diseases:</h3>
       <div class="diseases">
-        <p *ngFor="let d of p.disease">
-          <b>Name:</b> {{d.name}}<br />
-          <b>Description:</b> {{d.description}}<br />
-          <b>Duration: </b> {{d.petDisease.start}}<span ngIf="d.petDisease.end"> - {{d.petDisease.end}}</span><br />
+        <p *ngFor="let pd of petDiseases">
+          <!--<b>Name:</b> {{d.name}}<br />
+          <b>Description:</b> {{d.description}}<br /> -->
+          <b>Duration: </b> {{pd.diseaseStart}}<span *ngIf="pd.diseaseEnd"> - {{pd.diseaseEnd}}</span><br />
           <button type="button" class="btn btn-success" (click)="edit()">
-              <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong>Edit</strong>
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong>Edit</strong>
           </button>
         </p>
         <button type="button" class="btn btn-success" (click)="edit()">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><strong>Add</strong>
         </button>
       </div>
-      -->
 
       <div class="form-group">
         <button type="button" class="btn btn-success" (click)="report()">

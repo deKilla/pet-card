@@ -1,4 +1,3 @@
-
 import {Pet} from "../entities/pet";
 import {Injectable, Inject} from "@angular/core";
 import {BASE_URL_PETS, BASE_URL_DOCTORS, BASE_URL_PETOWNERS} from "../app.tokens";
@@ -12,8 +11,7 @@ import {OAuthService} from "angular-oauth2-oidc";
 @Injectable()
 export class PetService {
 
-  pet: Pet;
-
+  pet: Pet
   constructor(
     @Inject(BASE_URL_PETS) private baseUrl: string,
     @Inject(BASE_URL_PETOWNERS) private baseUrlOwner: string,
