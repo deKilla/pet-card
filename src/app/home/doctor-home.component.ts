@@ -27,7 +27,7 @@ export class DoctorHomeComponent {
   get givenName(): string {
     let claims = this.oauthService.getIdentityClaims();
     if (!claims) return null;
-    this.router.navigate(["home"]);
+
     return claims.given_name;
   }
 }

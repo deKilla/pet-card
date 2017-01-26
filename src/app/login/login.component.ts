@@ -26,7 +26,7 @@ export class LoginComponent {
   get givenName(): string {
     let claims = this.oauthService.getIdentityClaims();
     if (!claims) return null;
-    this.redirect("doctorHome");
+    this.redirect("home");
     return claims.given_name;
   }
 
