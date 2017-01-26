@@ -6,44 +6,14 @@
     <link href="../../css/stylesheet.css" rel="stylesheet">
   </head>
   <body>
-
     <div id="main">
+      <img src="../../img/logo.png" class="logo" alt="Pet-Card"/>
+      <h1 *ngIf="!givenName">Welcome to our Pet Card Application!</h1>
+      <h2>Please Login to open the App</h2><br>
 
       <br>
-      <h1 *ngIf="!givenName">Willkommen!</h1>
-      <!-- <h1 *ngIf="givenName">Willkommen, {{givenName}}!</h1> -->
 
       <button class="btn btn-default" (click)="login()">Login</button>
-
-      <!--
-      <div class="login-form">
-
-        <div class="login-content">
-
-          <form action="" method="" id="form-login" class="validate">
-
-                <input type="text" class="form-control" name="username"
-                       id="username" placeholder="Username" autocomplete="off" data-validate="required"
-                       data-message-required="Username is required" />
-
-                <br>
-
-                <input type="password" class="form-control" name="password"
-                       id="password" placeholder="Password" autocomplete="off" data-validate="required"
-                       data-message-required="Password is required" />
-
-                 <br>
-
-            <div class="form-group">
-              <button type="submit" class="btn btn-danger">
-                <strong><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Submit</strong>
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-    -->
 
     </div>
   </body>

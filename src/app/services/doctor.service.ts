@@ -1,4 +1,3 @@
-
 import {Pet} from "../entities/pet";
 import {Injectable, Inject} from "@angular/core";
 import {BASE_URL_DOCTORS} from "../app.tokens";
@@ -84,4 +83,28 @@ export class DoctorService {
       .map(resp => resp.json());
   }
 
+
+  public save(doctor:Doctor): void {
+
+    let url = this.baseUrl + '/' + doctor.id;
+
+    let search = new URLSearchParams();
+
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken());
+
+    this
+      .http
+      .put(url, doctor, {headers})
+      .map(resp => resp.json())
+      .subscribe(
+        (doctor) => {
+          console.log("ok");
+        },
+        (err) => {
+          console.error('Fehler beim Laden', err);
+        }
+      );
+  }
 }

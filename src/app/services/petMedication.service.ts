@@ -70,8 +70,8 @@ export class PetMedicationService {
   public add(dose: string, issueDate: string, endDate: string, petId: string, medicationId: string): void {
 
     let url = this.baseUrl;
-    let pet = this.baseUrlPet + "/" + petId;
-    let medication = this.baseUrlMedication + "/" + medicationId;
+    let pet = this.baseUrlPet + '/' + petId;
+    let medication = this.baseUrlMedication + '/' + medicationId;
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
