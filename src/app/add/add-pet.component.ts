@@ -5,6 +5,7 @@ import {PetOwner} from "../entities/petOwner";
 import {Doctor} from "../entities/doctor";
 import {DoctorService} from "../services/doctor.service";
 import {PetOwnerService} from "../services/petOwner.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'add-pet',
@@ -19,7 +20,8 @@ export class AddPetComponent {
   public ownerId: string;
   public doctorId: string;
 
-  constructor(private petService:PetService, private doctorService:DoctorService, private petOwnerService:PetOwnerService) {
+  constructor(private petService:PetService, private doctorService:DoctorService, private petOwnerService:PetOwnerService,
+              private router:Router) {
     this.doctorService.findAll();
     this.petOwnerService.findAll();
   }
@@ -33,7 +35,7 @@ export class AddPetComponent {
   }
 
   add(): void{
-    //console.log(this.birthdate);
     this.petService.add(this.name, this.race, this.weight, this.birthdate, this.ownerId, this.doctorId);
+    this.router.navigate(["home"]);
   }
 }

@@ -81,7 +81,7 @@ export class PetService {
 
     this
       .http
-      .post(url, {name, type:race, weight, petOwner:owner, doctor}, {headers})
+      .post(url, {name, type:race, weight, birthDate:birthdate, petOwner:owner, doctor}, {headers})
       .map(resp => resp.json())
       .subscribe(
         (pet:Pet) => {

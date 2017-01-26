@@ -2,6 +2,7 @@ import {Pet} from "../entities/pet";
 import { Component } from '@angular/core';
 import {PetService} from "../services/pet.service";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'pet-info',
@@ -12,7 +13,7 @@ export class PetInfoComponent {
 
   public id: string;
 
-  constructor(private petService:PetService) {
+  constructor(private petService:PetService, private router:Router) {
   }
 
   public get pets(): Array<Pet>{
@@ -25,6 +26,7 @@ export class PetInfoComponent {
 
   delete (): void{
     this.petService.delete(this.pets[0].id.toString());
+    this.router.navigate(["home"]);
   }
 }
 

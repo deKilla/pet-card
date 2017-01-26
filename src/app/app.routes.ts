@@ -17,7 +17,7 @@ const APP_ROUTES: Routes = [
     component: LoginComponent
   },
   {
-    path: 'doctorHome',
+    path: 'home',
     component: DoctorHomeComponent,
     canActivate: [ AppComponent ]
   },
