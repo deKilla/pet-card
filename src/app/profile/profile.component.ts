@@ -25,16 +25,16 @@ export class ProfileComponent {
 
     console.log("givenName:",claims.given_name);
     console.log("vorher");
-    console.log("Doctor1:",doctorService.doctors[1].phone); // Fehler bei den Attributen
+    console.log("Doctor1:",doctorService.doctors); // Fehler bei den Attributen
     console.log("nachher");
 
 
-
-    let dummyDoctor = this.doctorService.doctors[0];
+/*
+    let dummyDoctor = this.doctorService.doctors;
 
     this.firstName = dummyDoctor.firstName;
     this.lastName = dummyDoctor.lastName;
-
+*/
   }
 
   public get doctors(): Array<Doctor>{

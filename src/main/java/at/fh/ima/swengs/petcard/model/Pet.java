@@ -47,13 +47,14 @@ public class Pet {
 
   }
 
-  public Pet(String name, String type, int weight, Date birthDate, List<PetDisease> petDiseases, List<PetMedication> petMedications, Doctor doctor){
+  public Pet(String name, String type, int weight, Date birthDate, List<PetDisease> petDiseases, List<PetMedication> petMedications, PetOwner petOwner, Doctor doctor){
     this.name = name;
     this.type = type;
     this.weight = weight;
     this.birthDate = birthDate;
     this.petDiseases = petDiseases;
     this.petMedications = petMedications;
+    this.petOwner = petOwner;
     this.doctor = doctor;
   }
 
