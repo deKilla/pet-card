@@ -11,16 +11,16 @@
     <!-- ####################################################################################################### -->
     <!-- EDIT USER FORM -- firstname, lastname, address, phone, email -->
 
-
     <form role="form"
           class="form-horizontal form-groups-bordered validate"
           method="post" action="">
+
 
       <div >
         <label>Firstname</label>
 
         <div>
-          <input type="text" class="form-control" name="firstname"
+          <input [(ngModel)]="firstName" type="text" class="form-control" name="firstName"
                  placeholder="e.g. John" data-validate="maxlength[30]"
                  required />
         </div>
@@ -39,7 +39,7 @@
       </div>
 
       <br>
-
+<!--
       <div>
         <label>E-Mail</label>
 
@@ -87,7 +87,7 @@
       </div>
 
       <br>
-
+-->
       <div>
         <div>
           <button type="submit" class="btn btn-success">

@@ -65,4 +65,27 @@ export class DoctorService {
         }
       );
   }
+
+
+  public findByFirstName(firstName: string): void {
+
+    this.doctors = [];
+    let url = this.baseUrl + "/search/findByFirstName";
+
+    let search = new URLSearchParams();
+    search.set('firstName', firstName);
+
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
+
+    this
+      .http
+      .get(url, {headers, search})
+      .map(resp => resp.json())
+      .subscribe(
+        (doctor) => {this.doctors.push(doctor);}
+      )
+  }
+
 }
