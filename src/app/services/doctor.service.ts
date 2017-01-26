@@ -67,9 +67,8 @@ export class DoctorService {
   }
 
 
-  public findByFirstName(firstName: string): void {
+  public findByFirstName(firstName: string): Observable<Doctor> {
 
-    this.doctors = [];
     let url = this.baseUrl + "/search/findByFirstName";
 
     let search = new URLSearchParams();
@@ -79,13 +78,10 @@ export class DoctorService {
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
-    this
+    return this
       .http
       .get(url, {headers, search})
-      .map(resp => resp.json())
-      .subscribe(
-        (doctor) => {this.doctors.push(doctor);}
-      )
+      .map(resp => resp.json());
   }
 
 }

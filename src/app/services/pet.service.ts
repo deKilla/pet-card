@@ -93,40 +93,6 @@ export class PetService {
       );
   }
 
-
-  /*
-  public add(name: string, race: string, weight: number, birthdate: string, ownerId: string, doctorId: string): void {
-
-  let url = this.baseUrl;
-
-  let headers = new Headers();
-  headers.set('Accept', 'application/json');
-  headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
-
-  let dummyPet = {
-    "name" : name,
-    "type" : race,
-    "weight" : weight,
-    "birth_date" : birthdate,
-    "doctor_id" : doctorId,
-    "pet_owner_id" : ownerId
-  };
-
-  this
-    .http
-    .post(url, dummyPet, {headers})
-    .map(resp => resp.json())
-    .subscribe(
-      (pet:Pet) => {
-        console.debug("Ok")
-      },
-      (err) => {
-        console.error("Err")
-      }
-    );
-}
-*/
-
   public delete(id: string): void {
 
     let url = this.baseUrl + "/" + id;

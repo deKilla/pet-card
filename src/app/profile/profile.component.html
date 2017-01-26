@@ -32,19 +32,19 @@
         <label>Lastname</label>
 
         <div>
-          <input type="text" class="form-control" name="lastName"
+          <input [(ngModel)]="lastName" type="text" class="form-control" name="lastName"
                  placeholder="e.g. Doe" data-validate="maxlength[30]"
                  required />
         </div>
       </div>
 
       <br>
-<!--
+
       <div>
         <label>E-Mail</label>
 
         <div>
-          <input type="email" class="form-control" name="email"
+          <input [(ngModel)]="email" type="email" class="form-control" name="email"
                  placeholder="e.g. jdoe@petcard.at"
                  data-validate="maxlength[80]" required />
         </div>
@@ -56,7 +56,7 @@
         <label>Address</label>
 
         <div>
-          <input type="text" class="form-control" name="address"
+          <input [(ngModel)]="address" type="text" class="form-control" name="address"
                  placeholder="e.g. Petstreet 1" data-validate="maxlength[30]"
                  required />
         </div>
@@ -68,7 +68,7 @@
         <label>Phone</label>
 
         <div>
-          <input type="text" class="form-control" name="phone"
+          <input [(ngModel)]="phone" type="text" class="form-control" name="phone"
                  placeholder="e.g. 0660123456789" data-validate="maxlength[30]"
                  required />
         </div>
@@ -80,21 +80,18 @@
         <label>Office Hours</label>
 
         <div>
-          <input type="text" class="form-control" name="officeHours"
+          <input [(ngModel)]="officeHours" type="text" class="form-control" name="officeHours"
                  placeholder="e.g. Mo-Fr 08:00 - 12:00 Sa-So Geschlossen" data-validate="maxlength[100]"
                  required />
         </div>
       </div>
 
       <br>
--->
+
       <div>
         <div>
           <button type="submit" class="btn btn-success">
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Save</strong>
-          </button>
-          <button type="button" class="btn btn-danger">
-            <strong><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Exit</strong> <!-- &nbsp; x2-->
           </button>
         </div>
       </div>
