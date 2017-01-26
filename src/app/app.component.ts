@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {OAuthService} from "angular-oauth2-oidc";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app',
@@ -7,7 +8,7 @@ import {OAuthService} from "angular-oauth2-oidc";
 })
 export class AppComponent {
 
-  constructor(private oauthService: OAuthService) {
+  constructor(private oauthService: OAuthService, private router: Router) {
 
     // URL of the SPA to redirect the user to after login
     this.oauthService.redirectUri = window.location.origin + "/index.html";
@@ -39,9 +40,32 @@ export class AppComponent {
       this.oauthService.tryLogin({});
 
     });
+
+
+  }
+
+  canActivate(): boolean{
+    const isAuth = this.oauthService.hasValidAccessToken();
+    if(!isAuth){
+      console.log("not logged in - redirecting to login");
+      this.router.navigate(['login']);
+    }
+    return isAuth;
+  }
+
+  login(): void {
+    this.oauthService.initImplicitFlow();
+
   }
 
   logout(): void {
     this.oauthService.logOut();
+  }
+
+  get givenName(): string {
+    let claims = this.oauthService.getIdentityClaims();
+    if (!claims) return null;
+
+    return claims.given_name;
   }
 }

@@ -98,4 +98,26 @@ export class PetService {
         }
     );
   }
+
+  public delete(id: string): void {
+
+    let url = this.baseUrl + "/" + id;
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+
+    let search = new URLSearchParams();
+
+    this
+      .http
+      .delete(url, headers)
+      .map(resp => resp.json())
+      .subscribe(
+        (pets) => {
+          console.log("deleted pet " + id);
+        },
+        (err) => {
+          console.error('Fehler beim Deleten', err);
+        }
+      );
+  }
 }

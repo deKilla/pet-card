@@ -6,12 +6,12 @@
     <link href="../../css/stylesheet.css" rel="stylesheet">
   </head>
   <body>
-    <h1>Login</h1>
+
     <div id="main">
 
       <br>
       <h1 *ngIf="!givenName">Willkommen!</h1>
-      <h1 *ngIf="givenName">Willkommen, {{givenName}}!</h1>
+      <!-- <h1 *ngIf="givenName">Willkommen, {{givenName}}!</h1> -->
 
       <button class="btn btn-default" (click)="login()">Login</button>
 
