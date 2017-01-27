@@ -9,6 +9,9 @@ import {Router} from "@angular/router";
 export class LoginComponent {
 
   constructor(private oauthService: OAuthService, private router: Router) {
+    if(this.oauthService.getIdentityClaims()){
+      this.router.navigate(["home"]);
+    }
   }
 
   login(): void {
@@ -17,17 +20,6 @@ export class LoginComponent {
 
   logout(): void {
     this.oauthService.logOut();
-  }
-
-  redirect(location): void {
-    this.router.navigate([location]);
-  }
-
-  get givenName(): string {
-    let claims = this.oauthService.getIdentityClaims();
-    if (!claims) return null;
-    this.redirect("home");
-    return claims.given_name;
   }
 
 }

@@ -48,7 +48,9 @@ export class AppComponent {
     const isAuth = this.oauthService.hasValidAccessToken();
     if(!isAuth){
       console.log("not logged in - redirecting to login");
-      this.router.navigate(['login']);
+      if (this.router.isActive("login",true)) {
+        this.router.navigate(["login"]);
+      }
     }
     return isAuth;
   }

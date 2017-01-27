@@ -15,6 +15,7 @@ import {Medication} from "../entities/medication";
 import {PetMedication} from "../entities/petMedication";
 import {DoctorService} from "../services/doctor.service";
 import {Doctor} from "../entities/doctor";
+import {ZipPipe} from "../shared/pipes/zip.pipe";
 
 @Component({
   selector: 'pet-info',
@@ -49,10 +50,6 @@ export class PetInfoComponent {
     return this.doctorService.doctor;
   }
 
-  public get petDiseases(): Array<PetDisease>{
-    return this.petDiseaseService.petDiseases;
-  }
-
   public get petMedications(): Array<PetMedication>{
     return this.petMedicationService.petMedications;
   }
@@ -63,6 +60,10 @@ export class PetInfoComponent {
 
   public get diseases(): Array<Disease>{
     return this.diseasesService.diseases;
+  }
+
+  public get petDiseases(): Array<PetDisease>{
+    return this.petDiseaseService.petDiseases;
   }
 
   public get medications(): Array<Medication>{
