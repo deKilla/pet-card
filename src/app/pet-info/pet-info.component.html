@@ -62,9 +62,9 @@
         </p>
         <p *ngFor="let pd of petDiseases">
           <b>Duration: </b> {{pd.diseaseStart}}<span *ngIf="pd.diseaseEnd"> - {{pd.diseaseEnd}}</span><br />
-
-          <button type="button" class="btn btn-success" (click)="edit()">
-            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong>Edit</strong>
+          <button type="button" class="btn btn-success" >
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+            <a routerLink="/editDisease/{pd.diseaseId}"><strong>Edit</strong></a>
           </button>
         </p>
         <div class="form-group icononly">
@@ -73,6 +73,7 @@
         </button>
         </div>
       </div>
+
 
       <div class="form-group">
         <button type="button" class="btn btn-success" (click)="report()">
