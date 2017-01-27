@@ -65,4 +65,29 @@ export class DiseaseService {
         }
       );
   }
+
+  public findByPet(id: string): void {
+
+    let url = this.baseUrl + "/search/findByPet";
+
+    let search = new URLSearchParams();
+    search.set('id', id);
+
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
+
+    this
+      .http
+      .get(url, {headers, search})
+      .map(resp => resp.json()["_embedded"]["diseases"])
+      .subscribe(
+        (diseases) => {
+          this.diseases = diseases;
+        },
+        (err) => {
+          console.error('Fehler beim Laden', err);
+        }
+      );
+  }
 }

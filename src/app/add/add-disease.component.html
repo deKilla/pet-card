@@ -22,7 +22,7 @@
     <label>Disease</label>
 
     <div>
-      <select [(ngModel)]="diseaseeId" class="form-control" required name="disease">
+      <select [(ngModel)]="diseaseId" class="form-control" required name="disease">
         <option *ngFor="let d of diseases" [value]="d.id">{{d.name}}</option>
       </select>
     </div>
@@ -46,7 +46,7 @@
     <label>Disease End</label>
 
     <div>
-      <input [(ngModel)]="endDate" type="date" class="form-control" name="enddate"
+      <input [(ngModel)]="diseaseEnd" type="date" class="form-control" name="enddate"
              placeholder="e.g. 01.01.2000" data-validate="maxlength[30]"
              required />
     </div>
