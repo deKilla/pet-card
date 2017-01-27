@@ -37,9 +37,9 @@
         <b>Phone:</b> {{myOwner.phone}}<br />
         <b>E-Mail:</b> {{myOwner.email}}<br />
 
-        <!--
-        <b>Doctor: </b> Dr. {{p.doctor.name}}<br />
-        -->
+
+        <b>Doctor: </b> Dr. {{doctor.firstName}} {{doctor.lastName}}<br />
+
 
         <div class="form-group icononly">
           <button type="button" class="btn btn-success" (click)="edit()">
@@ -71,6 +71,26 @@
         <button type="button" class="btn btn-success">
           <a routerLink="/addDisease"><span class="glyphicon glyphicon-plus"></span></a>
         </button>
+        </div>
+      </div>
+
+      <h3>Medication:</h3>
+      <div class="diseases">
+        <p *ngFor="let m of medications">
+          <b>Name:</b> {{m.name}}<br />
+          <b>Description:</b> {{m.description}}<br />
+        </p>
+        <p *ngFor="let pm of petMedications">
+          <b>Duration: </b> {{pm.issueDate}}<span *ngIf="pm.endDate"> - {{pm.endDate}}</span><br />
+
+          <button type="button" class="btn btn-success" (click)="edit()">
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong>Edit</strong>
+          </button>
+        </p>
+        <div class="form-group icononly">
+          <button type="button" class="btn btn-success">
+            <a routerLink="/addMedication"><span class="glyphicon glyphicon-plus"></span></a>
+          </button>
         </div>
       </div>
 
