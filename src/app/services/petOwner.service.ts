@@ -12,8 +12,8 @@ import {OAuthService} from "angular-oauth2-oidc";
 @Injectable()
 export class PetOwnerService {
 
-  petOwners: Array<PetOwner> = [];
-  myOwner : PetOwner;
+  allPetOwners: Array<PetOwner> = [];
+  petOwner : PetOwner;
 
   constructor(
     @Inject(BASE_URL_PETOWNERS) private baseUrl: string,
@@ -23,8 +23,6 @@ export class PetOwnerService {
   }
 
   public findById(id: string): void {
-
-    this.petOwners = [];
     let url = this.baseUrl + "/search/findById";
 
     let search = new URLSearchParams();
@@ -39,7 +37,7 @@ export class PetOwnerService {
       .get(url, {headers, search})
       .map(resp => resp.json())
       .subscribe(
-        (petOwner) => {this.petOwners.push(petOwner);}
+        (petOwner) => {this.petOwner = petOwner;}
       )
   }
 
@@ -59,7 +57,7 @@ export class PetOwnerService {
       .get(url, {headers, search})
       .map(resp => resp.json())
       .subscribe(
-        (owner) => {this.myOwner = owner;}
+        (owner) => {this.petOwner = owner;}
       );
   }
 
@@ -80,7 +78,7 @@ export class PetOwnerService {
       .map(resp => resp.json()["_embedded"]["petOwners"])
       .subscribe(
         (petOwners) => {
-          this.petOwners = petOwners;
+          this.allPetOwners = petOwners;
         },
         (err) => {
           console.error('Fehler beim Laden', err);

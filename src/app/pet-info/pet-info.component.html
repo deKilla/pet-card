@@ -22,6 +22,7 @@
 
 
     <div id="pet-info" *ngIf="pet">
+<<<<<<< HEAD
       <h2>General information:</h2>
       <div class="general row">
         <div class="pet col-md-4">
@@ -34,10 +35,10 @@
         </div>
         <div class="owner col-md-4">
           <h3>Owner</h3>
-          <b>Name:</b> {{myOwner.firstName}} {{myOwner.lastName}}<br />
-          <b>Address:</b> {{myOwner.address}}<br />
-          <b>Phone:</b> {{myOwner.phone}}<br />
-          <b>E-Mail:</b> {{myOwner.email}}
+          <b>Name:</b> {{petOwner.firstName}} {{petOwner.lastName}}<br />
+          <b>Address:</b> {{petOwner.address}}<br />
+          <b>Phone:</b> {{petOwner.phone}}<br />
+          <b>E-Mail:</b> {{petOwner.email}}
         </div>
         <div class="doctor col-md-4">
           <h3>Doctor</h3>
@@ -47,6 +48,7 @@
           <b>Address:</b> {{doctor.address}}<br />
           <b>Office hours:</b> {{doctor.officeHours}}
         </div>
+
 
         <div class="form-group icononly">
           <button type="button" class="btn btn-success" (click)="edit()">

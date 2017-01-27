@@ -23,7 +23,7 @@
 
         <div>
           <select [(ngModel)]="medicationId" class="form-control" required name="medication">
-            <option *ngFor="let m of medications" [value]="m.id">{{m.name}}</option>
+            <option *ngFor="let m of allMedications" [value]="m.id">{{m.name}}</option>
           </select>
         </div>
       </div>

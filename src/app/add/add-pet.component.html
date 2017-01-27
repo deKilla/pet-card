@@ -72,7 +72,7 @@
 
         <div>
           <select [(ngModel)]="ownerId" class="form-control" required name="doctor">
-            <option *ngFor="let o of owners" [value]="o.id">{{o.firstName}} {{o.lastName}}</option>
+            <option *ngFor="let o of allPetOwners" [value]="o.id">{{o.firstName}} {{o.lastName}}</option>
           </select>
         </div>
       </div>
@@ -82,7 +82,7 @@
 
         <div>
           <select [(ngModel)]="doctorId" class="form-control" required name="doctor">
-            <option *ngFor="let d of doctors" [value]="d.id">{{d.firstName}} {{d.lastName}}</option>
+            <option *ngFor="let d of allDoctors" [value]="d.id">{{d.firstName}} {{d.lastName}}</option>
           </select>
         </div>
       </div>

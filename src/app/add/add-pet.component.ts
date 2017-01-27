@@ -26,12 +26,12 @@ export class AddPetComponent {
     this.petOwnerService.findAll();
   }
 
-  public get doctors(): Array<Doctor>{
-    return this.doctorService.doctors;
+  public get allDoctors(): Array<Doctor>{
+    return this.doctorService.allDoctors;
   }
 
-  public get owners(): Array<PetOwner>{
-    return this.petOwnerService.petOwners;
+  public get allPetOwners(): Array<PetOwner>{
+    return this.petOwnerService.allPetOwners;
   }
 
   add(): void{

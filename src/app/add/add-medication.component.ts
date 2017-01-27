@@ -22,8 +22,8 @@ export class AddMedicationComponent {
     this.medicationService.findAll();
   }
 
-  public get medications(): Array<Medication>{
-    return this.medicationService.medications;
+  public get allMedications(): Array<Medication>{
+    return this.medicationService.allMedications;
   }
 
   add(): void{
