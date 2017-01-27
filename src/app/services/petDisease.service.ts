@@ -96,6 +96,9 @@ export class PetDiseaseService {
     let pet = this.baseUrlPets + "/" + petId;
     let disease = this.baseUrlDiseases + "/" + diseaseId;
 
+    console.log("PetId", petId);
+    console.log("DiseaseID", diseaseId);
+
     let headers = new Headers();
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );

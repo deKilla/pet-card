@@ -11,7 +11,8 @@ import {OAuthService} from "angular-oauth2-oidc";
 @Injectable()
 export class PetService {
 
-  pet: Pet
+  pet: Pet;
+
   constructor(
     @Inject(BASE_URL_PETS) private baseUrl: string,
     @Inject(BASE_URL_PETOWNERS) private baseUrlOwner: string,
