@@ -15,14 +15,16 @@
       </div>
       <div class="form-group">
         <button type="button" class="btn btn-success" (click)="search()">
-          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Search</strong>
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span><strong>Search</strong>
+        </button>
+        <button *ngIf="pet" type="button" class="btn btn-success" (click)="report()">
+          <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><strong>Generate report (PDF)</strong>
         </button>
       </div>
     </form>
 
 
     <div id="pet-info" *ngIf="pet">
-
       <h2>General information:</h2>
       <div class="general row">
         <div class="pet col-md-4">
@@ -48,6 +50,7 @@
           <b>Address:</b> {{doctor.address}}<br />
           <b>Office hours:</b> {{doctor.officeHours}}
         </div>
+
 
 
         <div class="form-group icononly">
@@ -82,14 +85,14 @@
       </div>
 
       <h2>Medication:</h2>
-      <div class="diseases row">
+      <div class="medications row">
         <p *ngFor="let m of medications">
           <b>Name:</b> {{m.name}}<br />
           <b>Description:</b> {{m.description}}<br />
         </p>
         <p *ngFor="let pm of petMedications">
+          <b>Dose:</b> {{pm.dose}} <br />
           <b>Duration: </b> {{pm.issueDate}}<span *ngIf="pm.endDate"> - {{pm.endDate}}</span><br />
-
           <button type="button" class="btn btn-success" (click)="edit()">
             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong>Edit</strong>
           </button>
@@ -101,11 +104,6 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <button type="button" class="btn btn-success" (click)="report()">
-          <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><strong>Generate report (PDF)</strong>
-        </button>
-      </div>
     </div>
 
 

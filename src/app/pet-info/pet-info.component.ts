@@ -80,8 +80,8 @@ export class PetInfoComponent {
     this.diseasesService.findByPet(this.id);
 
     //PetMedications and Medications
-    //this.petMedicationService.findByPet(this.id);
-    //this.medicationService.findByPet(this.id);
+    this.petMedicationService.findByPet(this.id);
+    this.medicationService.findByPet(this.id);
 
   }
 

@@ -6,6 +6,7 @@ import {Doctor} from "../entities/doctor";
 import {DoctorService} from "../services/doctor.service";
 import {PetOwnerService} from "../services/petOwner.service";
 import {Router} from "@angular/router";
+import {PetInfoComponent} from "../pet-info/pet-info.component";
 
 @Component({
   selector: 'add-pet',
