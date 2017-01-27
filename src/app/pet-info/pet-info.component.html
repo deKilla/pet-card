@@ -22,7 +22,6 @@
 
 
     <div id="pet-info" *ngIf="pet">
-<<<<<<< HEAD
       <h2>General information:</h2>
       <div class="general row">
         <div class="pet col-md-4">
@@ -79,14 +78,14 @@
       </div>
 
       <h2>Medication:</h2>
-      <div class="diseases row">
+      <div class="medications row">
         <p *ngFor="let m of medications">
           <b>Name:</b> {{m.name}}<br />
           <b>Description:</b> {{m.description}}<br />
         </p>
         <p *ngFor="let pm of petMedications">
+          <b>Dose:</b> {{pm.dose}} <br />
           <b>Duration: </b> {{pm.issueDate}}<span *ngIf="pm.endDate"> - {{pm.endDate}}</span><br />
-
           <button type="button" class="btn btn-success" (click)="edit()">
             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong>Edit</strong>
           </button>
