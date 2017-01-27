@@ -11,7 +11,9 @@ import {OAuthService} from "angular-oauth2-oidc";
 @Injectable()
 export class DiseaseService {
 
+  allDiseases: Array<Disease> = [];
   diseases: Array<Disease> = [];
+  disease: Disease;
 
   constructor(
     @Inject(BASE_URL_DISEASES) private baseUrl: string,
@@ -22,7 +24,6 @@ export class DiseaseService {
 
   public findById(id: string): void {
 
-    this.diseases = [];
     let url = this.baseUrl + "/search/findById";
 
     let search = new URLSearchParams();
@@ -37,7 +38,7 @@ export class DiseaseService {
       .get(url, {headers, search})
       .map(resp => resp.json())
       .subscribe(
-        (disease) => {this.diseases.push(disease);}
+        (disease) => {this.disease = disease;}
       )
   }
 
@@ -58,7 +59,7 @@ export class DiseaseService {
       .map(resp => resp.json()["_embedded"]["diseases"])
       .subscribe(
         (diseases) => {
-          this.diseases = diseases;
+          this.allDiseases = diseases;
         },
         (err) => {
           console.error('Fehler beim Laden', err);

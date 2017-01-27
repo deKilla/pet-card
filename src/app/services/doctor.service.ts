@@ -10,7 +10,8 @@ import {OAuthService} from "angular-oauth2-oidc";
 @Injectable()
 export class DoctorService {
 
-  doctors: Array<Doctor> = [];
+  allDoctors: Array<Doctor> = [];
+  doctor: Doctor;
 
   constructor(
     @Inject(BASE_URL_DOCTORS) private baseUrl: string,
@@ -20,8 +21,6 @@ export class DoctorService {
   }
 
   public findById(id: string): void {
-
-    this.doctors = [];
     let url = this.baseUrl + "/search/findById";
 
     let search = new URLSearchParams();
@@ -36,8 +35,28 @@ export class DoctorService {
       .get(url, {headers, search})
       .map(resp => resp.json())
       .subscribe(
-        (doctor) => {this.doctors.push(doctor);}
+        (doctor) => {this.doctor = doctor;}
       )
+  }
+
+  public findByPet(id: string): void {
+
+    let url = this.baseUrl + "/search/findByPet";
+
+    let search = new URLSearchParams();
+    search.set('id', id);
+
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
+
+    this
+      .http
+      .get(url, {headers, search})
+      .map(resp => resp.json())
+      .subscribe(
+        (doctor) => {this.doctor = doctor;}
+      );
   }
 
 
@@ -57,7 +76,7 @@ export class DoctorService {
       .map(resp => resp.json()["_embedded"]["doctors"])
       .subscribe(
         (doctors) => {
-          this.doctors = doctors;
+          this.allDoctors = doctors;
         },
         (err) => {
           console.error('Fehler beim Laden', err);

@@ -13,6 +13,8 @@
 
 
 <form role="form"
+      (ngSubmit)="add()"
+      (submit)="goTo('petInfo')"
       class="form-horizontal form-groups-bordered validate"
       method="post" action="">
 
@@ -21,7 +23,7 @@
 
     <div>
       <select [(ngModel)]="diseaseId" class="form-control" required name="disease">
-        <option *ngFor="let d of diseases" [value]="d.id">{{d.name}}</option>
+        <option *ngFor="let d of allDiseases" [value]="d.id">{{d.name}}</option>
       </select>
     </div>
   </div>
@@ -54,7 +56,7 @@
 
   <div >
     <div>
-      <button (click)="add()" type="submit" class="btn btn-success">
+      <button type="submit" class="btn btn-success">
         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Add</strong>
       </button>
     </div>

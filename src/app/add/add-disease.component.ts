@@ -21,13 +21,17 @@ export class AddDiseaseComponent {
     this.diseaseService.findAll();
   }
 
-  public get diseases(): Array<Disease>{
-    return this.diseaseService.diseases;
+  public get allDiseases(): Array<Disease>{
+    return this.diseaseService.allDiseases;
   }
 
   add(): void{
     this.petId = this.petService.pet.id.toString();
     this.petDiseaseService.add(this.diseaseStart, this.diseaseEnd, this.petId, this.diseaseId);
-    //this.router.navigate(["petInfo"]);
+  }
+
+  goTo(location:String):void {
+    //this.router.navigate([location,this.petId]);
+    this.router.navigate(["petInfo"]);
   }
 }

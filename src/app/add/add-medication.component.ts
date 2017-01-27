@@ -22,13 +22,17 @@ export class AddMedicationComponent {
     this.medicationService.findAll();
   }
 
-  public get medications(): Array<Medication>{
-    return this.medicationService.medications;
+  public get allMedications(): Array<Medication>{
+    return this.medicationService.allMedications;
   }
 
   add(): void{
     this.petId = this.petService.pet.id.toString();
     this.petMedicationService.add(this.dose, this.issueDate, this.endDate, this.petId, this.medicationId);
-    //this.router.navigate(["petInfo"]);
+  }
+
+  goTo(location:String):void {
+    //this.router.navigate([location,this.petId]);
+    this.router.navigate([location]);
   }
 }

@@ -12,6 +12,8 @@ import {OAuthService} from "angular-oauth2-oidc";
 export class MedicationService {
 
   medications: Array<Medication> = [];
+  allMedications: Array<Medication> = [];
+  medication: Medication;
 
   constructor(
     @Inject(BASE_URL_MEDICATIONS) private baseUrl: string,
@@ -22,7 +24,6 @@ export class MedicationService {
 
   public findById(id: string): void {
 
-    this.medications = [];
     let url = this.baseUrl + "/search/findById";
 
     let search = new URLSearchParams();
@@ -37,8 +38,33 @@ export class MedicationService {
       .get(url, {headers, search})
       .map(resp => resp.json())
       .subscribe(
-        (medication) => {this.medications.push(medication);}
+        (medication) => {this.medication = medication;}
       )
+  }
+
+  public findByPet(id: string): void {
+
+    let url = this.baseUrl + "/search/findByPet";
+
+    let search = new URLSearchParams();
+    search.set('id', id);
+
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
+
+    this
+      .http
+      .get(url, {headers, search})
+      .map(resp => resp.json()["_embedded"]["medications"])
+      .subscribe(
+        (medications) => {
+          this.medications = medications;
+        },
+        (err) => {
+          console.error('Fehler beim Laden', err);
+        }
+      );
   }
 
 
@@ -58,7 +84,7 @@ export class MedicationService {
       .map(resp => resp.json()["_embedded"]["medications"])
       .subscribe(
         (medications) => {
-          this.medications = medications;
+          this.allMedications = medications;
         },
         (err) => {
           console.error('Fehler beim Laden', err);

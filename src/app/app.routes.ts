@@ -50,6 +50,11 @@ const APP_ROUTES: Routes = [
     canActivate: [ AppComponent ]
   },
   {
+    path: 'petInfo/:id/',
+    component: PetInfoComponent,
+    canActivate: [ AppComponent ]
+  },
+  {
     path: 'profile',
     component: ProfileComponent,
     canActivate: [ AppComponent ]

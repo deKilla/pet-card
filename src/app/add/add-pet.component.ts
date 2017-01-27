@@ -6,6 +6,7 @@ import {Doctor} from "../entities/doctor";
 import {DoctorService} from "../services/doctor.service";
 import {PetOwnerService} from "../services/petOwner.service";
 import {Router} from "@angular/router";
+import {PetInfoComponent} from "../pet-info/pet-info.component";
 
 @Component({
   selector: 'add-pet',
@@ -26,16 +27,19 @@ export class AddPetComponent {
     this.petOwnerService.findAll();
   }
 
-  public get doctors(): Array<Doctor>{
-    return this.doctorService.doctors;
+  public get allDoctors(): Array<Doctor>{
+    return this.doctorService.allDoctors;
   }
 
-  public get owners(): Array<PetOwner>{
-    return this.petOwnerService.petOwners;
+  public get allPetOwners(): Array<PetOwner>{
+    return this.petOwnerService.allPetOwners;
   }
 
   add(): void{
     this.petService.add(this.name, this.race, this.weight, this.birthdate, this.ownerId, this.doctorId);
-    this.router.navigate(["home"]);
+  }
+
+  goTo(location:String):void {
+    this.router.navigate([location]);
   }
 }
