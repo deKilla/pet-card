@@ -56,9 +56,11 @@
 
       <h3>Diseases:</h3>
       <div class="diseases">
+        <p *ngFor="let d of diseases">
+          <b>Name:</b> {{d.name}}<br />
+          <b>Description:</b> {{d.description}}<br />
+        </p>
         <p *ngFor="let pd of petDiseases">
-          <!--<b>Name:</b> {{d.name}}<br />
-          <b>Description:</b> {{d.description}}<br /> -->
           <b>Duration: </b> {{pd.diseaseStart}}<span *ngIf="pd.diseaseEnd"> - {{pd.diseaseEnd}}</span><br />
           <button type="button" class="btn btn-success" (click)="edit()">
             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong>Edit</strong>

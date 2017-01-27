@@ -105,7 +105,7 @@ export class PetDiseaseService {
       .post(url, {diseaseStart, diseaseEnd, pet, disease}, {headers})
       .map(resp => resp.json())
       .subscribe(
-        (petDisease:PetDisease) => {
+        (petDisease) => {
           console.debug("Ok")
         },
         (err) => {
