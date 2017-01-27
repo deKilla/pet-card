@@ -42,6 +42,31 @@ export class PetMedicationService {
       )
   }
 
+  public findByPet(id: string): void {
+
+    let url = this.baseUrl + "/search/findByPet";
+
+    let search = new URLSearchParams();
+    search.set('id', id);
+
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
+
+    this
+      .http
+      .get(url, {headers, search})
+      .map(resp => resp.json()["_embedded"]["petMedications"])
+      .subscribe(
+        (petMedications) => {
+          this.petMedications = petMedications;
+        },
+        (err) => {
+          console.error('Fehler beim Laden', err);
+        }
+      );
+  }
+
 
   public findAll(): void {
 

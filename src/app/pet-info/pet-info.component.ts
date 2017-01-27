@@ -9,6 +9,12 @@ import {PetDisease} from "../entities/petDisease";
 import {PetOwner} from "../entities/petOwner";
 import {DiseaseService} from "../services/disease.service";
 import {Disease} from "../entities/disease";
+import {PetMedicationService} from "../services/petMedication.service";
+import {MedicationService} from "../services/medication.service";
+import {Medication} from "../entities/medication";
+import {PetMedication} from "../entities/petMedication";
+import {DoctorService} from "../services/doctor.service";
+import {Doctor} from "../entities/doctor";
 
 @Component({
   selector: 'pet-info',
@@ -20,15 +26,24 @@ export class PetInfoComponent {
   public id: string;
 
   constructor(private petService:PetService, private ownerService:PetOwnerService, private petDiseaseService:PetDiseaseService,
-              private diseasesService:DiseaseService, private router:Router) {
+              private diseasesService:DiseaseService, private petMedicationService:PetMedicationService,
+              private medicationService:MedicationService, private doctorService:DoctorService, private router:Router) {
   }
 
   public get pet(): Pet{
     return this.petService.pet;
   }
 
+  public get doctor(): Doctor{
+    return this.doctorService.doctor;
+  }
+
   public get petDiseases(): Array<PetDisease>{
     return this.petDiseaseService.petDiseases;
+  }
+
+  public get petMedications(): Array<PetMedication>{
+    return this.petMedicationService.petMedications;
   }
 
   public get myOwner(): PetOwner{
@@ -39,13 +54,22 @@ export class PetInfoComponent {
     return this.diseasesService.diseases;
   }
 
+  public get medications(): Array<Medication>{
+    return this.medicationService.medications;
+  }
+
   search (): void{
     this.petService.findById(this.id);
     this.ownerService.findByPet(this.id);
+    this.doctorService.findByPet(this.id);
 
     //PetDiseases and Diseases
     this.petDiseaseService.findByPet(this.id);
     this.diseasesService.findByPet(this.id);
+
+    //PetMedications and Medications
+    this.petMedicationService.findByPet(this.id);
+    this.medicationService.findByPet(this.id);
 
   }
 
@@ -53,7 +77,15 @@ export class PetInfoComponent {
     this.petService.delete(this.pet.id.toString())
 
     //löschen der gespeicherten Inhalte zum Pet
-    //Pet, Owner, PetDiseases, Disease, PetMedication, Medication
+    //Pet, Owner, PetDiseases, Disease, PetMedication, Medication, Doctor
+    this.petService.pet = null;
+    this.ownerService.myOwner = null;
+    this.doctorService.doctor = null;
+
+    this.petDiseaseService.petDiseases = [];
+    this.petMedicationService.petMedications = [];
+    this.medicationService.medications = [];
+    this.diseasesService.diseases = [];
 
     this.router.navigate(["home"]);
   }
