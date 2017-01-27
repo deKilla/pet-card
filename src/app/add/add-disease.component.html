@@ -23,7 +23,7 @@
 
     <div>
       <select [(ngModel)]="diseaseId" class="form-control" required name="disease">
-        <option *ngFor="let d of diseases" [value]="d.id">{{d.name}}</option>
+        <option *ngFor="let d of allDiseases" [value]="d.id">{{d.name}}</option>
       </select>
     </div>
   </div>

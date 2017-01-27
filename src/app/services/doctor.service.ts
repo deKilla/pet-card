@@ -10,7 +10,7 @@ import {OAuthService} from "angular-oauth2-oidc";
 @Injectable()
 export class DoctorService {
 
-  doctors: Array<Doctor> = [];
+  allDoctors: Array<Doctor> = [];
   doctor: Doctor;
 
   constructor(
@@ -21,8 +21,6 @@ export class DoctorService {
   }
 
   public findById(id: string): void {
-
-    this.doctors = [];
     let url = this.baseUrl + "/search/findById";
 
     let search = new URLSearchParams();
@@ -37,7 +35,7 @@ export class DoctorService {
       .get(url, {headers, search})
       .map(resp => resp.json())
       .subscribe(
-        (doctor) => {this.doctors.push(doctor);}
+        (doctor) => {this.doctor = doctor;}
       )
   }
 
@@ -78,7 +76,7 @@ export class DoctorService {
       .map(resp => resp.json()["_embedded"]["doctors"])
       .subscribe(
         (doctors) => {
-          this.doctors = doctors;
+          this.allDoctors = doctors;
         },
         (err) => {
           console.error('Fehler beim Laden', err);

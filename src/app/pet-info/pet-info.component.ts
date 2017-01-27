@@ -57,8 +57,8 @@ export class PetInfoComponent {
     return this.petMedicationService.petMedications;
   }
 
-  public get myOwner(): PetOwner{
-    return this.ownerService.myOwner;
+  public get petOwner(): PetOwner{
+    return this.ownerService.petOwner;
   }
 
   public get diseases(): Array<Disease>{
@@ -90,7 +90,7 @@ export class PetInfoComponent {
     //löschen der gespeicherten Inhalte zum Pet
     //Pet, Owner, PetDiseases, Disease, PetMedication, Medication, Doctor
     this.petService.pet = null;
-    this.ownerService.myOwner = null;
+    this.ownerService.petOwner = null;
     this.doctorService.doctor = null;
 
     this.petDiseaseService.petDiseases = [];

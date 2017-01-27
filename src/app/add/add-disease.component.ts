@@ -21,8 +21,8 @@ export class AddDiseaseComponent {
     this.diseaseService.findAll();
   }
 
-  public get diseases(): Array<Disease>{
-    return this.diseaseService.diseases;
+  public get allDiseases(): Array<Disease>{
+    return this.diseaseService.allDiseases;
   }
 
   add(): void{
