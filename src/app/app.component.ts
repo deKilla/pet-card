@@ -48,9 +48,7 @@ export class AppComponent {
     const isAuth = this.oauthService.hasValidAccessToken();
     if(!isAuth){
       console.log("not logged in - redirecting to login");
-      if (this.router.isActive("login",true)) {
-        this.router.navigate(["login"]);
-      }
+      this.router.navigate(['login']);
     }
     return isAuth;
   }
@@ -67,7 +65,6 @@ export class AppComponent {
   get givenName(): string {
     let claims = this.oauthService.getIdentityClaims();
     if (!claims) return null;
-
     return claims.given_name;
   }
 }
