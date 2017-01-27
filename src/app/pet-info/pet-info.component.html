@@ -49,7 +49,7 @@
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
           </button>
           <button type="button" class="btn btn-success">
-            <a routerLink="/addMedication"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><strong>med</strong></a>
+            <a routerLink="/addMedication"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><strong>Med</strong></a>
           </button>
         </div>
         </div>
@@ -62,13 +62,16 @@
         </p>
         <p *ngFor="let pd of petDiseases">
           <b>Duration: </b> {{pd.diseaseStart}}<span *ngIf="pd.diseaseEnd"> - {{pd.diseaseEnd}}</span><br />
+
           <button type="button" class="btn btn-success" (click)="edit()">
             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong>Edit</strong>
           </button>
         </p>
-        <button type="button" class="btn btn-success" (click)="edit()">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><strong>Add</strong>
+        <div class="form-group icononly">
+        <button type="button" class="btn btn-success">
+          <a routerLink="/addDisease"><span class="glyphicon glyphicon-plus"></span></a>
         </button>
+        </div>
       </div>
 
       <div class="form-group">

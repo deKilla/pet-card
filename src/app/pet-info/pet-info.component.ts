@@ -50,12 +50,14 @@ export class PetInfoComponent {
   }
 
   delete (): void{
-    this.petService.delete(this.pet.id.toString())
+    this.petService.delete(this.pet.id.toString());
 
     //löschen der gespeicherten Inhalte zum Pet
     //Pet, Owner, PetDiseases, Disease, PetMedication, Medication
 
     this.router.navigate(["home"]);
   }
+
+
 }
 

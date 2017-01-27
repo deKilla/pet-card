@@ -28,6 +28,6 @@ export class AddDiseaseComponent {
   add(): void{
     this.petId = this.petService.pet.id.toString();
     this.petDiseaseService.add(this.diseaseStart, this.diseaseEnd, this.petId, this.diseaseId);
-    this.router.navigate(["petInfo"]);
+    //this.router.navigate(["petInfo"]);
   }
 }
