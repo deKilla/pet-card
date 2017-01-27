@@ -81,4 +81,20 @@ public class PetMedication {
   public void setEndDate(Date endDate) {
     this.endDate = endDate;
   }
+
+  public Medication getMedication() {
+    return medication;
+  }
+
+  public void setMedication(Medication medication) {
+    this.medication = medication;
+  }
+
+  public Pet getPet() {
+    return pet;
+  }
+
+  public void setPet(Pet pet) {
+    this.pet = pet;
+  }
 }

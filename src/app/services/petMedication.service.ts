@@ -70,8 +70,8 @@ export class PetMedicationService {
   public add(dose: string, issueDate: string, endDate: string, petId: string, medicationId: string): void {
 
     let url = this.baseUrl;
-    let pet = this.baseUrlPet + '/' + petId;
-    let medication = this.baseUrlMedication + '/' + medicationId;
+    let pet = this.baseUrlPet + "/" + petId;
+    let medication = this.baseUrlMedication + "/" + medicationId;
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
@@ -79,17 +79,15 @@ export class PetMedicationService {
 
     this
       .http
-      .post(url, {dose, issueDate, endDate, pet, medication}, {headers})
+      .post(url, {dose, issueDate, endDate, pet:pet, medication:medication}, {headers})
       .map(resp => resp.json())
       .subscribe(
         (petMedication:PetMedication) => {
-          console.debug("Ok")
+          console.debug("Ok", petMedication);
         },
         (err) => {
           console.error("Err")
         }
       );
   }
-
-
 }
