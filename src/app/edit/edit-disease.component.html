@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>P@-Card | Edit Disease</title>
+  <link href="../../css/stylesheet.css" rel="stylesheet">
+</head>
+<body>
+<h1>Edit Disease</h1>
+
+<!-- ####################################################################################################### -->
+<!-- Edit DISEASE FORM -- diseaseStart, diseaseEnd -->
+
+
+<form role="form"
+      class="form-horizontal form-groups-bordered validate"
+      method="post" action="">
+<!--
+  <div>
+    <label>Disease</label>
+
+    <div>
+      <select [(ngModel)]="diseaseId" class="form-control" required name="disease">
+        <option *ngFor="let d of diseases" [value]="d.id">{{d.name}}</option>
+      </select>
+    </div>
+  </div>
+-->
+
+  <br />
+
+  <div>
+    <label>Disease Start</label>
+
+    <div>
+      <input [(ngModel)]="diseaseStart" type="date" class="form-control" name="diseaseStart"
+             placeholder="e.g. 01.01.2000" data-validate="maxlength[30]"
+             required />
+    </div>
+  </div>
+
+  <br />
+
+  <div>
+    <label>Disease End</label>
+
+    <div>
+      <input [(ngModel)]="diseaseEnd" type="date" class="form-control" name="enddate"
+             placeholder="e.g. 01.01.2000" data-validate="maxlength[30]"
+             required />
+    </div>
+  </div>
+
+  <br />
+
+  <div >
+    <div>
+      <button (click)="save()" type="submit" class="btn btn-success">
+        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Edit</strong>
+      </button>
+    </div>
+  </div>
+
+</form>
+</body>
+</html>
