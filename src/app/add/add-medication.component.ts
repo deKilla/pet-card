@@ -29,6 +29,10 @@ export class AddMedicationComponent {
   add(): void{
     this.petId = this.petService.pet.id.toString();
     this.petMedicationService.add(this.dose, this.issueDate, this.endDate, this.petId, this.medicationId);
-    this.router.navigate(["petInfo"]);
+  }
+
+  goTo(location:String):void {
+    //this.router.navigate([location,this.petId]);
+    this.router.navigate([location]);
   }
 }

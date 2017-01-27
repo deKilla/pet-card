@@ -36,6 +36,9 @@ export class AddPetComponent {
 
   add(): void{
     this.petService.add(this.name, this.race, this.weight, this.birthdate, this.ownerId, this.doctorId);
-    this.router.navigate(["home"]);
+  }
+
+  goTo(location:String):void {
+    this.router.navigate([location]);
   }
 }

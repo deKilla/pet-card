@@ -2,7 +2,7 @@ import {Pet} from "../entities/pet";
 import { Component } from '@angular/core';
 import {PetService} from "../services/pet.service";
 import {Observable} from "rxjs";
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {PetOwnerService} from "../services/petOwner.service";
 import {PetDiseaseService} from "../services/petDisease.service";
 import {PetDisease} from "../entities/petDisease";
@@ -16,9 +16,20 @@ import {PetOwner} from "../entities/petOwner";
 export class PetInfoComponent {
 
   public id: string;
+  public route: any;
+  public routeId: string;
 
   constructor(private petService:PetService, private ownerService:PetOwnerService, private petDiseaseService:PetDiseaseService,
-              private router:Router) {
+              private router:Router, private activeRoute: ActivatedRoute) {
+
+    this.route = this.activeRoute.params.subscribe(params =>{ this.id = params["id"]});
+    this.routeId = this.route._subscriptions[0].subject._value.id;
+
+    if(this.routeId){
+      this.id = this.routeId
+      this.search();
+    }
+
   }
 
   public get pet(): Pet{
