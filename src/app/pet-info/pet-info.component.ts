@@ -32,14 +32,6 @@ export class PetInfoComponent {
               private petService:PetService, private ownerService:PetOwnerService, private doctorService:DoctorService,
               private diseasesService:DiseaseService, private petDiseaseService:PetDiseaseService,
               private medicationService:MedicationService, private petMedicationService:PetMedicationService) {
-
-    this.route = this.activeRoute.params.subscribe(params =>{ this.id = params["id"]});
-    this.routeId = this.route._subscriptions[0].subject._value.id;
-
-    if(this.routeId){
-      this.id = this.routeId
-      this.search();
-    }
   }
 
   public get pet(): Pet{

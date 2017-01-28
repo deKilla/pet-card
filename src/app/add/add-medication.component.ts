@@ -32,7 +32,6 @@ export class AddMedicationComponent {
   }
 
   goTo(location:String):void {
-    //this.router.navigate([location,this.petId]);
     this.router.navigate([location]);
   }
 }

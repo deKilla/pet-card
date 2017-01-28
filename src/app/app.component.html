@@ -1,5 +1,5 @@
 <link href="../css/stylesheet.css" rel="stylesheet">
-<div *ngIf="givenName" class="header-container">
+<div [hidden]="loginpage" class="header-container">
   <header class="wrapper clearfix">
     <nav class="navbar navbar-default">
       <a class="navbar-brand" routerLink="/home"><img src="../img/logo.png" class="logo" alt="p@-card"/></a>
@@ -29,7 +29,7 @@
 <div class="footer-container">
   <footer class="wrapper">
 
-    <p><strong> FH - JOANNEUM | IMA | SWENGS | </strong> Michael Fuchs, Nina Spalek, Max Wageneder </p>
+    <p><strong> FH Joanneum | IMA | SWENGS | </strong> Michael Fuchs, Nina Spalek, Max Wageneder </p>
 
     <!--
     <p><strong> Projekt im Rahmen des Studiums Informationsmanagement an der FH-Joanneum - SWENGS </strong>&nbsp;| by Michael Fuchs, Nina Spalek, Max Wageneder</p>
