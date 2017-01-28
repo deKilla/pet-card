@@ -139,3 +139,16 @@ header nav { margin:5px 0 0 0; }
 #pet-info .icononly { position:absolute; top:-35px; right:0px; }
 #pet-info .icononly button.btn { padding:5px 10px; }
 #pet-info .icononly button.btn span { color:#000; margin:0px; }
+
+input.ng-invalid {
+  border-left-color: lightcoral;
+  border-left-style: solid;
+  border-left-width: 5px;
+}
+
+input.ng-valid {
+  border-left-color: lightgreen;
+  border-left-style: solid;
+  border-left-width: 5px;
+}
+

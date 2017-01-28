@@ -8,13 +8,35 @@
 <body>
 <h1>Pet Info</h1>
 
-    <form #p="ngForm" novalidate>
+    <form #f="ngForm">
       <div class="form-group">
         <!--<label>ID</label>-->
-        <input [(ngModel)]="id" name="id" type="text" class="form-control" placeholder="ID" data-validate="number" required>
+        <input [(ngModel)]="id"
+               name="id"
+               type="number"
+               asyncId
+               pattern="[0-9]{1,4}"
+               class="form-control"
+               placeholder="Enter the provided Pet-ID to search the Database!"
+               data-validate="number"
+               required>
       </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.id?.valid">
+
+        <div *ngIf="f?.controls?.id?.hasError('asyncId')">
+          <b>Bitte geben sie eine ID > 1 ein!</b>
+        </div>
+        <div *ngIf="f?.controls?.id?.hasError('pattern')">
+          <b>Bitte geben Sie eine ID zwischen 1 & 9999 ein!</b>
+        </div>
+        <div *ngIf="f?.controls?.id?.hasError('required')">
+          <b>Bitte geben Sie eine ID ein!</b>
+        </div>
+      </div>
+
       <div class="form-group">
-        <button type="button" class="btn btn-success" (click)="search()">
+        <button [disabled]="!f?.controls?.id?.valid" type="button" class="btn btn-success" (click)="search()">
           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Search</strong>
         </button>
       </div>
@@ -69,11 +91,10 @@
           <b>Name:</b> {{d.name}}<br />
           <b>Description:</b> {{d.description}}<br />
           <b>Duration: </b> {{pd.diseaseStart}}<span *ngIf="pd.diseaseEnd"> - {{pd.diseaseEnd}}</span><br />
-          <button type="button" class="btn btn-success" (click)="edit()">
-            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong>Edit</strong>
-          </button>
+            <button type="button" class="btn btn-success">
+              <a routerLink="/editDisease"><span class="glyphicon glyphicon-wrench"></span>EDIT</a>
+            </button>
         </div>
-
         <div class="form-group icononly">
         <button type="button" class="btn btn-success">
           <a routerLink="/addDisease"><span class="glyphicon glyphicon-plus"></span></a>

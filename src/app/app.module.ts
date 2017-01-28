@@ -21,6 +21,7 @@ import {OAuthModule} from "angular-oauth2-oidc";
 import {AddMedicationComponent} from "./add/add-medication.component";
 import {AddDiseaseComponent} from "./add/add-disease.component";
 import {EditDiseaseComponent} from "./edit/edit-disease.component";
+import {AsyncPetValidator} from "./shared/validators/async-pet.validator";
 
 
 const BASE_URL_PETS_FOR_PRODUCTION = "http://localhost:8081/api/pets";
@@ -50,7 +51,8 @@ const BASE_URL_DISEASES_FOR_PRODUCTION = "http://localhost:8081/api/diseases";
     AddDiseaseComponent,
     EditDiseaseComponent,
     PetInfoComponent,
-    ProfileComponent
+    ProfileComponent,
+    AsyncPetValidator
   ],
 
   providers: [
@@ -68,7 +70,8 @@ const BASE_URL_DISEASES_FOR_PRODUCTION = "http://localhost:8081/api/diseases";
     MedicationService,
     PetDiseaseService,
     PetMedicationService,
-    AppComponent
+    AppComponent,
+    AsyncPetValidator
   ],
 
   bootstrap: [ AppComponent ]

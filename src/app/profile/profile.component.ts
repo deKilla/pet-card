@@ -48,8 +48,6 @@ export class ProfileComponent {
     this.doctor.phone = this.phone;
     this.doctor.officeHours = this.officeHours;
     this.doctorService.save(this.doctor);
-    this.router.navigate(["home"]);
-
   }
 
 }

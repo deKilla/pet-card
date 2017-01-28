@@ -45,6 +45,11 @@ const APP_ROUTES: Routes = [
     canActivate: [ AppComponent ]
   },
   {
+    path: 'editDisease/:pd.id',
+    component: EditDiseaseComponent,
+    canActivate: [ AppComponent ]
+  },
+  {
     path: 'petInfo',
     component: PetInfoComponent,
     canActivate: [ AppComponent ]
