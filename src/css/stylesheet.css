@@ -120,12 +120,6 @@ button:hover a { color:#000; }
 
 .footer-container { position:fixed; bottom:0px; width:100%; text-align: center}
 
-
-#nav_profile a:hover { border-bottom: 0px none; }
-#nav_profile #nav_subprofile { list-style:none; display:none;  }
-#nav_profile:hover #nav_subprofile { display:block; position:absolute; right:10px; padding:0px; }
-#nav_subprofile a { display:block; padding:5px; }
-
 /* .main-container { background: url(../img/gradient.png) repeat-x; } */
 
 header nav { margin:5px 0 0 0; }
