@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 export class LoginComponent {
 
   constructor(private oauthService: OAuthService, private router: Router) {
+
   }
 
   login(): void {

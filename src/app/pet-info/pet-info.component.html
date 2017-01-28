@@ -79,22 +79,23 @@
           <button type="button" class="btn btn-danger" (click)="delete()">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
           </button>
-          <button type="button" class="btn btn-success">
-            <a routerLink="/addMedication"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><strong>Med</strong></a>
-          </button>
         </div>
       </div>
 
       <h2>Diseases:</h2>
       <div class="diseases row">
-        <div *ngFor="let d of diseases; let pd of petDiseases">
-          <b>Name:</b> {{d.name}}<br />
-          <b>Description:</b> {{d.description}}<br />
-          <b>Duration: </b> {{pd.diseaseStart}}<span *ngIf="pd.diseaseEnd"> - {{pd.diseaseEnd}}</span><br />
-            <button type="button" class="btn btn-success">
-              <a routerLink="/editDisease"><span class="glyphicon glyphicon-wrench"></span>EDIT</a>
-            </button>
+
+        <div class="col-md-12" *ngFor="let md of diseases | zip:petDiseases">
+          <h3>{{md.name}}</h3>
+          <i>{{md.description}}</i><br />
+          <b>Begin: </b> {{md.diseaseStart}}<span *ngIf="md.diseaseEnd"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>End:</b> {{md.diseaseEnd}}</span><br />
+          <div class="icononly">
+          <button type="button" class="btn btn-success" (click)="edit()">
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+          </button>
+          </div>
         </div>
+
         <div class="form-group icononly">
         <button type="button" class="btn btn-success">
           <a routerLink="/addDisease"><span class="glyphicon glyphicon-plus"></span></a>
@@ -122,11 +123,6 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <button type="button" class="btn btn-success" (click)="report()">
-          <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><strong>Generate report (PDF)</strong>
-        </button>
-      </div>
     </div>
 
 

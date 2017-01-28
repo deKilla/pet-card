@@ -120,12 +120,6 @@ button:hover a { color:#000; }
 
 .footer-container { position:fixed; bottom:0px; width:100%; text-align: center}
 
-
-#nav_profile a:hover { border-bottom: 0px none; }
-#nav_profile #nav_subprofile { list-style:none; display:none;  }
-#nav_profile:hover #nav_subprofile { display:block; position:absolute; right:10px; padding:0px; }
-#nav_subprofile a { display:block; padding:5px; }
-
 /* .main-container { background: url(../img/gradient.png) repeat-x; } */
 
 header nav { margin:5px 0 0 0; }
@@ -139,6 +133,12 @@ header nav { margin:5px 0 0 0; }
 #pet-info .icononly { position:absolute; top:-35px; right:0px; }
 #pet-info .icononly button.btn { padding:5px 10px; }
 #pet-info .icononly button.btn span { color:#000; margin:0px; }
+
+#pet-info .general div,
+#pet-info .diseases div,
+#pet-info .medication div { padding-bottom:5px; }
+
+#pet-info .diseases div .icononly { top:16px; right:12px; }
 
 input.ng-invalid {
   border-left-color: lightcoral;

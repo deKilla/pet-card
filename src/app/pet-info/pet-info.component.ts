@@ -15,6 +15,7 @@ import {Medication} from "../entities/medication";
 import {PetMedication} from "../entities/petMedication";
 import {DoctorService} from "../services/doctor.service";
 import {Doctor} from "../entities/doctor";
+import {ZipPipe} from "../shared/pipes/zip.pipe";
 
 @Component({
   selector: 'pet-info',
@@ -31,14 +32,6 @@ export class PetInfoComponent {
               private petService:PetService, private ownerService:PetOwnerService, private doctorService:DoctorService,
               private diseasesService:DiseaseService, private petDiseaseService:PetDiseaseService,
               private medicationService:MedicationService, private petMedicationService:PetMedicationService) {
-
-    this.route = this.activeRoute.params.subscribe(params =>{ this.id = params["id"]});
-    this.routeId = this.route._subscriptions[0].subject._value.id;
-
-    if(this.routeId){
-      this.id = this.routeId
-      this.search();
-    }
   }
 
   public get pet(): Pet{
@@ -47,10 +40,6 @@ export class PetInfoComponent {
 
   public get doctor(): Doctor{
     return this.doctorService.doctor;
-  }
-
-  public get petDiseases(): Array<PetDisease>{
-    return this.petDiseaseService.petDiseases;
   }
 
   public get petMedications(): Array<PetMedication>{
@@ -63,6 +52,10 @@ export class PetInfoComponent {
 
   public get diseases(): Array<Disease>{
     return this.diseasesService.diseases;
+  }
+
+  public get petDiseases(): Array<PetDisease>{
+    return this.petDiseaseService.petDiseases;
   }
 
   public get medications(): Array<Medication>{
