@@ -112,9 +112,6 @@
         <p *ngFor="let pm of petMedications">
           <b>Dose:</b> {{pm.dose}} <br />
           <b>Duration: </b> {{pm.issueDate}}<span *ngIf="pm.endDate"> - {{pm.endDate}}</span><br />
-          <button type="button" class="btn btn-success" (click)="edit()">
-            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong>Edit</strong>
-          </button>
         </p>
         <div class="form-group icononly">
           <button type="button" class="btn btn-success">
