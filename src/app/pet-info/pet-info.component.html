@@ -90,8 +90,8 @@
           <i>{{md.description}}</i><br />
           <b>Begin: </b> {{md.diseaseStart}}<span *ngIf="md.diseaseEnd"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>End:</b> {{md.diseaseEnd}}</span><br />
           <div class="icononly">
-          <button type="button" class="btn btn-success" (click)="edit()">
-            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+          <button type="button" class="btn btn-success" >
+            <a routerLink="/editDisease" ><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </button>
           </div>
         </div>
