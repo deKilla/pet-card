@@ -13,6 +13,8 @@
 
 
 <form role="form"
+      (submit)="save()"
+      (ngSubmit)="goTo('petInfo')"
       class="form-horizontal form-groups-bordered validate"
       method="post" action="">
 <!--
@@ -55,7 +57,7 @@
 
   <div >
     <div>
-      <button (click)="save()" type="submit" class="btn btn-success">
+      <button type="submit" class="btn btn-success">
         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Save</strong>
       </button>
     </div>
