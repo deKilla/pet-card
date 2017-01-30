@@ -12,6 +12,8 @@
     <!-- EDIT USER FORM -- firstname, lastname, address, phone, email -->
 
     <form role="form"
+          (submit)="goTo('home')"
+          (ngSubmit)="save()"
           class="form-horizontal form-groups-bordered validate"
           method="post" action="">
 
@@ -90,7 +92,7 @@
 
       <div>
         <div>
-          <button (click)="save()" class="btn btn-success">
+          <button type="submit" class="btn btn-success">
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Save</strong>
           </button>
         </div>

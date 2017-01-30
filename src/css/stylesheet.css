@@ -136,7 +136,7 @@ header nav { margin:5px 0 0 0; }
 
 #pet-info .general div,
 #pet-info .diseases div,
-#pet-info .medication div { padding-bottom:5px; }
+#pet-info .medications div { padding-bottom:5px; }
 
 #pet-info .diseases div .icononly { top:16px; right:12px; }
 

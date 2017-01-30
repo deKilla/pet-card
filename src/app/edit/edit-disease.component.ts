@@ -17,7 +17,7 @@ export class EditDiseaseComponent {
   private diseaseId: string;
 
   constructor(private petDiseaseService:PetDiseaseService, private petService:PetService, private diseaseService:DiseaseService,
-              route: ActivatedRoute) {
+              route: ActivatedRoute, private router: Router) {
 
     route.queryParams.subscribe(
       (queryParam: any) => {this.diseaseId = queryParam['diseaseId'];}
@@ -38,4 +38,9 @@ export class EditDiseaseComponent {
     this.disease.diseaseStart = this.diseaseStart;
     this.petDiseaseService.save(this.disease);
   }
+
+  goTo(location:String):void {
+    this.router.navigate([location]);
+  }
+
 }

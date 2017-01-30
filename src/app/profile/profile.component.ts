@@ -50,4 +50,8 @@ export class ProfileComponent {
     this.doctorService.save(this.doctor);
   }
 
+  goTo(location:String):void {
+    this.router.navigate([location]);
+  }
+
 }

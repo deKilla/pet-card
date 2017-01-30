@@ -31,7 +31,6 @@ export class AddDiseaseComponent {
   }
 
   goTo(location:String):void {
-    //this.router.navigate([location,this.petId]);
-    this.router.navigate(["petInfo"]);
+    this.router.navigate([location]);
   }
 }
