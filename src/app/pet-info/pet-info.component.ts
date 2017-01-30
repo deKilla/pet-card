@@ -94,6 +94,9 @@ export class PetInfoComponent {
     this.router.navigate(["home"]);
   }
 
+  pdf():void{
+    console.log("download pdf");
+  }
 
 }
 

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>P@-Card | Pet Info</title>
   <link href="../../css/stylesheet.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 </head>
 <body>
 <h1>Pet Info</h1>
@@ -75,6 +76,9 @@
         <div class="form-group icononly">
           <button type="button" class="btn btn-danger" (click)="delete()">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn btn-danger" (click)="pdf()">
+            <span class="glyphicon glyphicon-file-cloud-download" aria-hidden="true"></span>
           </button>
         </div>
       </div>
