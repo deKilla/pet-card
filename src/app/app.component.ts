@@ -51,7 +51,7 @@ export class AppComponent {
     const isAuth = this.oauthService.hasValidAccessToken();
     if(!isAuth && this.router.url != "/login"){
       console.log("not logged in - redirecting to login");
-        // to get properly logged out
+        // to get properly logged out => TODO: cache remains and app "logs you back in" but not really ...
         this.logout();
       this.router.navigate(['login']);
     }

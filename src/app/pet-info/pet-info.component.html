@@ -78,7 +78,7 @@
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
           </button>
           <button type="button" class="btn btn-danger" (click)="pdf()">
-            <span class="glyphicon glyphicon-file-cloud-download" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
           </button>
         </div>
       </div>
@@ -106,14 +106,12 @@
 
       <h2>Medication:</h2>
       <div class="medications row">
-        <p *ngFor="let m of medications">
-          <b>Name:</b> {{m.name}}<br />
-          <b>Description:</b> {{m.description}}<br />
-        </p>
-        <p *ngFor="let pm of petMedications">
-          <b>Dose:</b> {{pm.dose}} <br />
-          <b>Duration: </b> {{pm.issueDate}}<span *ngIf="pm.endDate"> - {{pm.endDate}}</span><br />
-        </p>
+        <div class="col-md-12" *ngFor="let mm of medications | zip:petMedications">
+          <h3>{{mm.name}}</h3>
+          <i>{{mm.description}}</i><br />
+          <b>Dose:</b> {{mm.dose}} <br />
+          <b>Begin: </b> {{mm.issueDate}}<span *ngIf="mm.endDate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>End:</b> {{mm.endDate}}</span><br />
+        </div>
         <div class="form-group icononly">
           <button type="button" class="btn btn-success">
             <a routerLink="/addMedication"><span class="glyphicon glyphicon-plus"></span></a>
