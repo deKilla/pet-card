@@ -97,7 +97,6 @@ export class PetInfoComponent {
 
   pdf():void{
 
-    console.log("download pdf");
     let doc = new jsPDF();
     doc.setFontSize(12);
 

@@ -5,11 +5,14 @@ import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {PetMedication} from "../entities/petMedication";
 import {OAuthService} from "angular-oauth2-oidc";
+import {Observable} from "rxjs";
 
 
 @Injectable()
 export class PetMedicationService {
 
+  //to store selected data temporary
+  //for petMedication by pet
   petMedications: Array<PetMedication> = [];
 
   constructor(
@@ -21,9 +24,9 @@ export class PetMedicationService {
   ) {
   }
 
-  public findById(id: string): void {
-
-    this.petMedications = [];
+  //selects a petMedication by id
+  public findById(id: string): Observable<PetMedication> {
+    //uses Query from Backend
     let url = this.baseUrl + "/search/findById";
 
     let search = new URLSearchParams();
@@ -33,17 +36,16 @@ export class PetMedicationService {
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
-    this
+    //gets petDisease from db and returns it
+    return this
       .http
       .get(url, {headers, search})
-      .map(resp => resp.json())
-      .subscribe(
-        (petMedication) => {this.petMedications.push(petMedication);}
-      )
+      .map(resp => resp.json());
   }
 
+  //selects petMedications by pet
   public findByPet(id: string): void {
-
+    //uses Query from Backend
     let url = this.baseUrl + "/search/findByPet";
 
     let search = new URLSearchParams();
@@ -53,6 +55,7 @@ export class PetMedicationService {
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
+    //gets petMedications from db and stores them
     this
       .http
       .get(url, {headers, search})
@@ -62,39 +65,16 @@ export class PetMedicationService {
           this.petMedications = petMedications;
         },
         (err) => {
-          console.error('Fehler beim Laden', err);
+          console.error("no petMedications found");
         }
       );
   }
 
-
-  public findAll(): void {
-
-    let url = this.baseUrl;
-
-    let search = new URLSearchParams();
-
-    let headers = new Headers();
-    headers.set('Accept', 'application/json');
-    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
-
-    this
-      .http
-      .get(url, {headers, search})
-      .map(resp => resp.json()["_embedded"]["petMedications"])
-      .subscribe(
-        (petMedications) => {
-          this.petMedications = petMedications;
-        },
-        (err) => {
-          console.error('Fehler beim Laden', err);
-        }
-      );
-  }
-
+  //adds a new petMedication
   public add(dose: string, issueDate: string, endDate: string, petId: string, medicationId: string): void {
 
     let url = this.baseUrl;
+    //urls to pet and medication of new petMedication (foreign keys in db)
     let pet = this.baseUrlPet + "/" + petId;
     let medication = this.baseUrlMedication + "/" + medicationId;
 
@@ -102,16 +82,17 @@ export class PetMedicationService {
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
+    //adds a new petMedication with given parameters to the db
     this
       .http
       .post(url, {dose, issueDate, endDate, pet:pet, medication:medication}, {headers})
       .map(resp => resp.json())
       .subscribe(
         (petMedication:PetMedication) => {
-          console.debug("Ok", petMedication);
+          console.debug("added petMedication");
         },
         (err) => {
-          console.error("Err")
+          console.error("couldn't add petMedication")
         }
       );
   }

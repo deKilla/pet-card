@@ -4,15 +4,17 @@ import {Injectable, Inject} from "@angular/core";
 import {BASE_URL_PETS, BASE_URL_DISEASES} from "../app.tokens";
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
-import {Observable} from "rxjs";
-import {Doctor} from "../entities/doctor";
 import {OAuthService} from "angular-oauth2-oidc";
 
 @Injectable()
 export class DiseaseService {
 
+  //to store selected data temporary
+  //for drop down diseases
   allDiseases: Array<Disease> = [];
+  //for diseases by pet
   diseases: Array<Disease> = [];
+  //for one disease
   disease: Disease;
 
   constructor(
@@ -22,8 +24,9 @@ export class DiseaseService {
   ) {
   }
 
+  //selects a disease by id
   public findById(id: string): void {
-
+    //uses Query from Backend
     let url = this.baseUrl + "/search/findById";
 
     let search = new URLSearchParams();
@@ -33,42 +36,45 @@ export class DiseaseService {
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
+    //gets disease from db and stores it
     this
       .http
       .get(url, {headers, search})
       .map(resp => resp.json())
       .subscribe(
-        (disease) => {this.disease = disease;}
+        (disease) => {this.disease = disease;},
+        (err) => {console.log("no disease found")}
       )
   }
 
 
+  //selects all diseases (for drop down)
   public findAll(): void {
 
     let url = this.baseUrl;
-
-    let search = new URLSearchParams();
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
+    //gets all diseases from db and stores it
     this
       .http
-      .get(url, {headers, search})
+      .get(url, headers)
       .map(resp => resp.json()["_embedded"]["diseases"])
       .subscribe(
         (diseases) => {
           this.allDiseases = diseases;
         },
         (err) => {
-          console.error('Fehler beim Laden', err);
+          console.error("no diseases found");
         }
       );
   }
 
+  //selects all diseases by pet
   public findByPet(id: string): void {
-
+    //uses Query from Backend
     let url = this.baseUrl + "/search/findByPet";
 
     let search = new URLSearchParams();
@@ -78,6 +84,7 @@ export class DiseaseService {
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
+    //gets diseases by pet from db and stores it
     this
       .http
       .get(url, {headers, search})
@@ -87,7 +94,7 @@ export class DiseaseService {
           this.diseases = diseases;
         },
         (err) => {
-          console.error('Fehler beim Laden', err);
+          console.error("no diseases by pet found");
         }
       );
   }

@@ -86,13 +86,13 @@
       <h2>Diseases:</h2>
       <div class="diseases row">
 
-        <div class="col-md-12" *ngFor="let md of diseases | zip:petDiseases">
-          <h3>{{md.name}}</h3>
-          <i>{{md.description}}</i><br />
-          <b>Begin: </b> {{md.diseaseStart}}<span *ngIf="md.diseaseEnd"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>End:</b> {{md.diseaseEnd}}</span><br />
+        <div class="col-md-12" *ngFor="let pd of diseases | zip:petDiseases">
+          <h3>{{pd.name}}</h3>
+          <i>{{pd.description}}</i><br />
+          <b>Begin: </b> {{pd.diseaseStart}}<span *ngIf="pd.diseaseEnd"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>End:</b> {{pd.diseaseEnd}}</span><br />
           <div class="icononly">
           <button type="button" class="btn btn-success" >
-            <a [routerLink]="['/editDisease']" [queryParams]="{diseaseId:md.id}" ><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+            <a [routerLink]="['/editDisease']" [queryParams]="{diseaseId:pd.id}" ><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </button>
           </div>
         </div>
@@ -106,11 +106,11 @@
 
       <h2>Medication:</h2>
       <div class="medications row">
-        <div class="col-md-12" *ngFor="let mm of medications | zip:petMedications">
-          <h3>{{mm.name}}</h3>
-          <i>{{mm.description}}</i><br />
-          <b>Dose:</b> {{mm.dose}} <br />
-          <b>Begin: </b> {{mm.issueDate}}<span *ngIf="mm.endDate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>End:</b> {{mm.endDate}}</span><br />
+        <div class="col-md-12" *ngFor="let pm of medications | zip:petMedications">
+          <h3>{{pm.name}}</h3>
+          <i>{{pm.description}}</i><br />
+          <b>Dose:</b> {{pm.dose}} <br />
+          <b>Begin: </b> {{pm.issueDate}}<span *ngIf="pm.endDate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>End:</b> {{pm.endDate}}</span><br />
         </div>
         <div class="form-group icononly">
           <button type="button" class="btn btn-success">

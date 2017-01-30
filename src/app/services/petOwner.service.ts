@@ -1,10 +1,8 @@
 
-import {Pet} from "../entities/pet";
 import {Injectable, Inject} from "@angular/core";
 import {BASE_URL_PETOWNERS} from "../app.tokens";
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
-import {Observable} from "rxjs";
 import {PetOwner} from "../entities/petOwner";
 import {OAuthService} from "angular-oauth2-oidc";
 
@@ -12,7 +10,10 @@ import {OAuthService} from "angular-oauth2-oidc";
 @Injectable()
 export class PetOwnerService {
 
+  //to store selected data temporary
+  //for drop down owners
   allPetOwners: Array<PetOwner> = [];
+  //for one owner
   petOwner : PetOwner;
 
   constructor(
@@ -22,7 +23,9 @@ export class PetOwnerService {
   ) {
   }
 
+  //selects a owner by id
   public findById(id: string): void {
+    //uses Query from Backend
     let url = this.baseUrl + "/search/findById";
 
     let search = new URLSearchParams();
@@ -32,17 +35,20 @@ export class PetOwnerService {
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
+    //gets owner from db and stores the object
     this
       .http
       .get(url, {headers, search})
       .map(resp => resp.json())
       .subscribe(
-        (petOwner) => {this.petOwner = petOwner;}
+        (petOwner) => {this.petOwner = petOwner;},
+        (err) => {console.log("no owner found");}
       )
   }
 
+  //selects a owner who owns a pet
   public findByPet(id: string): void {
-
+    //uses Query from Backend
     let url = this.baseUrl + "/search/findByPet";
 
     let search = new URLSearchParams();
@@ -52,36 +58,38 @@ export class PetOwnerService {
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
+    //gets owner from db and stores the object
     this
       .http
       .get(url, {headers, search})
       .map(resp => resp.json())
       .subscribe(
-        (owner) => {this.petOwner = owner;}
+        (owner) => {this.petOwner = owner;},
+        (err) => {console.log("no owner by pet found");}
       );
   }
 
 
+  //selects all doctors (for drop down)
   public findAll(): void {
 
     let url = this.baseUrl;
-
-    let search = new URLSearchParams();
 
     let headers = new Headers();
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
+    //gets all owners from db and stores them
     this
       .http
-      .get(url, {headers, search})
+      .get(url, headers)
       .map(resp => resp.json()["_embedded"]["petOwners"])
       .subscribe(
         (petOwners) => {
           this.allPetOwners = petOwners;
         },
         (err) => {
-          console.error('Fehler beim Laden', err);
+          console.error("no owners found");
         }
       );
   }

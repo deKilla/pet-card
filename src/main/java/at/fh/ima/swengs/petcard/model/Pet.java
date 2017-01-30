@@ -25,7 +25,7 @@ public class Pet {
   @JsonDeserialize(using = JsonDateDeserializer.class)
   @JsonSerialize(using = JsonDateSerializer.class)
   @Temporal(TemporalType.DATE)
-  //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd.MM.yyyy")
+  //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
   private Date birthDate;
 
   @ManyToOne
@@ -47,7 +47,8 @@ public class Pet {
 
   }
 
-  public Pet(String name, String type, int weight, Date birthDate, List<PetDisease> petDiseases, List<PetMedication> petMedications, PetOwner petOwner, Doctor doctor){
+  public Pet(String name, String type, int weight, Date birthDate, List<PetDisease> petDiseases, List<PetMedication> petMedications,
+             PetOwner petOwner, Doctor doctor){
     this.name = name;
     this.type = type;
     this.weight = weight;

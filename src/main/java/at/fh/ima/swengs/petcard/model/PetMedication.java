@@ -20,13 +20,13 @@ public class PetMedication {
   @JsonDeserialize(using = JsonDateDeserializer.class)
   @JsonSerialize(using = JsonDateSerializer.class)
   @Temporal(TemporalType.DATE)
-  //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd.MM.yyyy")
+  //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
   private Date issueDate;
 
   @JsonDeserialize(using = JsonDateDeserializer.class)
   @JsonSerialize(using = JsonDateSerializer.class)
   @Temporal(TemporalType.DATE)
-  //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd.MM.yyyy")
+  //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
   private Date endDate;
 
   @ManyToOne

@@ -11,6 +11,7 @@ public interface MedicationRepository extends PagingAndSortingRepository<Medicat
 
   public Medication findById(@Param("id") long id);
 
+  //selects all medication by one pet
   @Query(value = "select m.* from medication m join pet_medication pm on m.id = pm.medication_id join pet p on pm.pet_id = p.id where p.id = ?1", nativeQuery = true)
   public List<Medication> findByPet(@Param("id") long id);
 
