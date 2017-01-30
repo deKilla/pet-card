@@ -68,6 +68,9 @@ VALUES ('Doolittlestreet 1', 'office@doolittle.at', 'John', 'Doolittle', 'Mo-Fr:
 INSERT INTO doctor (address, email, first_name, last_name, office_hours, phone, version)
 VALUES ('Totschlagstrasse 1', 'office@totschlag.at', 'Johanna', 'Totschlag', 'Di-Fr: 8-12h', '0660987654321', 0);
 
+INSERT INTO doctor (address, email, first_name, last_name, office_hours, phone, version)
+VALUES ('Maximale Straße 1', 'office@max.at', 'Max', 'Mustermann', 'Vormittags geschlossen, Nachmittags zu!', '066131111111', 0);
+
 
 -- Pets
 

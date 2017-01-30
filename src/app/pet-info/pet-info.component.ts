@@ -1,7 +1,6 @@
 import {Pet} from "../entities/pet";
 import { Component } from '@angular/core';
 import {PetService} from "../services/pet.service";
-import {Observable} from "rxjs";
 import {Router, ActivatedRoute} from "@angular/router";
 import {PetOwnerService} from "../services/petOwner.service";
 import {PetDiseaseService} from "../services/petDisease.service";
@@ -16,6 +15,7 @@ import {PetMedication} from "../entities/petMedication";
 import {DoctorService} from "../services/doctor.service";
 import {Doctor} from "../entities/doctor";
 import {ZipPipe} from "../shared/pipes/zip.pipe";
+import * as jsPDF from 'jspdf'
 
 @Component({
   selector: 'pet-info',
@@ -96,6 +96,9 @@ export class PetInfoComponent {
 
   pdf():void{
     console.log("download pdf");
+    let doc = new jsPDF();
+    doc.text(20,20,'Hello world');
+    doc.save('Test.pdf');
   }
 
 }
