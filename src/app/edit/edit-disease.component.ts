@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import {Router} from "@angular/router";
-import {Disease} from "../entities/disease";
+import {Router, ActivatedRoute} from "@angular/router";
 import {DiseaseService} from "../services/disease.service";
 import {PetService} from "../services/pet.service";
 import {PetDiseaseService} from "../services/petDisease.service";
 import {PetDisease} from "../entities/petDisease";
-import {PetInfoComponent} from "../pet-info/pet-info.component";
 
 @Component({
   selector: 'edit-disease',
@@ -15,39 +13,29 @@ export class EditDiseaseComponent {
 
   public diseaseStart: string;
   public diseaseEnd: string;
-  public diseaseId: string;
-  public petId: string;
+  private disease: PetDisease;
+  private diseaseId: string;
 
   constructor(private petDiseaseService:PetDiseaseService, private petService:PetService, private diseaseService:DiseaseService,
-              private router:Router) {
+              route: ActivatedRoute) {
 
-
-    console.log(this.diseaseId);
-    this.petDiseaseService.findById2(this.diseaseId)
-      .subscribe(
-      (petDisease) => {petDisease = this.petDisease;}
+    route.queryParams.subscribe(
+      (queryParam: any) => {this.diseaseId = queryParam['diseaseId'];}
     );
 
-
-
-    /*
-    this.petDiseaseService.findByPetId(this.petId)
-
+    this.petDiseaseService.findById(this.diseaseId)
       .subscribe(
         (petDisease) => {
-          this.diseaseId = petDisease.diseaseId;
+          this.disease = petDisease;
           this.diseaseStart = petDisease.diseaseStart;
           this.diseaseEnd = petDisease.diseaseEnd;
-          this.petDisease = petDisease;
-        });
-
-     */
-
+        }
+      )
   }
 
-
-  public get petDisease(): PetDisease{
-    return this.petDiseaseService.petDisease;
+  save(): void{
+    this.disease.diseaseEnd = this.diseaseEnd;
+    this.disease.diseaseStart = this.diseaseStart;
+    this.petDiseaseService.save(this.disease);
   }
-
 }

@@ -10,7 +10,6 @@ import {Observable} from "rxjs";
 export class PetDiseaseService {
 
   petDiseases: Array<PetDisease> = [];
-  petDisease: PetDisease;
 
   constructor(
     @Inject(BASE_URL_PETDISEASES) private baseUrl: string,
@@ -21,7 +20,7 @@ export class PetDiseaseService {
   ) {
   }
 
-  public findById(id: string): void {
+  public findById(id: string): Observable<PetDisease> {
 
     let url = this.baseUrl + "/search/findById";
 
@@ -32,13 +31,10 @@ export class PetDiseaseService {
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
-    this
+    return this
       .http
       .get(url, {headers, search})
-      .map(resp => resp.json())
-      .subscribe(
-        (petDisease) => {this.petDisease = petDisease;}
-      )
+      .map(resp => resp.json());
   }
 
 
@@ -137,23 +133,5 @@ export class PetDiseaseService {
           console.error('Fehler beim Laden', err);
         }
       );
-  }
-
-
-  public findById2(id: string): Observable<PetDisease> {
-
-    let url = this.baseUrl + "/search/findById" + "/" + id;
-
-    let search = new URLSearchParams();
-    search.set('id', id);
-
-    let headers = new Headers();
-    headers.set('Accept', 'application/json');
-    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
-
-    return this
-      .http
-      .get(url, {headers, search})
-      .map(resp => resp.json())
   }
 }
