@@ -16,6 +16,7 @@ import {DoctorService} from "../services/doctor.service";
 import {Doctor} from "../entities/doctor";
 import {ZipPipe} from "../shared/pipes/zip.pipe";
 import * as jsPDF from 'jspdf'
+import {map} from "rxjs/operator/map";
 
 @Component({
   selector: 'pet-info',
@@ -95,10 +96,92 @@ export class PetInfoComponent {
   }
 
   pdf():void{
+
     console.log("download pdf");
     let doc = new jsPDF();
-    doc.text(20,20,'Hello world');
-    doc.save('Test.pdf');
+    doc.setFontSize(12);
+
+    let date = new Date();
+    let dateString = date.toDateString();
+    let timestamp = Date.now();
+
+    let pet = this.petService.pet
+    let petOwner = this.ownerService.petOwner
+    let doctor = this.doctorService.doctor
+
+    let diseases = new ZipPipe().transform(this.diseasesService.diseases,this.petDiseaseService.petDiseases);
+    let medications = new ZipPipe().transform(this.medicationService.medications,this.petMedicationService.petMedications);
+
+    let strDiseases = "";
+    let strMedications = "";
+
+    for(let disease of diseases){
+      strDiseases += `Name: ${disease.name}
+Description: ${disease.description}
+Begin: ${disease.diseaseStart}     End: ${disease.diseaseEnd}\n\n`;
+    }
+
+    for(let medication of medications){
+      strMedications += `Name: ${medication.name}
+Description: ${medication.description}
+Dose: ${medication.dose}
+Begin: ${medication.issueDate}     End: ${medication.endDate}\n\n`;
+    }
+
+    //text coords erst von links dann von oben
+    doc.setFontSize(10);
+    doc.text(dateString,170,20);
+
+    doc.setFontSize(20);
+    let title = `Report for ${pet.name}`;
+    doc.text(title,20,20);
+
+    doc.setFontSize(15);
+    doc.text("Pet", 20, 35);
+    doc.setFontSize(12);
+    let petBlock = `ID: ${pet.id}
+Name: ${pet.name}
+Type: ${pet.type}
+Weight:  ${pet.weight}
+Birthdate:  ${pet.birth_date}`;
+    doc.text(petBlock,20,45);
+
+    doc.setFontSize(15);
+    doc.text("Owner", 65, 35);
+    doc.setFontSize(12);
+    let ownerBlock = `Name: ${petOwner.firstName} ${petOwner.lastName}
+Address: ${petOwner.address}
+Phone: ${petOwner.phone}
+E-Mail: ${petOwner.email}`;
+    doc.text(ownerBlock,65,45);
+
+    doc.setFontSize(15);
+    doc.text("Doctor", 140, 35);
+    doc.setFontSize(12);
+    let doctorBlock = `Name:  Dr. ${doctor.firstName} ${doctor.lastName}
+Email: ${doctor.email}
+Phone: ${doctor.phone}
+Address: ${doctor.address}
+Office hours: ${doctor.officeHours}`;
+    doc.text(doctorBlock,140,45);
+
+    doc.addPage();
+    doc.setPage(2);
+
+    doc.setFontSize(15);
+    doc.text("Diseases", 20, 20);
+    doc.setFontSize(12);
+    doc.text(`${strDiseases}`,20,35);
+
+    doc.addPage();
+    doc.setPage(3);
+
+    doc.setFontSize(15);
+    doc.text("Medications", 20, 20);
+    doc.setFontSize(12);
+    doc.text(`${strMedications}`,20,35);
+
+    doc.save("Report_Pet" + pet.id + "_" + timestamp + ".pdf");
   }
 
 }
