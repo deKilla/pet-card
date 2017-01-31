@@ -1,7 +1,7 @@
 import {Pet} from "../entities/pet";
 import { Component } from '@angular/core';
 import {PetService} from "../services/pet.service";
-import {Router, ActivatedRoute} from "@angular/router";
+import {Router} from "@angular/router";
 import {PetOwnerService} from "../services/petOwner.service";
 import {PetDiseaseService} from "../services/petDisease.service";
 import {PetDisease} from "../entities/petDisease";
@@ -16,8 +16,6 @@ import {DoctorService} from "../services/doctor.service";
 import {Doctor} from "../entities/doctor";
 import {ZipPipe} from "../shared/pipes/zip.pipe";
 import * as jsPDF from 'jspdf'
-
-import {map} from "rxjs/operator/map";
 
 @Component({
   selector: 'pet-info',
@@ -142,7 +140,7 @@ DOSE: ${medication.dose}
 BEGIN: ${medication.issueDate}     End: ${medication.endDate}\n\n`);
     }
 
-    //text coords erst von links dann von oben
+    //text coords in doc.text are first from the left border and then from the top
     doc.setFontSize(10);
     doc.text(dateString,170,20);
 

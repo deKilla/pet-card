@@ -15,8 +15,8 @@
       <p>
         Allows you to change your office hours and other details about yourself.
       </p>
-      <button type="button" class="btn btn-success">
-        <a routerLink="/profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><strong>change office details</strong></a>
+      <button type="button" class="btn btn-success" [routerLink]="['/profile']">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span><strong>change office details</strong>
       </button>
     </div>
 
@@ -25,17 +25,15 @@
       <p>
         Search a pet by it's unique ID.
       </p>
-      <form #p="ngForm" novalidate>
         <div class="form-group">
           <!--<label>ID</label>-->
           <!--<input [(ngModel)]="id" name="id" type="text" class="form-control" placeholder="ID" data-validate="number" required>-->
         </div>
         <div class="form-group">
-          <button type="button" class="btn btn-success">
-            <a routerLink="/petInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><strong>look for pet</strong></a>
+          <button type="button" class="btn btn-success" [routerLink]="['/petInfo']">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span><strong>look for pet</strong>
           </button>
         </div>
-      </form>
     </div>
 
     <h3>Add new pet</h3>
@@ -43,8 +41,8 @@
       <p>
         Add a new pet to the database.
       </p>
-      <button type="button" class="btn btn-success">
-        <a routerLink="/addPet"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><strong>add new pet</strong></a>
+      <button type="button" class="btn btn-success" [routerLink]="['/addPet']">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><strong>add new pet</strong>
       </button>
     </div>
 

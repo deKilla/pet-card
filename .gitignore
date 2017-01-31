@@ -26,6 +26,3 @@ nbdist/
 /node_modules/
 /dist/
 /npm-debug.log
-
-# :)
-src/main/resources/application.properties
