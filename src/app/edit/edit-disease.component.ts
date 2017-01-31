@@ -42,8 +42,9 @@ export class EditDiseaseComponent {
   save(): void{
     this.disease.diseaseEnd = this.diseaseEnd;
     this.disease.diseaseStart = this.diseaseStart;
-    let promise = this.petDiseaseService.save(this.disease).toPromise();
 
+    //gets promise, so that the new entry is added to the db befor redirecting and reloading the pet info
+    let promise = this.petDiseaseService.save(this.disease).toPromise();
     promise.then(() => {
       this.router.navigate(['petInfo', {id:this.petService.pet.id.toString()}]);
     });
