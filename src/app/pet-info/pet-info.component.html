@@ -92,15 +92,15 @@
           <i>{{pd.description}}</i><br />
           <b>Begin: </b> {{pd.diseaseStart}}<span *ngIf="pd.diseaseEnd"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>End:</b> {{pd.diseaseEnd}}</span><br />
           <div class="icononly">
-          <button type="button" class="btn btn-success" >
-            <a [routerLink]="['/editDisease']" [queryParams]="{diseaseId:pd.id}" ><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+          <button type="button" class="btn btn-success" [routerLink]="['/editDisease']" [queryParams]="{diseaseId:pd.id}">
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
           </button>
           </div>
         </div>
 
         <div class="form-group icononly">
-        <button type="button" class="btn btn-success">
-          <a routerLink="/addDisease"><span class="glyphicon glyphicon-plus"></span></a>
+        <button type="button" class="btn btn-success" [routerLink]="['/addDisease']">
+          <span class="glyphicon glyphicon-plus"></span>
         </button>
         </div>
       </div>
@@ -114,8 +114,8 @@
           <b>Begin: </b> {{pm.issueDate}}<span *ngIf="pm.endDate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>End:</b> {{pm.endDate}}</span><br />
         </div>
         <div class="form-group icononly">
-          <button type="button" class="btn btn-success">
-            <a routerLink="/addMedication"><span class="glyphicon glyphicon-plus"></span></a>
+          <button type="button" class="btn btn-success" [routerLink]="['/addMedication']">
+            <span class="glyphicon glyphicon-plus"></span>
           </button>
         </div>
       </div>

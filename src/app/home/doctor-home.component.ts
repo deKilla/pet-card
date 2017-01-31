@@ -15,6 +15,7 @@ export class DoctorHomeComponent {
   constructor(private oauthService: OAuthService, private router:Router) {
   }
 
+  //gets the name of the logged in person
   get givenName(): string {
     let claims = this.oauthService.getIdentityClaims();
     if (!claims) return null;

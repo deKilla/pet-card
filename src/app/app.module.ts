@@ -52,7 +52,7 @@ const BASE_URL_DISEASES_FOR_PRODUCTION = "http://localhost:8081/api/diseases";
     AddDiseaseComponent,
     EditDiseaseComponent,
     PetInfoComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
 
   providers: [
@@ -70,7 +70,8 @@ const BASE_URL_DISEASES_FOR_PRODUCTION = "http://localhost:8081/api/diseases";
     MedicationService,
     PetDiseaseService,
     PetMedicationService,
-    AppComponent
+    AppComponent,
+    PetInfoComponent
   ],
 
   bootstrap: [ AppComponent ]
