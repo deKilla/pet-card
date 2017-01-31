@@ -4,6 +4,7 @@ import {Disease} from "../entities/disease";
 import {DiseaseService} from "../services/disease.service";
 import {PetService} from "../services/pet.service";
 import {PetDiseaseService} from "../services/petDisease.service";
+import {PetInfoComponent} from "../pet-info/pet-info.component";
 
 @Component({
   selector: 'add-disease',
@@ -19,7 +20,7 @@ export class AddDiseaseComponent {
   private petId: string;
 
   constructor(private petDiseaseService:PetDiseaseService, private petService:PetService, private diseaseService:DiseaseService,
-              private router:Router) {
+              private router:Router, private petInfoComponent:PetInfoComponent) {
     //preselects all diseases for drop down
     this.diseaseService.findAll();
   }
@@ -31,17 +32,10 @@ export class AddDiseaseComponent {
   //adds a new petDisease
   add(): void{
     this.petId = this.petService.pet.id.toString();
-    this.petDiseaseService.add(this.diseaseStart, this.diseaseEnd, this.petId, this.diseaseId);
+    let promise = this.petDiseaseService.add(this.diseaseStart, this.diseaseEnd, this.petId, this.diseaseId).toPromise();
 
-    /*
-    this.petDiseaseService.findByPet(this.petId);
-    this.diseaseService.findByPet(this.petId);
-    */
-  }
-
-  // simply redirects to the location given by the attribute, if no attribute is provided, the router
-  // will forward to "home"
-  goTo(location:String):void {
-    this.router.navigate([location]);
+    promise.then(() => {
+      this.router.navigate(['petInfo', {id:this.petId}]);
+    });
   }
 }

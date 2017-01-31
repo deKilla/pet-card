@@ -4,6 +4,7 @@ import {DiseaseService} from "../services/disease.service";
 import {PetService} from "../services/pet.service";
 import {PetDiseaseService} from "../services/petDisease.service";
 import {PetDisease} from "../entities/petDisease";
+import {PetInfoComponent} from "../pet-info/pet-info.component";
 
 @Component({
   selector: 'edit-disease',
@@ -19,7 +20,7 @@ export class EditDiseaseComponent {
   private diseaseId: string;
 
   constructor(private petDiseaseService:PetDiseaseService, private petService:PetService, private diseaseService:DiseaseService,
-              route: ActivatedRoute, private router: Router) {
+              route: ActivatedRoute, private router: Router, private petInfoComponent:PetInfoComponent) {
 
     //reads and stores diseaseId from url param
     route.queryParams.subscribe(
@@ -41,12 +42,10 @@ export class EditDiseaseComponent {
   save(): void{
     this.disease.diseaseEnd = this.diseaseEnd;
     this.disease.diseaseStart = this.diseaseStart;
-    this.petDiseaseService.save(this.disease);
+    let promise = this.petDiseaseService.save(this.disease).toPromise();
 
+    promise.then(() => {
+      this.router.navigate(['petInfo', {id:this.petService.pet.id.toString()}]);
+    });
   }
-
-  goTo(location:String):void {
-    this.router.navigate([location]);
-  }
-
 }

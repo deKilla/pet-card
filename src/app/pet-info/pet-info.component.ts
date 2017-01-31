@@ -1,7 +1,7 @@
 import {Pet} from "../entities/pet";
 import { Component } from '@angular/core';
 import {PetService} from "../services/pet.service";
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {PetOwnerService} from "../services/petOwner.service";
 import {PetDiseaseService} from "../services/petDisease.service";
 import {PetDisease} from "../entities/petDisease";
@@ -29,7 +29,18 @@ export class PetInfoComponent {
 
   constructor(private router:Router, private petService:PetService, private ownerService:PetOwnerService,
               private doctorService:DoctorService, private diseasesService:DiseaseService, private petDiseaseService:PetDiseaseService,
-              private medicationService:MedicationService, private petMedicationService:PetMedicationService) {
+              private medicationService:MedicationService, private petMedicationService:PetMedicationService,
+              private route:ActivatedRoute) {
+
+    this.route.params.subscribe(
+      (params) => {
+        if(params['id']) {
+          this.id = params['id'];
+          this.search(params['id']);
+        }
+        },
+      (err) => {console.log("no params");}
+    );
   }
 
   public get pet(): Pet{
@@ -61,20 +72,19 @@ export class PetInfoComponent {
   }
 
   //uses petId to search for all pet information
-  search (): void{
+  search (id: string = this.id): void{
     //selects the pet, its owner and its doctor
-    this.petService.findById(this.id);
-    this.ownerService.findByPet(this.id);
-    this.doctorService.findByPet(this.id);
+    this.petService.findById(id);
+    this.ownerService.findByPet(id);
+    this.doctorService.findByPet(id);
 
     //PetDiseases and Diseases
-    this.petDiseaseService.findByPet(this.id);
-    this.diseasesService.findByPet(this.id);
+    this.petDiseaseService.findByPet(id);
+    this.diseasesService.findByPet(id);
 
     //PetMedications and Medications
-    this.petMedicationService.findByPet(this.id);
-    this.medicationService.findByPet(this.id);
-
+    this.petMedicationService.findByPet(id);
+    this.medicationService.findByPet(id);
   }
 
   //deletes a pet by its id

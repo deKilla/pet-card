@@ -68,7 +68,7 @@ export class PetDiseaseService {
   }
 
   //adds a new petDisease
-  public add(diseaseStart: string, diseaseEnd: string, petId: string, diseaseId: string): void {
+  public add(diseaseStart: string, diseaseEnd: string, petId: string, diseaseId: string): Observable<PetDisease> {
 
     let url = this.baseUrl;
     //urls to pet and disease of new petDisease (foreign keys in db)
@@ -80,22 +80,14 @@ export class PetDiseaseService {
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
     //adds a new petDisease with given parameters to the db
-    this
+    return this
       .http
       .post(url, {diseaseStart, diseaseEnd, pet, disease}, {headers})
-      .map(resp => resp.json())
-      .subscribe(
-        (petDisease) => {
-          console.debug("added petDisease")
-        },
-        (err) => {
-          console.error("couldn't add petDisease")
-        }
-      );
+      .map(resp => resp.json());
   }
 
   //saves petDisease parameter changes
-  public save(petDisease:PetDisease): void {
+  public save(petDisease:PetDisease): Observable<PetDisease> {
 
     //url to object that has do be changed
     let url = this.baseUrl + '/' + petDisease.id;
@@ -105,17 +97,9 @@ export class PetDiseaseService {
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken());
 
     //puts petDisease parameter changes to db
-    this
+    return this
       .http
       .put(url, petDisease, {headers})
-      .map(resp => resp.json())
-      .subscribe(
-        (petDisease) => {
-          console.log("updated petDisease");
-        },
-        (err) => {
-          console.error("couldn't update petDisese");
-        }
-      );
+      .map(resp => resp.json());
   }
 }

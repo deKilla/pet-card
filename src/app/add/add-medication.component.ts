@@ -33,17 +33,9 @@ export class AddMedicationComponent {
   //adds a new petMedication
   add(): void{
     this.petId = this.petService.pet.id.toString();
-    this.petMedicationService.add(this.dose, this.issueDate, this.endDate, this.petId, this.medicationId);
-
-    /* app module und constructor
-    this.petInfoComponent.constructor;
-    this.petInfoComponent.search();
-    */
-  }
-
-  // simply redirects to the location given by the attribute, if no attribute is provided, the router
-  // will forward to "home"
-  goTo(location:String):void {
-    this.router.navigate([location], this.petId);
+    let promise = this.petMedicationService.add(this.dose, this.issueDate, this.endDate, this.petId, this.medicationId).toPromise();
+    promise.then(() => {
+      this.router.navigate(['petInfo', {id:this.petId}]);
+    });
   }
 }

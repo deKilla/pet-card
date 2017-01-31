@@ -71,7 +71,7 @@ export class PetMedicationService {
   }
 
   //adds a new petMedication
-  public add(dose: string, issueDate: string, endDate: string, petId: string, medicationId: string): void {
+  public add(dose: string, issueDate: string, endDate: string, petId: string, medicationId: string): Observable<PetMedication> {
 
     let url = this.baseUrl;
     //urls to pet and medication of new petMedication (foreign keys in db)
@@ -83,17 +83,9 @@ export class PetMedicationService {
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
     //adds a new petMedication with given parameters to the db
-    this
+    return this
       .http
       .post(url, {dose, issueDate, endDate, pet:pet, medication:medication}, {headers})
-      .map(resp => resp.json())
-      .subscribe(
-        (petMedication:PetMedication) => {
-          console.debug("added petMedication");
-        },
-        (err) => {
-          console.error("couldn't add petMedication")
-        }
-      );
+      .map(resp => resp.json());
   }
 }
