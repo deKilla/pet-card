@@ -13,6 +13,7 @@ export class AsyncPetValidator {
     return new Promise((resolve) => {
       setTimeout(() => {
 
+        // Only inputs greater than Zero are allowed
         if (c.value > 0 ) {
           resolve({});
         }

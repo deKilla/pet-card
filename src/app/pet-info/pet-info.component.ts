@@ -227,6 +227,8 @@ OFFICE HOURS: ${doctor.officeHours}`;
       }
     }
 
+
+
     doc.save("Report_Pet" + pet.id + "_" + timestamp + ".pdf");
   }
 
