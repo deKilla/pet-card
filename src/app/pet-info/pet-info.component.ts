@@ -140,7 +140,7 @@ DOSE: ${medication.dose}
 BEGIN: ${medication.issueDate}     End: ${medication.endDate}\n\n`);
     }
 
-    //text coords erst von links dann von oben
+    //text coords in doc.text are first from the left border and then from the top
     doc.setFontSize(10);
     doc.text(dateString,170,20);
 
