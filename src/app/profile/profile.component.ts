@@ -10,21 +10,26 @@ import {Router} from "@angular/router";
 })
 export class ProfileComponent {
 
+  //all form fields
   public firstName: string;
   public lastName: string;
   public email: string;
   public address: string;
   public phone: string;
   public officeHours: string;
+
+  //for use of storing a doctor object and a doctor id not used in html
   private doctorId: number;
   private doctor: Doctor;
 
 
   constructor(private doctorService: DoctorService, private oauthService: OAuthService, private router:Router) {
 
+    //selects de logged in doctors name
     let claims = this.oauthService.getIdentityClaims();
     let doctorsName = claims.given_name;
 
+    //selects a doctor via its logged in name
     this.doctorService.findByFirstName(doctorsName)
       .subscribe(
         (doctor) => {
@@ -39,6 +44,7 @@ export class ProfileComponent {
         });
   }
 
+  //do save changes in doctors profile
   save (): void {
     this.doctor.id = this.doctorId;
     this.doctor.firstName = this.firstName;

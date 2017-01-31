@@ -14,6 +14,7 @@ import {PetInfoComponent} from "../pet-info/pet-info.component";
 })
 export class AddPetComponent {
 
+  //fields from html
   public name: string;
   public race: string;
   public weight: number;
@@ -23,6 +24,8 @@ export class AddPetComponent {
 
   constructor(private petService:PetService, private doctorService:DoctorService, private petOwnerService:PetOwnerService,
               private router:Router) {
+
+    //preselects all doctors and all owners for drop down
     this.doctorService.findAll();
     this.petOwnerService.findAll();
   }
@@ -35,6 +38,7 @@ export class AddPetComponent {
     return this.petOwnerService.allPetOwners;
   }
 
+  //adds a new pet
   add(): void{
     this.petService.add(this.name, this.race, this.weight, this.birthdate, this.ownerId, this.doctorId);
   }

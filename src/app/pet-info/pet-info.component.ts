@@ -26,13 +26,11 @@ import {map} from "rxjs/operator/map";
 
 export class PetInfoComponent {
 
+  //field from html - petId
   public id: string;
-  public route: any;
-  public routeId: string;
 
-  constructor(private router:Router, private activeRoute: ActivatedRoute,
-              private petService:PetService, private ownerService:PetOwnerService, private doctorService:DoctorService,
-              private diseasesService:DiseaseService, private petDiseaseService:PetDiseaseService,
+  constructor(private router:Router, private petService:PetService, private ownerService:PetOwnerService,
+              private doctorService:DoctorService, private diseasesService:DiseaseService, private petDiseaseService:PetDiseaseService,
               private medicationService:MedicationService, private petMedicationService:PetMedicationService) {
   }
 
@@ -64,7 +62,9 @@ export class PetInfoComponent {
     return this.medicationService.medications;
   }
 
+  //uses petId to search for all pet information
   search (): void{
+    //selects the pet, its owner and its doctor
     this.petService.findById(this.id);
     this.ownerService.findByPet(this.id);
     this.doctorService.findByPet(this.id);
@@ -79,10 +79,11 @@ export class PetInfoComponent {
 
   }
 
+  //deletes a pet by its id
   delete (): void{
     this.petService.delete(this.pet.id.toString());
 
-    //löschen der gespeicherten Inhalte zum Pet
+    //resets all saved objects depending on deleted pet
     //Pet, Owner, PetDiseases, Disease, PetMedication, Medication, Doctor
     this.petService.pet = null;
     this.ownerService.petOwner = null;
@@ -105,6 +106,7 @@ export class PetInfoComponent {
     }
   }
 
+  //to generate a pdf report for pet information
   pdf():void{
 
     let doc = new jsPDF();
@@ -114,9 +116,9 @@ export class PetInfoComponent {
     let dateString = date.toDateString();
     let timestamp = Date.now();
 
-    let pet = this.petService.pet
-    let petOwner = this.ownerService.petOwner
-    let doctor = this.doctorService.doctor
+    let pet = this.petService.pet;
+    let petOwner = this.ownerService.petOwner;
+    let doctor = this.doctorService.doctor;
 
     // use of a pipe in ts
     let diseases = new ZipPipe().transform(this.diseasesService.diseases,this.petDiseaseService.petDiseases);

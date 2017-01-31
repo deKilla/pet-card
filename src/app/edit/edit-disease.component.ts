@@ -11,18 +11,22 @@ import {PetDisease} from "../entities/petDisease";
 })
 export class EditDiseaseComponent {
 
+  //fields from html
   public diseaseStart: string;
   public diseaseEnd: string;
+  //for storing queryParams and petDisease object
   private disease: PetDisease;
   private diseaseId: string;
 
   constructor(private petDiseaseService:PetDiseaseService, private petService:PetService, private diseaseService:DiseaseService,
               route: ActivatedRoute, private router: Router) {
 
+    //reads and stores diseaseId from url param
     route.queryParams.subscribe(
       (queryParam: any) => {this.diseaseId = queryParam['diseaseId'];}
     );
 
+    //selects petDisease by id
     this.petDiseaseService.findById(this.diseaseId)
       .subscribe(
         (petDisease) => {
@@ -33,10 +37,12 @@ export class EditDiseaseComponent {
       )
   }
 
+  //saves changes from petDisease
   save(): void{
     this.disease.diseaseEnd = this.diseaseEnd;
     this.disease.diseaseStart = this.diseaseStart;
     this.petDiseaseService.save(this.disease);
+
   }
 
   goTo(location:String):void {

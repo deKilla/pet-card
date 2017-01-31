@@ -12,10 +12,12 @@ export class LoginComponent {
 
   }
 
+  //login to OAtuhService
   login(): void {
     this.oauthService.initImplicitFlow();
   }
 
+  //logout from OAuthService
   logout(): void {
     this.oauthService.logOut();
   }
