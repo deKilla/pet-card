@@ -30,6 +30,8 @@ export class AddDiseaseComponent {
     this.petDiseaseService.add(this.diseaseStart, this.diseaseEnd, this.petId, this.diseaseId);
   }
 
+  // simply redirects to the location given by the attribute, if no attribute is provided, the router
+  // will forward to "home"
   goTo(location:String):void {
     this.router.navigate([location]);
   }

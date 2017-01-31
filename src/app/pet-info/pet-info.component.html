@@ -23,7 +23,7 @@
                required>
       </div>
 
-      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.id?.valid">
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.id?.valid && f?.controls?.id?.dirty == true">
 
         <div *ngIf="f?.controls?.id?.hasError('asyncId')">
           <b>Bitte geben sie eine ID > 1 ein!</b>
@@ -34,6 +34,7 @@
         <div *ngIf="f?.controls?.id?.hasError('required')">
           <b>Bitte geben Sie eine ID ein!</b>
         </div>
+
       </div>
 
       <div class="form-group">

@@ -16,6 +16,7 @@ import {DoctorService} from "../services/doctor.service";
 import {Doctor} from "../entities/doctor";
 import {ZipPipe} from "../shared/pipes/zip.pipe";
 import * as jsPDF from 'jspdf'
+
 import {map} from "rxjs/operator/map";
 
 @Component({
@@ -95,6 +96,15 @@ export class PetInfoComponent {
     this.router.navigate(["home"]);
   }
 
+  // takes an input String and if it is too long inserts line-breaks
+  separateString(input:String):String {
+    if(input.length < 80) {
+      return input;
+    } else {
+      return "\n" + input.match(/.{1,80}/g).join("\n");
+    }
+  }
+
   pdf():void{
 
     let doc = new jsPDF();
@@ -108,23 +118,26 @@ export class PetInfoComponent {
     let petOwner = this.ownerService.petOwner
     let doctor = this.doctorService.doctor
 
+    // use of a pipe in ts
     let diseases = new ZipPipe().transform(this.diseasesService.diseases,this.petDiseaseService.petDiseases);
     let medications = new ZipPipe().transform(this.medicationService.medications,this.petMedicationService.petMedications);
 
-    let strDiseases = "";
-    let strMedications = "";
+    let diseaseStrings = [];
+    let medicationStrings = [];
 
     for(let disease of diseases){
-      strDiseases += `Name: ${disease.name}
-Description: ${disease.description}
-Begin: ${disease.diseaseStart}     End: ${disease.diseaseEnd}\n\n`;
+      let description = this.separateString(disease.description);
+      diseaseStrings.push(`NAME: ${disease.name}
+DESCRIPTION: ${description}
+BEGIN: ${disease.diseaseStart}     END: ${disease.diseaseEnd}\n\n`);
     }
 
     for(let medication of medications){
-      strMedications += `Name: ${medication.name}
-Description: ${medication.description}
-Dose: ${medication.dose}
-Begin: ${medication.issueDate}     End: ${medication.endDate}\n\n`;
+      let description = this.separateString(medication.description);
+      medicationStrings.push(`NAME: ${medication.name}
+DESCRIPTION: ${description}
+DOSE: ${medication.dose}
+BEGIN: ${medication.issueDate}     End: ${medication.endDate}\n\n`);
     }
 
     //text coords erst von links dann von oben
@@ -139,46 +152,80 @@ Begin: ${medication.issueDate}     End: ${medication.endDate}\n\n`;
     doc.text("Pet", 20, 35);
     doc.setFontSize(12);
     let petBlock = `ID: ${pet.id}
-Name: ${pet.name}
-Type: ${pet.type}
-Weight:  ${pet.weight}
-Birthdate:  ${pet.birth_date}`;
+NAME: ${pet.name}
+TYPE: ${pet.type}
+WEIGHT:  ${pet.weight}
+BIRTHDATE:  ${pet.birth_date}`;
     doc.text(petBlock,20,45);
 
     doc.setFontSize(15);
-    doc.text("Owner", 65, 35);
+    doc.text("Owner", 20, 80);
     doc.setFontSize(12);
-    let ownerBlock = `Name: ${petOwner.firstName} ${petOwner.lastName}
-Address: ${petOwner.address}
-Phone: ${petOwner.phone}
-E-Mail: ${petOwner.email}`;
-    doc.text(ownerBlock,65,45);
+    let ownerBlock = `NAME: ${petOwner.firstName} ${petOwner.lastName}
+ADDRESS: ${petOwner.address}
+PHONE: ${petOwner.phone}
+E-MAIL: ${petOwner.email}`;
+    doc.text(ownerBlock,20,90);
 
     doc.setFontSize(15);
-    doc.text("Doctor", 140, 35);
+    doc.text("Doctor", 20, 120);
     doc.setFontSize(12);
-    let doctorBlock = `Name:  Dr. ${doctor.firstName} ${doctor.lastName}
-Email: ${doctor.email}
-Phone: ${doctor.phone}
-Address: ${doctor.address}
-Office hours: ${doctor.officeHours}`;
-    doc.text(doctorBlock,140,45);
+    let doctorBlock = `NAME:  Dr. ${doctor.firstName} ${doctor.lastName}
+E-MAIL: ${doctor.email}
+PHONE: ${doctor.phone}
+ADDRESS: ${doctor.address}
+OFFICE HOURS: ${doctor.officeHours}`;
+    doc.text(doctorBlock,20,130);
 
+    let page = 1;
+    doc.text(page.toString(),190,277);
     doc.addPage();
-    doc.setPage(2);
+    page++;
+    doc.setPage(page);
+    doc.text(page.toString(),190,277);
 
     doc.setFontSize(15);
     doc.text("Diseases", 20, 20);
     doc.setFontSize(12);
-    doc.text(`${strDiseases}`,20,35);
+    if(diseaseStrings.length < 8) {
+      doc.text(`${diseaseStrings.join("")}`, 20, 35);
+    } else {
+      for (let i = 0; i < diseaseStrings.length; i++) {
+        if (i%8 == 0) {
+          doc.text(`${diseaseStrings.slice(i,i+8).join("")}`,20,35);
+        } else if (i%8 == 1) {
+          doc.addPage();
+          page++;
+          doc.setPage(page);
+          doc.text(page.toString(),190,277);
+          i+=6;
+        }
+      }
+    }
 
     doc.addPage();
-    doc.setPage(3);
+    page++;
+    doc.setPage(page);
+    doc.text(page.toString(),190,277);
 
     doc.setFontSize(15);
     doc.text("Medications", 20, 20);
     doc.setFontSize(12);
-    doc.text(`${strMedications}`,20,35);
+    if(medicationStrings.length < 8) {
+      doc.text(`${medicationStrings.join("")}`, 20, 35);
+    } else {
+      for (let i = 0; i < medicationStrings.length; i++) {
+        if (i%8 == 0) {
+          doc.text(`${medicationStrings.slice(i,i+8).join("")}`,20,35);
+        } else if (i%8 == 1) {
+          doc.addPage();
+          page++;
+          doc.setPage(page);
+          doc.text(page.toString(),190,277);
+          i+=6;
+        }
+      }
+    }
 
     doc.save("Report_Pet" + pet.id + "_" + timestamp + ".pdf");
   }

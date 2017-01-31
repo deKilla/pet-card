@@ -31,6 +31,8 @@ export class AddMedicationComponent {
     this.petMedicationService.add(this.dose, this.issueDate, this.endDate, this.petId, this.medicationId);
   }
 
+  // simply redirects to the location given by the attribute, if no attribute is provided, the router
+  // will forward to "home"
   goTo(location:String):void {
     this.router.navigate([location]);
   }
