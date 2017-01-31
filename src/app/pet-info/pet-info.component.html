@@ -26,13 +26,13 @@
       <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.id?.valid && f?.controls?.id?.dirty == true">
 
         <div *ngIf="f?.controls?.id?.hasError('asyncId')">
-          <b>Bitte geben sie eine ID > 1 ein!</b>
+          <b>Please provide an ID greater than Zero!</b>
         </div>
         <div *ngIf="f?.controls?.id?.hasError('pattern')">
-          <b>Bitte geben Sie eine ID zwischen 1 & 9999 ein!</b>
+          <b>Please provide AN ID between 1 & 9999!</b>
         </div>
         <div *ngIf="f?.controls?.id?.hasError('required')">
-          <b>Bitte geben Sie eine ID ein!</b>
+          <b>Please enter an ID!</b>
         </div>
 
       </div>

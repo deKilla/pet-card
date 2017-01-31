@@ -4,7 +4,8 @@
     <nav class="navbar navbar-default">
       <a class="navbar-brand" routerLink="/home"><img src="../img/logo.png" class="logo" alt="p@-card"/></a>
       <ul class="nav navbar-nav">
-        <li><a routerLink="/petInfo">Pet Info</a></li>
+        <li><a routerLink="/home">Home</a></li>
+        <li><a routerLink="/petInfo">Search Pet</a></li>
         <li><a routerLink="/addPet">Add Pet</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -26,7 +27,7 @@
   </div> <!-- #main -->
 </div> <!-- #main-container -->
 
-<div class="footer-container">
+<div [hidden]="loginpage" class="footer-container">
   <footer class="wrapper">
 
     <p><strong> FH Joanneum | IMA | SWENGS | </strong> Michael Fuchs, Nina Spalek, Max Wageneder </p>
