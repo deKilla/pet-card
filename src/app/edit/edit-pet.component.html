@@ -52,7 +52,7 @@
 
         <div>
           <select [(ngModel)]="ownerId" class="form-control" required name="doctor">
-            <option *ngFor="let o of allPetOwners" [value]="o.id" [selected]="ownerId">{{o.firstName}} {{o.lastName}}</option>
+            <option *ngFor="let o of allPetOwners" [value]="o.id" [attr.selected]="o.id == ownerId ? '':null">{{o.firstName}} {{o.lastName}}</option>
           </select>
         </div>
       </div>
@@ -66,7 +66,7 @@
 
         <div>
           <select [(ngModel)]="doctorId" class="form-control" required name="doctor">
-            <option *ngFor="let d of allDoctors" [value]="d.id" [selected]="doctorId">{{d.firstName}} {{d.lastName}}</option>
+            <option *ngFor="let d of allDoctors" [value]="d.id" [attr.selected]="d.id == doctorId ? '':null">{{d.firstName}} {{d.lastName}}</option>
           </select>
         </div>
       </div>
