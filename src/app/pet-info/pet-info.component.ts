@@ -167,7 +167,7 @@ BEGIN: ${medication.issueDate}     End: ${endDate}\n\n`);
 NAME: ${pet.name}
 TYPE: ${pet.type}
 WEIGHT:  ${pet.weight}kg
-BIRTHDATE:  ${pet.birth_date}`;
+BIRTHDATE:  ${pet.birthDate}`;
     doc.text(petBlock,20,45);
 
     doc.setFontSize(15);
