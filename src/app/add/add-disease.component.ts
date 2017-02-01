@@ -32,8 +32,9 @@ export class AddDiseaseComponent {
   //adds a new petDisease
   add(): void{
     this.petId = this.petService.pet.id.toString();
-    let promise = this.petDiseaseService.add(this.diseaseStart, this.diseaseEnd, this.petId, this.diseaseId).toPromise();
 
+    //gets promise, so that the new entry is added to the db befor redirecting and reloading the pet info
+    let promise = this.petDiseaseService.add(this.diseaseStart, this.diseaseEnd, this.petId, this.diseaseId).toPromise();
     promise.then(() => {
       this.router.navigate(['petInfo', {id:this.petId}]);
     });
