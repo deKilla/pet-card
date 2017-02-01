@@ -13,11 +13,14 @@
 
     <!-- submit triggers forwarding using the goTo method -->
     <!-- using ngSubmit, the add method is called -->
-    <form role="form"
+
+    <form #f="ngForm"
+          role="form"
+          (submit)="save()"
           class="form-horizontal form-groups-bordered validate"
           method="post" action="">
 
-      <div>
+      <div class="form-group">
         <label>Name</label>
         <div>
           <input [(ngModel)]="name" type="text" class="form-control" name="name"
@@ -26,9 +29,11 @@
         </div>
       </div>
 
-      <br>
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.name?.valid && f?.controls?.name?.dirty == true">
+        <b>Please enter a name!</b>
+      </div>
 
-      <div>
+      <div class="form-group">
         <label>Weight (kg)</label>
 
         <div>
@@ -38,9 +43,11 @@
         </div>
       </div>
 
-      <br>
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.weight?.valid && f?.controls?.weight?.dirty == true">
+        <b>Please enter a weight!</b>
+      </div>
 
-      <div class="select_owner">
+      <div class="select_owner form-group">
         <label>Owner</label>
 
         <div>
@@ -50,7 +57,11 @@
         </div>
       </div>
 
-      <div class="select_doctor">
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.owner?.valid && f?.controls?.owner?.dirty == true">
+        <b>Plase pick an owner!</b>
+      </div>
+
+      <div class="select_doctor form-group">
         <label>Doctor</label>
 
         <div>
@@ -60,13 +71,13 @@
         </div>
       </div>
 
-      <div class="clear"></div>
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.doctor?.valid && f?.controls?.doctor?.dirty == true">
+        <b>Please pick a doctor!</b>
+      </div>
 
-      <br />
-
-      <div >
+      <div class="form-group">
         <div>
-          <button (click)="save()" class="btn btn-success">
+          <button type="submit" class="btn btn-success" [disabled]="!f?.valid">
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Save</strong>
           </button>
         </div>
