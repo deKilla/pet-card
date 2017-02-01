@@ -16,8 +16,8 @@
         <p>
           Change your profile and office hours.
         </p>
-        <button type="button" class="btn btn-success">
-          <a routerLink="/profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><strong>Change Profile</strong></a>
+        <button type="button" class="btn btn-success" [routerLink]="['/profile']">
+          <span class="glyphicon glyphicon-user" aria-hidden="true"></span><strong>Change Profile</strong>
         </button>
       </div>
 
@@ -28,8 +28,8 @@
         <p>
           Search a pet by it's unique ID.
         </p>
-            <button type="button" class="btn btn-success">
-              <a routerLink="/petInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><strong>Search Pet</strong></a>
+            <button type="button" class="btn btn-success" [routerLink]="['/petInfo']">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span><strong>Search Pet</strong>
             </button>
       </div>
     </div>
@@ -40,8 +40,8 @@
         <p>
           Add a new pet to the database.
         </p>
-        <button type="button" class="btn btn-success">
-          <a routerLink="/addPet"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><strong>Add Pet</strong></a>
+        <button type="button" class="btn btn-success" [routerLink]="['/addPet']">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><strong>Add Pet</strong>
         </button>
       </div>
     </div>

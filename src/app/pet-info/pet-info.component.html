@@ -9,7 +9,7 @@
 <body>
 <h1>Pet Info</h1>
 
-    <form #f="ngForm">
+    <form #f="ngForm" novalidate>
       <div class="form-group">
         <!--<label>ID</label>-->
         <input [(ngModel)]="id"
@@ -23,20 +23,17 @@
                required>
       </div>
 
-      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.id?.valid && f?.controls?.id?.dirty == true">
 
-        <div *ngIf="f?.controls?.id?.hasError('asyncId')">
+        <div class="alert alert-danger" role="alert" *ngIf="f?.controls?.id?.hasError('asyncId') && f?.controls?.id?.dirty == true">
           <b>Please provide an ID greater than Zero!</b>
         </div>
-        <div *ngIf="f?.controls?.id?.hasError('pattern')">
+        <div class="alert alert-danger" role="alert" *ngIf="f?.controls?.id?.hasError('pattern') && f?.controls?.id?.dirty == true">
           <b>Please provide AN ID between 1 & 9999!</b>
         </div>
-        <div *ngIf="f?.controls?.id?.hasError('required')">
+        <div class="alert alert-danger" role="alert" *ngIf="f?.controls?.id?.hasError('required') && f?.controls?.id?.dirty == true">
           <b>Please enter an ID!</b>
         </div>
-
-      </div>
-
+      
       <div class="form-group">
         <button [disabled]="!f?.controls?.id?.valid" type="button" class="btn btn-success" (click)="search()">
           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Search</strong>

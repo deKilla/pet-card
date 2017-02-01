@@ -13,12 +13,13 @@
 
     <!-- submit triggers forwarding using the goTo method -->
     <!-- using ngSubmit, the add method is called -->
-    <form role="form"
+    <form #f="ngForm"
+          role="form"
           (submit)="add()"
           class="form-horizontal form-groups-bordered validate"
           method="post" action="">
 
-      <div class="select_medication">
+      <div class="select_medication form-group">
         <label>Medication</label>
 
         <div>
@@ -28,7 +29,11 @@
         </div>
       </div>
 
-      <div>
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.medication?.valid && f?.controls?.medication?.dirty == true">
+        <b>Please pick a medication!</b>
+      </div>
+
+      <div class="form-group">
         <label>Dose</label>
         <div>
           <input [(ngModel)]="dose" type="text" class="form-control" name="dose"
@@ -37,35 +42,41 @@
         </div>
       </div>
 
-      <br>
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.dose?.valid && f?.controls?.dose?.dirty == true">
+        <b>Please enter a dose!</b>
+      </div>
 
-      <div>
+      <div class="form-group">
         <label>Issue Date</label>
 
         <div>
-          <input [(ngModel)]="issueDate" type="date" class="form-control" name="issuedate"
+          <input [(ngModel)]="issueDate" type="date" class="form-control" name="issueDate"
                  placeholder="e.g. 01.01.2000" data-validate="maxlength[30]"
                  required />
         </div>
       </div>
 
-      <br />
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.issueDate?.valid && f?.controls?.issueDate?.dirty == true">
+        <b>Please enter an Issue Date!</b>
+      </div>
 
-      <div>
+      <div class="form-group">
         <label>End Date</label>
 
         <div>
-          <input [(ngModel)]="endDate" type="date" class="form-control" name="enddate"
-                 placeholder="e.g. 01.01.2000" data-validate="maxlength[30]"
+          <input [(ngModel)]="endDate" type="date" class="form-control" name="endDate"
+                 validateIsAfter="issueDate" placeholder="e.g. 01.01.2000" data-validate="maxlength[30]"
                  required />
         </div>
       </div>
 
-      <br />
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.endDate?.valid && f?.controls?.endDate?.dirty == true">
+        <b>End Date must be after Issue Date and is required!</b>
+      </div>
 
-      <div >
+      <div class="form-group">
         <div>
-          <button type="submit" class="btn btn-success">
+          <button type="submit" class="btn btn-success" [disabled]="!f?.valid">
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Add</strong>
           </button>
         </div>

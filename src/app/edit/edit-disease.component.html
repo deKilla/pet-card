@@ -12,7 +12,8 @@
 <!-- Edit DISEASE FORM -- diseaseStart, diseaseEnd -->
 
 
-<form role="form"
+<form #f="ngForm"
+      role="form"
       (submit)="save()"
       class="form-horizontal form-groups-bordered validate"
       method="post" action="">
@@ -28,9 +29,7 @@
   </div>
 -->
 
-  <br />
-
-  <div>
+  <div class="form-group">
     <label>Disease Start</label>
 
     <div>
@@ -40,23 +39,28 @@
     </div>
   </div>
 
-  <br />
+  <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.diseaseStart?.valid && f?.controls?.diseaseStart?.dirty == true">
+    <b>Please enter a Start Date!</b>
+  </div>
 
-  <div>
+  <div class="form-group">
     <label>Disease End</label>
 
     <div>
-      <input [(ngModel)]="diseaseEnd" type="date" class="form-control" name="enddate"
-             placeholder="e.g. 01.01.2000" data-validate="maxlength[30]"
-             required />
+      <input [(ngModel)]="diseaseEnd" type="date" class="form-control" name="diseaseEnd"
+             validateIsAfter="diseaseStart" placeholder="e.g. 01.01.2000" data-validate="maxlength[30]"/>
     </div>
+  </div>
+
+  <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.diseaseEnd?.valid && f?.controls?.diseaseEnd?.dirty == true">
+    <b>End Date must be after Start Date</b>
   </div>
 
   <br />
 
-  <div >
+  <div class="form-group">
     <div>
-      <button type="submit" class="btn btn-success">
+      <button type="submit" class="btn btn-success" [disabled]="!f?.valid">
         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Save</strong>
       </button>
     </div>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>P@-Card | Add Pet Owner</title>
+    <link href="../../css/stylesheet.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Add Pet</h1>
+
+
+    <!-- ####################################################################################################### -->
+    <!-- ADD OWNER FORM -- firstname, lastname, address, phone, email -->
+
+    <!-- submit triggers forwarding using the goTo method -->
+    <!-- using ngSubmit, the add method is called -->
+    <form #f="ngForm"
+          role="form"
+          (submit)="goTo('home')"
+          (ngSubmit)="add()"
+          class="form-horizontal form-groups-bordered validate"
+          method="post" action="">
+
+
+      <div class="form-group">
+        <label>Firstname</label>
+
+        <div>
+          <input [(ngModel)]="firstName" type="text" class="form-control" name="firstName"
+                 placeholder="e.g. John" data-validate="maxlength[30]"
+                 required />
+        </div>
+      </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.firstName?.valid && f?.controls?.firstName?.dirty == true">
+        <b>Please enter a first name!</b>
+      </div>
+
+      <div class="form-group">
+        <label>Lastname</label>
+
+        <div>
+          <input [(ngModel)]="lastName" type="text" class="form-control" name="lastName"
+                 placeholder="e.g. Doe" data-validate="maxlength[30]"
+                 required />
+        </div>
+      </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.lastName?.valid && f?.controls?.lastName?.dirty == true">
+        <b>Please enter a last name!</b>
+      </div>
+
+      <div class="form-group">
+        <label>E-Mail</label>
+
+        <div>
+          <input [(ngModel)]="email" type="email" class="form-control" name="email"
+                 placeholder="e.g. jdoe@petcard.at"
+                 data-validate="maxlength[80]" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Address</label>
+
+        <div>
+          <input [(ngModel)]="address" type="text" class="form-control" name="address"
+                 placeholder="e.g. Petstreet 1" data-validate="maxlength[30]"
+                 required />
+        </div>
+      </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.address?.valid && f?.controls?.address?.dirty == true">
+        <b>Please enter an address!</b>
+      </div>
+
+      <div class="form-group">
+        <label>Phone</label>
+
+        <div>
+          <input [(ngModel)]="phone" type="text" class="form-control" name="phone"
+                 placeholder="e.g. 0660123456789" data-validate="maxlength[30]"
+                 required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div>
+          <button type="submit" class="btn btn-success" [disabled]="!f?.valid">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Save</strong>
+          </button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

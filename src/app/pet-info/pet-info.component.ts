@@ -137,17 +137,19 @@ export class PetInfoComponent {
 
     for(let disease of diseases){
       let description = this.separateString(disease.description);
+      let diseaseEnd = disease.diseaseEnd || "";
       diseaseStrings.push(`NAME: ${disease.name}
 DESCRIPTION: ${description}
-BEGIN: ${disease.diseaseStart}     END: ${disease.diseaseEnd}\n\n`);
+BEGIN: ${disease.diseaseStart}     END: ${diseaseEnd}\n\n`);
     }
 
     for(let medication of medications){
       let description = this.separateString(medication.description);
+      let endDate = medication.endDate || "";
       medicationStrings.push(`NAME: ${medication.name}
 DESCRIPTION: ${description}
 DOSE: ${medication.dose}
-BEGIN: ${medication.issueDate}     End: ${medication.endDate}\n\n`);
+BEGIN: ${medication.issueDate}     End: ${endDate}\n\n`);
     }
 
     //text coords in doc.text are first from the left border and then from the top
@@ -164,7 +166,7 @@ BEGIN: ${medication.issueDate}     End: ${medication.endDate}\n\n`);
     let petBlock = `ID: ${pet.id}
 NAME: ${pet.name}
 TYPE: ${pet.type}
-WEIGHT:  ${pet.weight}
+WEIGHT:  ${pet.weight}kg
 BIRTHDATE:  ${pet.birth_date}`;
     doc.text(petBlock,20,45);
 
