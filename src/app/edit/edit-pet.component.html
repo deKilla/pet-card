@@ -23,7 +23,7 @@
       <div class="form-group">
         <label>Name</label>
         <div>
-          <input [(ngModel)]="name" type="text" class="form-control" name="name"
+          <input [(ngModel)]="pet.name" type="text" class="form-control" name="name"
                  placeholder="e.g. Cookie" data-validate="maxlength[30]"
                  required />
         </div>
@@ -37,7 +37,7 @@
         <label>Weight (kg)</label>
 
         <div>
-          <input [(ngModel)]="weight" type="number" class="form-control" name="weight"
+          <input [(ngModel)]="pet.weight" type="number" class="form-control" name="weight"
                  placeholder="e.g. 5"
                  data-validate="maxlength[10]" required />
         </div>
