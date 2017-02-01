@@ -42,7 +42,7 @@ export class EditDiseaseComponent {
   save(): void{
     this.disease.diseaseEnd = this.diseaseEnd;
     this.disease.diseaseStart = this.diseaseStart;
-    let promise = this.petDiseaseService.save(this.disease).toPromise();
+    let promise = this.petDiseaseService.save(this.disease).toPromise;
 
     promise.then(() => {
       this.router.navigate(['petInfo', {id:this.petService.pet.id.toString()}]);
