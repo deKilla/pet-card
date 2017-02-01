@@ -28,7 +28,7 @@
           <b>Please provide an ID greater than Zero!</b>
         </div>
         <div class="alert alert-danger" role="alert" *ngIf="f?.controls?.id?.hasError('pattern') && f?.controls?.id?.dirty == true">
-          <b>Please provide AN ID between 1 & 9999!</b>
+          <b>Please provide an ID between 1 & 9999!</b>
         </div>
         <div class="alert alert-danger" role="alert" *ngIf="f?.controls?.id?.hasError('required') && f?.controls?.id?.dirty == true">
           <b>Please enter an ID!</b>
