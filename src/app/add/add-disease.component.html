@@ -14,10 +14,10 @@
 
 <!-- submit triggers forwarding using the goTo method -->
 <!-- using ngSubmit, the add method is called -->
+
 <form #f="ngForm"
       role="form"
-      (submit)="goTo('petInfo')"
-      (ngSubmit)="add()"
+      (submit)="add()"
       class="form-horizontal form-groups-bordered validate"
       method="post" action="">
 
@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.disease?.valid && f?.controls?.diseaseEnd?.dirty == true">
+  <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.disease?.valid && f?.controls?.disease?.dirty == true">
     <b>Please pick a disease!</b>
   </div>
 
@@ -43,6 +43,10 @@
              placeholder="e.g. 01.01.2000" data-validate="maxlength[30]"
              required />
     </div>
+  </div>
+
+  <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.diseaseStart?.valid && f?.controls?.diseaseStart?.dirty == true">
+    <b>Please enter a Start Date!</b>
   </div>
 
   <div class="form-group">

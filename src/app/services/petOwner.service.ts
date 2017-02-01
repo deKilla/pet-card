@@ -93,4 +93,28 @@ export class PetOwnerService {
         }
       );
   }
+
+  //adds a new owner
+  public add(firstName: string, lastName: string, address: string, phone: string, email: string): void {
+
+    let url = this.baseUrl;
+
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
+
+    //adds a new pet with given parameters to the db
+    this
+      .http
+      .post(url, {firstName, lastName, address, phone, email}, {headers})
+      .map(resp => resp.json())
+      .subscribe(
+        (pet) => {
+          console.debug("added new owner")
+        },
+        (err) => {
+          console.error("couldn't add new owner")
+        }
+      );
+  }
 }

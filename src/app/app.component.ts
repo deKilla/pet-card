@@ -40,7 +40,6 @@ export class AppComponent {
       this.oauthService.tryLogin({});
 
     });
-
   }
 
   get loginpage(): boolean {
