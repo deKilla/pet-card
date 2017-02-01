@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>P@-Card | Add Pet</title>
+    <title>P@-Card | Edit Pet</title>
     <link href="../../css/stylesheet.css" rel="stylesheet">
   </head>
   <body>
@@ -14,8 +14,6 @@
     <!-- submit triggers forwarding using the goTo method -->
     <!-- using ngSubmit, the add method is called -->
     <form role="form"
-          (ngSubmit)="save()"
-          (submit)="goTo()"
           class="form-horizontal form-groups-bordered validate"
           method="post" action="">
 
@@ -47,7 +45,7 @@
 
         <div>
           <select [(ngModel)]="ownerId" class="form-control" required name="doctor">
-            <option *ngFor="let o of allPetOwners" [value]="o.id">{{o.firstName}} {{o.lastName}}</option>
+            <option *ngFor="let o of allPetOwners" [value]="o.id" [selected]="ownerId">{{o.firstName}} {{o.lastName}}</option>
           </select>
         </div>
       </div>
@@ -57,7 +55,7 @@
 
         <div>
           <select [(ngModel)]="doctorId" class="form-control" required name="doctor">
-            <option *ngFor="let d of allDoctors" [value]="d.id">{{d.firstName}} {{d.lastName}}</option>
+            <option *ngFor="let d of allDoctors" [value]="d.id" [selected]="doctorId">{{d.firstName}} {{d.lastName}}</option>
           </select>
         </div>
       </div>
@@ -68,8 +66,8 @@
 
       <div >
         <div>
-          <button type="submit" class="btn btn-success">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Create</strong>
+          <button (click)="save()" class="btn btn-success">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Save</strong>
           </button>
         </div>
       </div>
