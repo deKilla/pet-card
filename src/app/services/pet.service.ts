@@ -4,6 +4,8 @@ import {BASE_URL_PETS, BASE_URL_DOCTORS, BASE_URL_PETOWNERS} from "../app.tokens
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {OAuthService} from "angular-oauth2-oidc";
+import {PetOwner} from "../entities/petOwner";
+import {Doctor} from "../entities/doctor";
 
 @Injectable()
 export class PetService {
@@ -89,6 +91,34 @@ export class PetService {
         },
         (err) => {
           console.error("couldn't delete pet");
+        }
+      );
+  }
+
+  //saves changes from pet
+  public save(pet:Pet, doctorId: string, ownerId: string): void {
+
+    //url to object that has do be changed
+    let url = this.baseUrl + '/' + pet.id;
+
+    let doctor = this.baseUrlDoctor + "/" + doctorId;
+    let owner = this.baseUrlOwner + "/" + ownerId;
+
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken());
+
+    //puts doctor parameter changes to db
+    this
+      .http
+      .put(url, {pet, petOwner:owner, doctor}, {headers})
+      .map(resp => resp.json())
+      .subscribe(
+        (doctor) => {
+          console.log("updated pet");
+        },
+        (err) => {
+          console.error("couldn't update pet");
         }
       );
   }

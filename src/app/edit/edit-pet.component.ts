@@ -5,6 +5,7 @@ import {PetService} from "../services/pet.service";
 import {PetDiseaseService} from "../services/petDisease.service";
 import {PetDisease} from "../entities/petDisease";
 import {PetInfoComponent} from "../pet-info/pet-info.component";
+import {Pet} from "../entities/pet";
 
 @Component({
   selector: 'edit-disease',
@@ -17,35 +18,24 @@ export class EditDiseaseComponent {
   public weight: number;
   public ownerId: string;
   public doctorId: string;
+  private petId: number;
+  private pet: Pet;
 
   constructor(private petDiseaseService:PetDiseaseService, private petService:PetService, private diseaseService:DiseaseService,
               route: ActivatedRoute, private router: Router, private petInfoComponent:PetInfoComponent) {
 
-    //reads and stores diseaseId from url param
-    route.queryParams.subscribe(
-      (queryParam: any) => {this.diseaseId = queryParam['diseaseId'];}
-    );
-
-    //selects petDisease by id
-    this.petDiseaseService.findById(this.diseaseId)
-      .subscribe(
-        (petDisease) => {
-          this.disease = petDisease;
-          this.diseaseStart = petDisease.diseaseStart;
-          this.diseaseEnd = petDisease.diseaseEnd;
-        }
-      )
+    this.pet = this.petService.pet;
+    this.name = this.pet.name;
+    this.weight = this.pet.weight;
   }
 
   //saves changes from petDisease
   save(): void{
-    this.disease.diseaseEnd = this.diseaseEnd;
-    this.disease.diseaseStart = this.diseaseStart;
 
-    //gets promise, so that the new entry is added to the db befor redirecting and reloading the pet info
-    let promise = this.petDiseaseService.save(this.disease).toPromise();
-    promise.then(() => {
-      this.router.navigate(['petInfo', {id:this.petService.pet.id.toString()}]);
-    });
+    this.pet.name = this.name;
+    this.pet.weight = this.weight;
+    this.pet.id = this.petService.pet.id;
+
+    this.petService.save(this.pet, this.doctorId, this.ownerId);
   }
 }
