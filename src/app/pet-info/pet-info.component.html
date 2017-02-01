@@ -33,7 +33,7 @@
         <div class="alert alert-danger" role="alert" *ngIf="f?.controls?.id?.hasError('required') && f?.controls?.id?.dirty == true">
           <b>Please enter an ID!</b>
         </div>
-      
+
       <div class="form-group">
         <button [disabled]="!f?.controls?.id?.valid" type="button" class="btn btn-success" (click)="search()">
           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Search</strong>
@@ -72,6 +72,9 @@
 
 
         <div class="form-group icononly">
+          <button type="button" class="btn btn-danger" [routerLink]="['/editPet']">
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+          </button>
           <button type="button" class="btn btn-danger" (click)="delete()">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
           </button>

@@ -23,6 +23,7 @@ import {AddDiseaseComponent} from "./add/add-disease.component";
 import {SharedModule} from "./shared/shared.module";
 import {EditDiseaseComponent} from "./edit/edit-disease.component";
 import {AddOwnerComponent} from "./add/add-owner.component";
+import {EditPetComponent} from "./edit/edit-pet.component";
 
 
 const BASE_URL_PETS_FOR_PRODUCTION = "http://localhost:8081/api/pets";
@@ -53,8 +54,9 @@ const BASE_URL_DISEASES_FOR_PRODUCTION = "http://localhost:8081/api/diseases";
     AddDiseaseComponent,
     AddOwnerComponent,
     EditDiseaseComponent,
+    EditPetComponent,
     PetInfoComponent,
-    ProfileComponent,
+    ProfileComponent
   ],
 
   providers: [

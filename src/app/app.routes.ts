@@ -9,6 +9,7 @@ import {AddMedicationComponent} from "./add/add-medication.component";
 import {AddDiseaseComponent} from "./add/add-disease.component";
 import {EditDiseaseComponent} from "./edit/edit-disease.component";
 import {AddOwnerComponent} from "./add/add-owner.component";
+import {EditPetComponent} from "./edit/edit-pet.component";
 
 const APP_ROUTES: Routes = [
   {
@@ -68,6 +69,11 @@ const APP_ROUTES: Routes = [
   {
     path: 'addOwner',
     component: AddOwnerComponent,
+    canActivate: [ AppComponent ]
+  },
+  {
+    path: 'editPet',
+    component: EditPetComponent,
     canActivate: [ AppComponent ]
   },
   {

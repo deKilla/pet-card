@@ -15,7 +15,7 @@ import {PetMedication} from "../entities/petMedication";
 import {DoctorService} from "../services/doctor.service";
 import {Doctor} from "../entities/doctor";
 import {ZipPipe} from "../shared/pipes/zip.pipe";
-import * as jsPDF from 'jspdf'
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'pet-info',
@@ -167,7 +167,7 @@ BEGIN: ${medication.issueDate}     End: ${endDate}\n\n`);
 NAME: ${pet.name}
 TYPE: ${pet.type}
 WEIGHT:  ${pet.weight}kg
-BIRTHDATE:  ${pet.birth_date}`;
+BIRTHDATE:  ${pet.birthDate}`;
     doc.text(petBlock,20,45);
 
     doc.setFontSize(15);
@@ -238,8 +238,6 @@ OFFICE HOURS: ${doctor.officeHours}`;
         }
       }
     }
-
-
 
     doc.save("Report_Pet" + pet.id + "_" + timestamp + ".pdf");
   }

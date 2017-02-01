@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import {OAuthService} from "angular-oauth2-oidc";
 import {PetOwner} from "../entities/petOwner";
 import {Doctor} from "../entities/doctor";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class PetService {
@@ -96,7 +97,7 @@ export class PetService {
   }
 
   //saves changes from pet
-  public save(pet:Pet, doctorId: string, ownerId: string): void {
+  public save(pet:Pet, doctorId: string, ownerId: string): Observable<Pet> {
 
     //url to object that has do be changed
     let url = this.baseUrl + '/' + pet.id;
@@ -109,17 +110,9 @@ export class PetService {
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken());
 
     //puts doctor parameter changes to db
-    this
+    return this
       .http
-      .put(url, {pet, petOwner:owner, doctor}, {headers})
-      .map(resp => resp.json())
-      .subscribe(
-        (doctor) => {
-          console.log("updated pet");
-        },
-        (err) => {
-          console.error("couldn't update pet");
-        }
-      );
+      .put(url, {name:pet.name, weight:pet.weight, type:pet.type, birthDate:pet.birthDate, petOwner:owner, doctor}, {headers})
+      .map(resp => resp.json());
   }
 }
