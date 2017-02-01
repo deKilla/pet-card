@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>P@-Card | Add Pet</title>
+    <link href="../../css/stylesheet.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Edit Pet</h1>
+
+    <!-- ####################################################################################################### -->
+    <!-- ADD PET FORM -- name, race, weight, birthdate -->
+
+    <!-- submit triggers forwarding using the goTo method -->
+    <!-- using ngSubmit, the add method is called -->
+    <form role="form"
+          (ngSubmit)="save()"
+          (submit)="goTo()"
+          class="form-horizontal form-groups-bordered validate"
+          method="post" action="">
+
+      <div>
+        <label>Name</label>
+        <div>
+          <input [(ngModel)]="name" type="text" class="form-control" name="name"
+                 placeholder="e.g. Cookie" data-validate="maxlength[30]"
+                 required />
+        </div>
+      </div>
+
+      <br>
+
+      <div>
+        <label>Weight (kg)</label>
+
+        <div>
+          <input [(ngModel)]="weight" type="number" class="form-control" name="weight"
+                 placeholder="e.g. 5"
+                 data-validate="maxlength[10]" required />
+        </div>
+      </div>
+
+      <br>
+
+      <div class="select_owner">
+        <label>Owner</label>
+
+        <div>
+          <select [(ngModel)]="ownerId" class="form-control" required name="doctor">
+            <option *ngFor="let o of allPetOwners" [value]="o.id">{{o.firstName}} {{o.lastName}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="select_doctor">
+        <label>Doctor</label>
+
+        <div>
+          <select [(ngModel)]="doctorId" class="form-control" required name="doctor">
+            <option *ngFor="let d of allDoctors" [value]="d.id">{{d.firstName}} {{d.lastName}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <br />
+
+      <div >
+        <div>
+          <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Create</strong>
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </body>
+</html>
