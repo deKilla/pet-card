@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import {OAuthService} from "angular-oauth2-oidc";
 
 @Component({
-  templateUrl: "./doctor-home.component.html"
+  templateUrl: "./home.component.html"
 })
 
-export class DoctorHomeComponent {
+export class HomeComponent {
 
   public id: string;
 

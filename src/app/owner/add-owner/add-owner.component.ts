@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {OAuthService} from "angular-oauth2-oidc";
 import {Router} from "@angular/router";
-import {PetOwnerService} from "../services/petOwner.service";
+import {PetOwnerService} from "../../services/petOwner.service";
 
 
 @Component({

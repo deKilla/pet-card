@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import {Router, ActivatedRoute} from "@angular/router";
-import {DiseaseService} from "../services/disease.service";
-import {PetService} from "../services/pet.service";
-import {PetDiseaseService} from "../services/petDisease.service";
-import {PetDisease} from "../entities/petDisease";
-import {Pet} from "../entities/pet";
+import {PetService} from "../../services/pet.service";
+import {PetDiseaseService} from "../../services/petDisease.service";
+import {PetDisease} from "../../entities/petDisease";
 
 @Component({
   selector: 'edit-disease',

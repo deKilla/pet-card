@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import {OAuthService} from "angular-oauth2-oidc";
-import {DoctorService} from "../services/doctor.service";
-import {Doctor} from "../entities/doctor";
+import {DoctorService} from "../../services/doctor.service";
+import {Doctor} from "../../entities/doctor";
 import {Router} from "@angular/router";
 
 @Component({
   selector: 'profile',
-  templateUrl: "./profile.component.html"
+  templateUrl: "./edit-profile.component.html"
 })
-export class ProfileComponent {
+export class EditProfileComponent {
 
   //all form fields
   public firstName: string;

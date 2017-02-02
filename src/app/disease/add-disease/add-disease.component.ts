@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
-import {Disease} from "../entities/disease";
-import {DiseaseService} from "../services/disease.service";
-import {PetService} from "../services/pet.service";
-import {PetDiseaseService} from "../services/petDisease.service";
+import {Disease} from "../../entities/disease";
+import {DiseaseService} from "../../services/disease.service";
+import {PetService} from "../../services/pet.service";
+import {PetDiseaseService} from "../../services/petDisease.service";
 
 @Component({
   selector: 'add-disease',

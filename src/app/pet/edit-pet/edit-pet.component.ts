@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {PetService} from "../services/pet.service";
-import {Pet} from "../entities/pet";
-import {PetOwner} from "../entities/petOwner";
-import {Doctor} from "../entities/doctor";
-import {DoctorService} from "../services/doctor.service";
-import {PetOwnerService} from "../services/petOwner.service";
+import {PetService} from "../../services/pet.service";
+import {Pet} from "../../entities/pet";
+import {PetOwner} from "../../entities/petOwner";
+import {Doctor} from "../../entities/doctor";
+import {DoctorService} from "../../services/doctor.service";
+import {PetOwnerService} from "../../services/petOwner.service";
 import {Router} from "@angular/router";
 
 @Component({

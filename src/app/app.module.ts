@@ -5,10 +5,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import {AppRouterModule} from "./app.routes";
 import {LoginComponent} from "./login/login.component";
-import {AddPetComponent} from "./add/add-pet.component";
-import {PetInfoComponent} from "./pet-info/pet-info.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {DoctorHomeComponent} from "./home/doctor-home.component";
+import {AddPetComponent} from "./pet/add-pet/add-pet.component";
+import {PetInfoComponent} from "./pet/pet-info/pet-info.component";
+import {HomeComponent} from "./home/home.component";
 import {BASE_URL_PETS, BASE_URL_DOCTORS, BASE_URL_PETOWNERS, BASE_URL_PETDISEASES, BASE_URL_PETMEDICATIONS, BASE_URL_MEDICATIONS, BASE_URL_DISEASES} from './app.tokens';
 import {PetService} from "./services/pet.service";
 import {PetOwnerService} from "./services/petOwner.service";
@@ -18,12 +17,16 @@ import {MedicationService} from "./services/medication.service";
 import {PetDiseaseService} from "./services/petDisease.service";
 import {PetMedicationService} from "./services/petMedication.service";
 import {OAuthModule} from "angular-oauth2-oidc";
-import {AddMedicationComponent} from "./add/add-medication.component";
-import {AddDiseaseComponent} from "./add/add-disease.component";
+import {AddMedicationComponent} from "./medication/add-medication/add-medication.component";
+import {AddDiseaseComponent} from "./disease/add-disease/add-disease.component";
 import {SharedModule} from "./shared/shared.module";
-import {EditDiseaseComponent} from "./edit/edit-disease.component";
-import {AddOwnerComponent} from "./add/add-owner.component";
-import {EditPetComponent} from "./edit/edit-pet.component";
+import {EditDiseaseComponent} from "./disease/edit-disease/edit-disease.component";
+import {AddOwnerComponent} from "./owner/add-owner/add-owner.component";
+import {EditPetComponent} from "./pet/edit-pet/edit-pet.component";
+import {EditProfileComponent} from "./profile/edit-profile/edit-profile.component";
+import {PetRouterModule} from "./pet/pet.routes";
+import {PetModule} from "./pet/pet.module";
+import {DiseaseModule} from "./disease/disease.module";
 
 
 const BASE_URL_PETS_FOR_PRODUCTION = "http://localhost:8081/api/pets";
@@ -42,21 +45,18 @@ const BASE_URL_DISEASES_FOR_PRODUCTION = "http://localhost:8081/api/diseases";
     FormsModule,
     HttpModule,
     AppRouterModule,
+    PetModule,
+    DiseaseModule,
     OAuthModule.forRoot()
   ],
 
   declarations: [
     AppComponent,
     LoginComponent,
-    DoctorHomeComponent,
-    AddPetComponent,
+    HomeComponent,
     AddMedicationComponent,
-    AddDiseaseComponent,
     AddOwnerComponent,
-    EditDiseaseComponent,
-    EditPetComponent,
-    PetInfoComponent,
-    ProfileComponent
+    EditProfileComponent
   ],
 
   providers: [

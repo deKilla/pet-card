@@ -2,23 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>P@-Card | Profile</title>
-    <link href="../../css/stylesheet.css" rel="stylesheet">
+    <title>P@-Card | Add Pet Owner</title>
+    <link href="../../../css/stylesheet.css" rel="stylesheet">
   </head>
   <body>
-    <h1>Profile</h1>
+    <h1>Add Pet</h1>
+
 
     <!-- ####################################################################################################### -->
-    <!-- EDIT USER FORM -- firstname, lastname, address, phone, email -->
+    <!-- ADD OWNER FORM -- firstname, lastname, address, phone, email -->
 
-    <form role="form"
+    <!-- submit triggers forwarding using the goTo method -->
+    <!-- using ngSubmit, the add method is called -->
+    <form #f="ngForm"
+          role="form"
           (submit)="goTo('home')"
-          (ngSubmit)="save()"
+          (ngSubmit)="add()"
           class="form-horizontal form-groups-bordered validate"
           method="post" action="">
 
 
-      <div >
+      <div class="form-group">
         <label>Firstname</label>
 
         <div>
@@ -28,9 +32,11 @@
         </div>
       </div>
 
-      <br>
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.firstName?.valid && f?.controls?.firstName?.dirty == true">
+        <b>Please enter a first name!</b>
+      </div>
 
-      <div>
+      <div class="form-group">
         <label>Lastname</label>
 
         <div>
@@ -40,9 +46,11 @@
         </div>
       </div>
 
-      <br>
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.lastName?.valid && f?.controls?.lastName?.dirty == true">
+        <b>Please enter a last name!</b>
+      </div>
 
-      <div>
+      <div class="form-group">
         <label>E-Mail</label>
 
         <div>
@@ -52,9 +60,7 @@
         </div>
       </div>
 
-      <br>
-
-      <div >
+      <div class="form-group">
         <label>Address</label>
 
         <div>
@@ -64,9 +70,11 @@
         </div>
       </div>
 
-      <br>
+      <div class="alert alert-danger" role="alert" *ngIf="!f?.controls?.address?.valid && f?.controls?.address?.dirty == true">
+        <b>Please enter an address!</b>
+      </div>
 
-      <div >
+      <div class="form-group">
         <label>Phone</label>
 
         <div>
@@ -76,29 +84,13 @@
         </div>
       </div>
 
-      <br>
-
-      <div >
-        <label>Office Hours</label>
-
+      <div class="form-group">
         <div>
-          <input [(ngModel)]="officeHours" type="text" class="form-control" name="officeHours"
-                 placeholder="e.g. Mo-Fr 08:00 - 12:00 Sa-So Geschlossen" data-validate="maxlength[100]"
-                 required />
-        </div>
-      </div>
-
-      <br>
-
-      <div>
-        <div>
-          <button type="submit" class="btn btn-success">
+          <button type="submit" class="btn btn-success" [disabled]="!f?.valid">
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>Save</strong>
           </button>
         </div>
       </div>
     </form>
-
   </body>
-
 </html>

@@ -1,20 +1,20 @@
-import {Pet} from "../entities/pet";
+import {Pet} from "../../entities/pet";
 import { Component } from '@angular/core';
-import {PetService} from "../services/pet.service";
+import {PetService} from "../../services/pet.service";
 import {Router, ActivatedRoute} from "@angular/router";
-import {PetOwnerService} from "../services/petOwner.service";
-import {PetDiseaseService} from "../services/petDisease.service";
-import {PetDisease} from "../entities/petDisease";
-import {PetOwner} from "../entities/petOwner";
-import {DiseaseService} from "../services/disease.service";
-import {Disease} from "../entities/disease";
-import {PetMedicationService} from "../services/petMedication.service";
-import {MedicationService} from "../services/medication.service";
-import {Medication} from "../entities/medication";
-import {PetMedication} from "../entities/petMedication";
-import {DoctorService} from "../services/doctor.service";
-import {Doctor} from "../entities/doctor";
-import {ZipPipe} from "../shared/pipes/zip.pipe";
+import {PetOwnerService} from "../../services/petOwner.service";
+import {PetDiseaseService} from "../../services/petDisease.service";
+import {PetDisease} from "../../entities/petDisease";
+import {PetOwner} from "../../entities/petOwner";
+import {DiseaseService} from "../../services/disease.service";
+import {Disease} from "../../entities/disease";
+import {PetMedicationService} from "../../services/petMedication.service";
+import {MedicationService} from "../../services/medication.service";
+import {Medication} from "../../entities/medication";
+import {PetMedication} from "../../entities/petMedication";
+import {DoctorService} from "../../services/doctor.service";
+import {Doctor} from "../../entities/doctor";
+import {ZipPipe} from "../../shared/pipes/zip.pipe";
 import * as jsPDF from 'jspdf';
 
 @Component({

@@ -1,15 +1,12 @@
 import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from "./login/login.component";
-import {AddPetComponent} from "./add/add-pet.component";
-import {PetInfoComponent} from "./pet-info/pet-info.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {DoctorHomeComponent} from "./home/doctor-home.component";
+import {HomeComponent} from "./home/home.component";
 import {AppComponent} from "./app.component";
-import {AddMedicationComponent} from "./add/add-medication.component";
-import {AddDiseaseComponent} from "./add/add-disease.component";
-import {EditDiseaseComponent} from "./edit/edit-disease.component";
-import {AddOwnerComponent} from "./add/add-owner.component";
-import {EditPetComponent} from "./edit/edit-pet.component";
+import {AddMedicationComponent} from "./medication/add-medication/add-medication.component";
+import {AddDiseaseComponent} from "./disease/add-disease/add-disease.component";
+import {EditDiseaseComponent} from "./disease/edit-disease/edit-disease.component";
+import {AddOwnerComponent} from "./owner/add-owner/add-owner.component";
+import {EditProfileComponent} from "./profile/edit-profile/edit-profile.component";
 
 const APP_ROUTES: Routes = [
   {
@@ -23,12 +20,7 @@ const APP_ROUTES: Routes = [
   },
   {
     path: 'home',
-    component: DoctorHomeComponent,
-    canActivate: [ AppComponent ]
-  },
-  {
-    path: 'addPet',
-    component: AddPetComponent,
+    component: HomeComponent,
     canActivate: [ AppComponent ]
   },
   {
@@ -37,43 +29,13 @@ const APP_ROUTES: Routes = [
     canActivate: [ AppComponent ]
   },
   {
-    path: 'addDisease',
-    component: AddDiseaseComponent,
-    canActivate: [ AppComponent ]
-  },
-  {
-    path: 'editDisease',
-    component: EditDiseaseComponent,
-    canActivate: [ AppComponent ]
-  },
-  {
-    path: 'editDisease/:id',
-    component: EditDiseaseComponent,
-    canActivate: [ AppComponent ]
-  },
-  {
-    path: 'petInfo',
-    component: PetInfoComponent,
-    canActivate: [ AppComponent ]
-  },
-  {
-    path: 'petInfo/:id',
-    component: PetInfoComponent,
-    canActivate: [ AppComponent ]
-  },
-  {
     path: 'profile',
-    component: ProfileComponent,
+    component: EditProfileComponent,
     canActivate: [ AppComponent ]
   },
   {
     path: 'addOwner',
     component: AddOwnerComponent,
-    canActivate: [ AppComponent ]
-  },
-  {
-    path: 'editPet',
-    component: EditPetComponent,
     canActivate: [ AppComponent ]
   },
   {
