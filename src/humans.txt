@@ -7,10 +7,6 @@
     Nina Spalek
     Max Wageneder
 
-# THANKS
-
-    Everyone at Stack Overflow
-
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3

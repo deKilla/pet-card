@@ -74,8 +74,7 @@ const BASE_URL_DISEASES_FOR_PRODUCTION = "http://localhost:8081/api/diseases";
     MedicationService,
     PetDiseaseService,
     PetMedicationService,
-    AppComponent,
-    PetInfoComponent
+    AppComponent
   ],
 
   bootstrap: [ AppComponent ]

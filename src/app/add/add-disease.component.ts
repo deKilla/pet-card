@@ -4,7 +4,6 @@ import {Disease} from "../entities/disease";
 import {DiseaseService} from "../services/disease.service";
 import {PetService} from "../services/pet.service";
 import {PetDiseaseService} from "../services/petDisease.service";
-import {PetInfoComponent} from "../pet-info/pet-info.component";
 
 @Component({
   selector: 'add-disease',
@@ -20,7 +19,7 @@ export class AddDiseaseComponent {
   private petId: string;
 
   constructor(private petDiseaseService:PetDiseaseService, private petService:PetService, private diseaseService:DiseaseService,
-              private router:Router, private petInfoComponent:PetInfoComponent) {
+              private router:Router) {
     //preselects all diseases for drop down
     this.diseaseService.findAll();
   }

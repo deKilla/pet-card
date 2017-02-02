@@ -9,7 +9,7 @@ public interface PetOwnerRepository extends PagingAndSortingRepository<PetOwner,
 
   public PetOwner findById(@Param("id") long id);
 
-  //selects petOwner by one pet
+  //selects petOwner by one pet (id)
   @Query(value = "SELECT o.* FROM pet_owner o JOIN pet p ON p.pet_owner_id = o.id WHERE p.id = ?1", nativeQuery = true)
   public PetOwner findByPet(@Param("id") long id);
 

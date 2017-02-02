@@ -11,7 +11,7 @@ public interface PetDiseaseRepository extends PagingAndSortingRepository<PetDise
 
   public PetDisease findById(@Param("id") long id);
 
-  //selects all petDiseases by one pet
+  //selects all petDiseases by one pet (id)
   @Query(value = "SELECT pd.* FROM pet_disease pd JOIN pet p ON p.id = pd.pet_id where p.id = ?1", nativeQuery = true)
   public List<PetDisease> findByPet(@Param("id") long id);
 

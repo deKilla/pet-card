@@ -25,28 +25,6 @@ export class MedicationService {
   ) {
   }
 
-  //selects a medication by id
-  public findById(id: string): void {
-    //uses Query from Backend
-    let url = this.baseUrl + "/search/findById";
-
-    let search = new URLSearchParams();
-    search.set('id', id);
-
-    let headers = new Headers();
-    headers.set('Accept', 'application/json');
-    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
-
-    //gets a medication from db and stores it
-    this
-      .http
-      .get(url, {headers, search})
-      .map(resp => resp.json())
-      .subscribe(
-        (medication) => {this.medication = medication;}
-      )
-  }
-
   //selects a medication by pet
   public findByPet(id: string): void {
     //uses Query from Backend

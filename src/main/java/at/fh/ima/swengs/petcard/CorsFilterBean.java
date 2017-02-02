@@ -10,6 +10,7 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class CorsFilterBean {
 
+  //to allow methods do be perfomed
   @Bean
   public CorsFilter corsFilter() {
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -21,7 +22,6 @@ public class CorsFilterBean {
     config.addAllowedMethod("POST");
     config.addAllowedMethod("PUT");
     config.addAllowedMethod("DELETE");
-    config.addAllowedMethod("PATCH");
     source.registerCorsConfiguration("/**", config);
     return new CorsFilter(source);
   }

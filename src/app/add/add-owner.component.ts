@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import {OAuthService} from "angular-oauth2-oidc";
-import {DoctorService} from "../services/doctor.service";
-import {Doctor} from "../entities/doctor";
 import {Router} from "@angular/router";
 import {PetOwnerService} from "../services/petOwner.service";
 
@@ -19,7 +17,7 @@ export class AddOwnerComponent {
   public address: string;
   public phone: string;
 
-  constructor(private ownerService: PetOwnerService, private oauthService: OAuthService, private router:Router) {
+  constructor(private ownerService: PetOwnerService, private router:Router) {
   }
 
   //adds a new petOwner

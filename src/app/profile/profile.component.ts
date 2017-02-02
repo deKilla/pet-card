@@ -19,7 +19,6 @@ export class ProfileComponent {
   public officeHours: string;
 
   //for use of storing a doctor object and a doctor id not used in html
-  private doctorId: number;
   private doctor: Doctor;
 
 
@@ -33,26 +32,28 @@ export class ProfileComponent {
     this.doctorService.findByFirstName(doctorsName)
       .subscribe(
         (doctor) => {
+          //extra fields used, because of unknown problem (edit-pet.component is able to directly use the object)
+          // same problem as with edit-disease
           this.firstName = doctor.firstName;
           this.lastName = doctor.lastName;
           this.address = doctor.address;
           this.email = doctor.email;
           this.phone = doctor.phone;
           this.officeHours = doctor.officeHours;
-          this.doctorId = doctor.id;
           this.doctor = doctor;
         });
   }
 
   //do save changes in doctors profile
   save (): void {
-    this.doctor.id = this.doctorId;
+    //needed to store  changes into object (because of unknown problem; same as edit-disease)
     this.doctor.firstName = this.firstName;
     this.doctor.lastName = this.lastName;
     this.doctor.address = this.address;
     this.doctor.email = this.email;
     this.doctor.phone = this.phone;
     this.doctor.officeHours = this.officeHours;
+
     this.doctorService.save(this.doctor);
   }
 

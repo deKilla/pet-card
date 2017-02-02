@@ -4,14 +4,12 @@
   <meta charset="UTF-8">
   <title>P@-Card | Pet Info</title>
   <link href="../../css/stylesheet.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script> // to use jsPDF for registring pdf file
 </head>
 <body>
 <h1>Pet Info</h1>
 
     <form #f="ngForm" novalidate>
       <div class="form-group">
-        <!--<label>ID</label>-->
         <input [(ngModel)]="id"
                name="id"
                type="number"
@@ -24,14 +22,14 @@
       </div>
 
 
-        <div class="alert alert-danger" role="alert" *ngIf="f?.controls?.id?.hasError('asyncId') && f?.controls?.id?.dirty == true">
-          <b>Please provide an ID greater than Zero!</b>
-        </div>
         <div class="alert alert-danger" role="alert" *ngIf="f?.controls?.id?.hasError('pattern') && f?.controls?.id?.dirty == true">
           <b>Please provide an ID between 1 & 9999!</b>
         </div>
         <div class="alert alert-danger" role="alert" *ngIf="f?.controls?.id?.hasError('required') && f?.controls?.id?.dirty == true">
           <b>Please enter an ID!</b>
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="f?.controls?.id?.hasError('asyncId') && f?.controls?.id?.dirty == true">
+          <b>This id is not in use!</b>
         </div>
 
       <div class="form-group">
@@ -121,8 +119,5 @@
       </div>
 
     </div>
-
-
-
 </body>
 </html>

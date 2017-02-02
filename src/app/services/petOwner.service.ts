@@ -23,29 +23,6 @@ export class PetOwnerService {
   ) {
   }
 
-  //selects a owner by id
-  public findById(id: string): void {
-    //uses Query from Backend
-    let url = this.baseUrl + "/search/findById";
-
-    let search = new URLSearchParams();
-    search.set('id', id);
-
-    let headers = new Headers();
-    headers.set('Accept', 'application/json');
-    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
-
-    //gets owner from db and stores the object
-    this
-      .http
-      .get(url, {headers, search})
-      .map(resp => resp.json())
-      .subscribe(
-        (petOwner) => {this.petOwner = petOwner;},
-        (err) => {console.log("no owner found");}
-      )
-  }
-
   //selects a owner who owns a pet
   public findByPet(id: string): void {
     //uses Query from Backend

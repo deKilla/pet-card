@@ -18,8 +18,8 @@ export class PetDiseaseService {
     @Inject(BASE_URL_DISEASES) private baseUrlDiseases: string,
     private http: Http,
     private oauthService: OAuthService
-  ) {
-  }
+  ){}
+
 
   //selects a petDisease by id
   public findById(id: string): Observable<PetDisease> {

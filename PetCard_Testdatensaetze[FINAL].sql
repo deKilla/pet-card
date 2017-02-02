@@ -2,6 +2,7 @@
 --  Testdatensätze
 -- #######################################################################################
 
+USE IMA14_spalek_project_2;
 
 -- Medikamente
 
@@ -115,8 +116,3 @@ VALUES ('Bei jeder Gelegenheit einschmieren', NULL, '2015-08-25', 0, 1, 3);
 
 INSERT INTO pet_medication (dose, end_date, issue_date, version, medication_id, pet_id)
 VALUES ('1x Morgens 1 Tablette', '2015-02-01', '2014-12-27', 0, 6, 4);
-
-
-
-SELECT *  FROM pet_medication;
-SELECT * FROM pet;

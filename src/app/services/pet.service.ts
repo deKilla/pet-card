@@ -4,8 +4,6 @@ import {BASE_URL_PETS, BASE_URL_DOCTORS, BASE_URL_PETOWNERS} from "../app.tokens
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {OAuthService} from "angular-oauth2-oidc";
-import {PetOwner} from "../entities/petOwner";
-import {Doctor} from "../entities/doctor";
 import {Observable} from "rxjs";
 
 @Injectable()
@@ -25,7 +23,7 @@ export class PetService {
   }
 
   //selects a pet by id
-  public findById(id: string): void {
+  public findById(id: string, validator:boolean = false): Observable<Pet> {
     //uses Query from Backend
     let url = this.baseUrl + "/search/findById";
 
@@ -36,18 +34,27 @@ export class PetService {
     headers.set('Accept', 'application/json');
     headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
-    //gets pet from db and stores the object
-    this
+    if(!validator){
+      //gets pet from db and stores the object
+      this
+        .http
+        .get(url, {headers, search})
+        .map(resp => resp.json())
+        .subscribe(
+          (pet) => {this.pet = pet;}
+        )
+      return null;
+    }
+
+    //gets pet from db and returns it
+    return this
       .http
       .get(url, {headers, search})
-      .map(resp => resp.json())
-      .subscribe(
-        (pet) => {this.pet = pet;}
-      )
+      .map(resp => resp.json());
   }
 
   //adds a new pet
-  public add(name: string, race: string, weight: number, birthdate: string, ownerId: string, doctorId: string): void {
+  public add(name: string, type: string, weight: number, birthdate: string, ownerId: string, doctorId: string): void {
 
     let url = this.baseUrl;
     //urls to doctor and owner of new pet (foreign keys in db)
@@ -61,7 +68,7 @@ export class PetService {
     //adds a new pet with given parameters to the db
     this
       .http
-      .post(url, {name, type:race, weight, birthDate:birthdate, petOwner:owner, doctor}, {headers})
+      .post(url, {name, type, weight, birthDate:birthdate, petOwner:owner, doctor}, {headers})
       .map(resp => resp.json())
       .subscribe(
         (pet) => {

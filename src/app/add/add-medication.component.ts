@@ -4,7 +4,6 @@ import {Medication} from "../entities/medication";
 import {MedicationService} from "../services/medication.service";
 import {PetService} from "../services/pet.service";
 import {PetMedicationService} from "../services/petMedication.service";
-import {PetInfoComponent} from "../pet-info/pet-info.component";
 
 @Component({
   selector: 'add-medication',
@@ -20,8 +19,8 @@ export class AddMedicationComponent {
   //to store petId
   private petId: string;
 
-  constructor(private petMedicationService:PetMedicationService, private petService:PetService, private medicationService:MedicationService,
-              private router:Router, private petInfoComponent:PetInfoComponent) {
+  constructor(private petMedicationService:PetMedicationService, private petService:PetService,
+              private medicationService:MedicationService, private router:Router) {
     //preselects all medications for drop down
     this.medicationService.findAll();
   }

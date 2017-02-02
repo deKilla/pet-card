@@ -21,27 +21,8 @@ export class PetMedicationService {
     @Inject(BASE_URL_MEDICATIONS) private baseUrlMedication: string,
     private http: Http,
     private oauthService: OAuthService
-  ) {
-  }
+  ) {}
 
-  //selects a petMedication by id
-  public findById(id: string): Observable<PetMedication> {
-    //uses Query from Backend
-    let url = this.baseUrl + "/search/findById";
-
-    let search = new URLSearchParams();
-    search.set('id', id);
-
-    let headers = new Headers();
-    headers.set('Accept', 'application/json');
-    headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
-
-    //gets petDisease from db and returns it
-    return this
-      .http
-      .get(url, {headers, search})
-      .map(resp => resp.json());
-  }
 
   //selects petMedications by pet
   public findByPet(id: string): void {

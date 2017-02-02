@@ -4,7 +4,7 @@ import {DiseaseService} from "../services/disease.service";
 import {PetService} from "../services/pet.service";
 import {PetDiseaseService} from "../services/petDisease.service";
 import {PetDisease} from "../entities/petDisease";
-import {PetInfoComponent} from "../pet-info/pet-info.component";
+import {Pet} from "../entities/pet";
 
 @Component({
   selector: 'edit-disease',
@@ -15,33 +15,36 @@ export class EditDiseaseComponent {
   //fields from html
   public diseaseStart: string;
   public diseaseEnd: string;
-  //for storing queryParams and petDisease object
+  //for storing petDisease object
   private disease: PetDisease;
-  private diseaseId: string;
 
-  constructor(private petDiseaseService:PetDiseaseService, private petService:PetService, private diseaseService:DiseaseService,
-              route: ActivatedRoute, private router: Router, private petInfoComponent:PetInfoComponent) {
+  constructor(private petDiseaseService:PetDiseaseService, private petService:PetService,
+              route: ActivatedRoute, private router: Router) {
 
     //reads and stores diseaseId from url param
+    let diseaseId;
     route.queryParams.subscribe(
-      (queryParam: any) => {this.diseaseId = queryParam['diseaseId'];}
+      (queryParam: any) => {diseaseId = queryParam['diseaseId'];}
     );
 
     //selects petDisease by id
-    this.petDiseaseService.findById(this.diseaseId)
+    this.petDiseaseService.findById(diseaseId)
       .subscribe(
         (petDisease) => {
-          this.disease = petDisease;
+          //extra fields used, because of unknown problem (edit-pet.component is able to directly use the object)
           this.diseaseStart = petDisease.diseaseStart;
           this.diseaseEnd = petDisease.diseaseEnd;
+          this.disease = petDisease;
         }
       )
   }
 
   //saves changes from petDisease
   save(): void{
+
+    //needed to store  changes into object (because of unknown problem)
     this.disease.diseaseEnd = this.diseaseEnd;
-    this.disease.diseaseStart = this.diseaseStart;
+    this.disease.diseaseStart = this.diseaseEnd;
 
     //gets promise, so that the new entry is added to the db befor redirecting and reloading the pet info
     let promise = this.petDiseaseService.save(this.disease).toPromise();

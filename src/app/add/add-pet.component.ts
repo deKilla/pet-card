@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import {PetService} from "../services/pet.service";
-import {Pet} from "../entities/pet";
 import {PetOwner} from "../entities/petOwner";
 import {Doctor} from "../entities/doctor";
 import {DoctorService} from "../services/doctor.service";
 import {PetOwnerService} from "../services/petOwner.service";
 import {Router} from "@angular/router";
-import {PetInfoComponent} from "../pet-info/pet-info.component";
 
 @Component({
   selector: 'add-pet',
@@ -16,7 +14,7 @@ export class AddPetComponent {
 
   //fields from html
   public name: string;
-  public race: string;
+  public type: string;
   public weight: number;
   public birthdate: string;
   public ownerId: string;
@@ -40,7 +38,7 @@ export class AddPetComponent {
 
   //adds a new pet
   add(): void{
-    this.petService.add(this.name, this.race, this.weight, this.birthdate, this.ownerId, this.doctorId);
+    this.petService.add(this.name, this.type, this.weight, this.birthdate, this.ownerId, this.doctorId);
   }
 
   // simply redirects to the location given by the attribute, if no attribute is provided, the router

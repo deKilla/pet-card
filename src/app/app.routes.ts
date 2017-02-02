@@ -47,7 +47,7 @@ const APP_ROUTES: Routes = [
     canActivate: [ AppComponent ]
   },
   {
-    path: 'editDisease/:pd.id',
+    path: 'editDisease/:id',
     component: EditDiseaseComponent,
     canActivate: [ AppComponent ]
   },
@@ -57,7 +57,7 @@ const APP_ROUTES: Routes = [
     canActivate: [ AppComponent ]
   },
   {
-    path: 'petInfo/:id/',
+    path: 'petInfo/:id',
     component: PetInfoComponent,
     canActivate: [ AppComponent ]
   },

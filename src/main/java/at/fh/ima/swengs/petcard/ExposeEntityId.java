@@ -8,6 +8,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapt
 @Configuration
 public class ExposeEntityId extends RepositoryRestConfigurerAdapter{
 
+    //to expose the entity ids
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
       config.exposeIdsFor(Pet.class);

@@ -1,7 +1,7 @@
 
 import {Disease} from "../entities/disease";
 import {Injectable, Inject} from "@angular/core";
-import {BASE_URL_PETS, BASE_URL_DISEASES} from "../app.tokens";
+import {BASE_URL_DISEASES} from "../app.tokens";
 import {Http, URLSearchParams, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {OAuthService} from "angular-oauth2-oidc";
